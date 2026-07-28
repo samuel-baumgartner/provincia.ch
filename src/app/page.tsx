@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import LandingFeatures from "@/components/LandingFeatures";
+import DownloadBuilds from "@/components/DownloadBuilds";
 import SiteFooter from "@/components/SiteFooter";
 import {
   developmentStatus,
@@ -57,12 +58,12 @@ export default function Home() {
           </p>
 
           <div className="animate-hero-rise-delay-2 mt-2 flex flex-wrap items-center justify-center gap-3">
-            <Link
-              href="/devtalk"
+            <a
+              href="/#download"
               className="min-w-[10rem] rounded-md bg-cypress px-6 py-3 text-sm font-semibold tracking-wide text-ink transition hover:bg-cypress-bright"
             >
-              Read DevTalk
-            </Link>
+              Download
+            </a>
             <Link
               href="/game"
               className="min-w-[10rem] rounded-md border border-stone/35 bg-ink/50 px-6 py-3 text-sm font-semibold tracking-wide text-stone backdrop-blur transition hover:border-stone/60"
@@ -72,7 +73,7 @@ export default function Home() {
           </div>
 
           <p className="animate-hero-rise-delay-2 mt-3 text-xs font-medium uppercase tracking-[0.2em] text-stone-muted/80">
-            Steam — soon
+            Free pre-alpha · Steam — soon
           </p>
         </div>
       </section>
@@ -140,6 +141,21 @@ export default function Home() {
               View all screenshots →
             </Link>
           </p>
+        </div>
+      </section>
+
+      {/* Download */}
+      <section id="download" className="scroll-mt-20 border-t border-ink-border bg-ink-elevated/30">
+        <div className="mx-auto max-w-6xl px-6 py-20">
+          <h2 className="font-display text-center text-3xl font-semibold tracking-tight text-stone md:text-4xl">
+            Download
+          </h2>
+          <p className="mx-auto mt-3 max-w-xl text-center text-stone-muted md:text-lg">
+            Play the current Godot build on your machine — Windows, macOS, or Linux.
+          </p>
+          <div className="mt-10">
+            <DownloadBuilds />
+          </div>
         </div>
       </section>
 

@@ -120,9 +120,39 @@ export const coreLoop = [
 ];
 
 export const developmentStatus =
-  "Provinica is in active pre-alpha. Core placement, water, housing layout, colonist logistics, and battles are playable in the Godot build. This site tracks honest dev progress — no fake release date, no store page yet.";
+  "Provinica is in active pre-alpha. Core placement, water, housing layout, colonist logistics, and battles are playable in the Godot build. Download a build below — expect bugs. No Steam page yet.";
+
+export const downloadReleaseTag = "pre-alpha-2026-07-27";
+
+const downloadBase = `https://github.com/samuel-baumgartner/provinica.ch/releases/download/${downloadReleaseTag}`;
+
+export const downloadBuilds = [
+  {
+    id: "windows",
+    label: "Windows",
+    file: "Provincia-windows.zip",
+    href: `${downloadBase}/Provincia-windows.zip`,
+    hint: "Unzip and run Provincia.exe",
+  },
+  {
+    id: "macos",
+    label: "macOS",
+    file: "Provincia-macos.zip",
+    href: `${downloadBase}/Provincia-macos.zip`,
+    hint: "Unzip and open Provincia.app",
+  },
+  {
+    id: "linux",
+    label: "Linux",
+    file: "Provincia-linux.zip",
+    href: `${downloadBase}/Provincia-linux.zip`,
+    hint: "Unzip and run Provincia.x86_64",
+  },
+] as const;
 
 export const storeLinks = {
   steam: null as string | null,
   discord: null as string | null,
+  downloads: "/#download",
 };
+

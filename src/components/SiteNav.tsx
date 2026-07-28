@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const links = [
-  { href: "/#features", label: "Features", homeOnly: true },
+  { href: "/#features", label: "Features" },
   { href: "/game", label: "About" },
   { href: "/devtalk", label: "DevTalk" },
 ];
@@ -29,50 +29,37 @@ export default function SiteNav() {
         </Link>
         <ul className="flex items-center gap-5 sm:gap-8">
           {links.map((link) => {
-            if (link.homeOnly && !onHome) {
-              return (
-                <li key={link.href} className="hidden sm:block">
-                  <Link
-                    href="/#features"
-                    className="text-sm text-stone-muted transition hover:text-cypress-bright"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              );
-            }
-            if (link.homeOnly && onHome) {
-              return (
-                <li key={link.href} className="hidden sm:block">
+            const isHash = link.href.startsWith("/#");
+            const active = !isHash && pathname === link.href;
+            return (
+              <li key={link.href} className={isHash && !onHome ? "hidden sm:block" : undefined}>
+                {isHash ? (
                   <a
                     href={link.href}
                     className="text-sm text-stone-muted transition hover:text-cypress-bright"
                   >
                     {link.label}
                   </a>
-                </li>
-              );
-            }
-            return (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  className={`text-sm transition hover:text-cypress-bright ${
-                    pathname === link.href ? "text-cypress-bright" : "text-stone-muted"
-                  }`}
-                >
-                  {link.label}
-                </Link>
+                ) : (
+                  <Link
+                    href={link.href}
+                    className={`text-sm transition hover:text-cypress-bright ${
+                      active ? "text-cypress-bright" : "text-stone-muted"
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                )}
               </li>
             );
           })}
           <li>
-            <Link
-              href="/devtalk"
+            <a
+              href="/#download"
               className="rounded-md bg-cypress px-3.5 py-1.5 text-sm font-semibold text-ink transition hover:bg-cypress-bright sm:px-4 sm:py-2"
             >
-              Follow build
-            </Link>
+              Download
+            </a>
           </li>
         </ul>
       </nav>

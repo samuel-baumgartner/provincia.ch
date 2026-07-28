@@ -16,6 +16,11 @@ export default function SiteFooter() {
             <p className="font-semibold text-stone">Explore</p>
             <ul className="space-y-1.5 text-stone-muted">
               <li>
+                <Link href="/#download" className="transition hover:text-cypress-bright">
+                  Download
+                </Link>
+              </li>
+              <li>
                 <Link href="/#features" className="transition hover:text-cypress-bright">
                   Features
                 </Link>
@@ -40,7 +45,7 @@ export default function SiteFooter() {
           <div className="space-y-2">
             <p className="font-semibold text-stone">Status</p>
             <ul className="space-y-1.5 text-stone-muted">
-              <li>Pre-alpha</li>
+              <li>Pre-alpha — free download</li>
               <li>Steam — coming later</li>
             </ul>
           </div>

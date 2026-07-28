@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import SiteFooter from "@/components/SiteFooter";
+import DownloadBuilds from "@/components/DownloadBuilds";
 import {
   coreLoop,
   curatorQuote,
@@ -142,6 +143,18 @@ export default function GamePage() {
                 />
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="download" className="scroll-mt-20 border-t border-ink-border">
+        <div className="mx-auto max-w-6xl px-6 py-16">
+          <h2 className="font-display text-2xl font-semibold text-stone">Download</h2>
+          <p className="mt-3 max-w-2xl text-stone-muted">
+            Grab the current pre-alpha build for your platform. Free — expect bugs.
+          </p>
+          <div className="mt-8">
+            <DownloadBuilds compact />
           </div>
         </div>
       </section>
