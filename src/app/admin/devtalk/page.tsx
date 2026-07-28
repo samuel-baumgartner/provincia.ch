@@ -86,7 +86,7 @@ export default async function AdminDevTalkPage() {
         <ol className="mt-2 list-decimal space-y-1 pl-5">
           <li>Write in <code>content/devtalks/your-slug.md</code> with YAML frontmatter</li>
           <li>Run distribute (button above) to create social drafts</li>
-          <li>Link from Reddit replies to <code>provinica.ch/devtalk/…</code></li>
+          <li>Link from Reddit replies to <code>provincia.ch/devtalk/…</code></li>
         </ol>
       </section>
     </div>

@@ -28,7 +28,7 @@ Example:
 title: "My Update"
 excerpt: "A short summary"
 date: "2026-05-01"
-author: "Provinica Dev Team"
+author: "Provincia Dev Team"
 tags:
   - systems
   - ui

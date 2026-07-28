@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState, useTransition } from "react";
 import type { RedditOpportunity } from "@/lib/reddit-report";
 
-const STORAGE_KEY = "provinica.admin.redditQueue.v1";
+const STORAGE_KEY = "provincia.admin.redditQueue.v1";
 
 type StoredQueue = {
   done: string[];

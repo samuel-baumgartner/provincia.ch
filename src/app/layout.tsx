@@ -14,7 +14,7 @@ const fraunces = Fraunces({
 });
 
 export const metadata: Metadata = {
-  title: "Provinica | Roman Colony Builder",
+  title: "Provincia | Roman Colony Builder",
   description:
     "A Roman colony builder on a terrace grid — living water, aqueducts, colonist logistics, and battles. Pre-alpha.",
 };

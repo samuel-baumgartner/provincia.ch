@@ -5,8 +5,8 @@ import SiteFooter from "@/components/SiteFooter";
 import { getAllDevTalkMeta } from "@/lib/devtalks";
 
 export const metadata: Metadata = {
-  title: "DevTalk | Provinica",
-  description: "Development updates from the Provinica build — systems, screenshots, honest progress.",
+  title: "DevTalk | Provincia",
+  description: "Development updates from the Provincia build — systems, screenshots, honest progress.",
 };
 
 function formatDate(date: string): string {

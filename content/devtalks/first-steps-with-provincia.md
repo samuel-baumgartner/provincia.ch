@@ -1,20 +1,20 @@
 ---
-title: "First Steps With Provinica"
+title: "First Steps With Provincia"
 excerpt: "We picked a 200×200 grid before we had pretty art. That choice still pays rent every week."
 date: "2026-04-28"
-author: "Provinica Dev Team"
+author: "Provincia Dev Team"
 tags:
   - architecture
   - simulation
   - grid
-coverImage: "/devtalks/first-steps-with-provinica/colony-overview.png"
+coverImage: "/devtalks/first-steps-with-provincia/colony-overview.png"
 ---
 
-We started Provinica with a boring decision: everything lives on a fixed grid.
+We started Provincia with a boring decision: everything lives on a fixed grid.
 
 Not because grids are romantic. Because the moment you let players paint freeform shapes, you need a second hidden model for simulation anyway — occupancy, paths, water cells, haul routes. We wanted one model. The renderer, the placement tools, and the water sim all read the same `Vector2i` coordinates on a **200×200** map with **1 m terrace steps**.
 
-![Early colony layout from the dev build](/devtalks/first-steps-with-provinica/colony-overview.png)
+![Early colony layout from the dev build](/devtalks/first-steps-with-provincia/colony-overview.png)
 
 *The grant in our dev save: curia, starter housing, ponds along low ground, work sites creeping outward.*
 
@@ -38,11 +38,11 @@ Early on, every system reached into `main` with `get_node` and `has_method`. Tha
 
 Roman housing is not one mesh swap. Stages upgrade in place — rough timber, better walls, stone — and the district solver has to respect door paths and terrace height while packing clusters.
 
-![Stage 1 housing](/devtalks/first-steps-with-provinica/housing-stage-01.png)
+![Stage 1 housing](/devtalks/first-steps-with-provincia/housing-stage-01.png)
 
-![Stage 3 housing](/devtalks/first-steps-with-provinica/housing-stage-03.png)
+![Stage 3 housing](/devtalks/first-steps-with-provincia/housing-stage-03.png)
 
-![Stage 4 housing](/devtalks/first-steps-with-provinica/housing-stage-04.png)
+![Stage 4 housing](/devtalks/first-steps-with-provincia/housing-stage-04.png)
 
 We are still pre-alpha. Visuals will move. The grid will not — every interesting system we have added (water CA, sewage underlays, aqueduct permeability) assumed it from day one.
 

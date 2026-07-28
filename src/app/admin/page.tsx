@@ -31,7 +31,7 @@ export default async function AdminDashboard({ searchParams }: AdminPageProps) {
         <section className="mx-auto grid w-full max-w-5xl gap-10 px-6 py-16 lg:grid-cols-2 lg:items-center lg:py-24">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-300/80">
-              Provinica
+              Provincia
             </p>
             <h1 className="mt-2 text-3xl font-bold">Marketing Command Center</h1>
             <p className="mt-2 text-sm text-neutral-400">
@@ -66,7 +66,7 @@ export default async function AdminDashboard({ searchParams }: AdminPageProps) {
           <div className="overflow-hidden rounded-2xl border border-neutral-800 shadow-2xl shadow-cyan-950/30">
             <Image
               src="/game/stone-cutter.png"
-              alt="Water-powered stone cutter — Provinica production building"
+              alt="Water-powered stone cutter — Provincia production building"
               width={597}
               height={395}
               className="h-auto w-full"

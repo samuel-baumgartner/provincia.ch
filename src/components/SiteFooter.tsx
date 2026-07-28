@@ -7,7 +7,7 @@ export default function SiteFooter() {
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-6 py-12 md:flex-row md:items-start md:justify-between">
         <div className="max-w-sm">
           <p className="font-display text-xl font-semibold tracking-tight text-stone">
-            Provinica
+            Provincia
           </p>
           <p className="mt-2 text-sm leading-relaxed text-stone-muted">{developmentStatus}</p>
         </div>
@@ -52,7 +52,7 @@ export default function SiteFooter() {
         </div>
       </div>
       <div className="border-t border-ink-border/80 py-4 text-center text-xs text-stone-muted/70">
-        © {new Date().getFullYear()} Provinica
+        © {new Date().getFullYear()} Provincia
       </div>
     </footer>
   );

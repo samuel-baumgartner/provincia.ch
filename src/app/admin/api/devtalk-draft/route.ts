@@ -21,7 +21,7 @@ function fallbackDraft(title: string) {
 title: "${title}"
 excerpt: "Draft devtalk generated from a Reddit opportunity."
 date: "${today}"
-author: "Provinica Dev Team"
+author: "Provincia Dev Team"
 draft: true
 tags:
   - reddit
@@ -32,9 +32,9 @@ This is a starter draft.
 
 ## Why this topic matters
 
-Summarize the thread context and why this is relevant to Provinica.
+Summarize the thread context and why this is relevant to Provincia.
 
-## What we are doing in Provinica
+## What we are doing in Provincia
 
 Explain your concrete approach, constraints, and trade-offs.
 

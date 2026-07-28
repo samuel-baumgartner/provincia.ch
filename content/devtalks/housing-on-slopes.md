@@ -2,7 +2,7 @@
 title: "Housing on Slopes"
 excerpt: "Dragging a housing district should not mean hand-rotating forty huts on a terrace grid. We ported a solver."
 date: "2026-05-02"
-author: "Provinica Dev Team"
+author: "Provincia Dev Team"
 tags:
   - housing
   - placement
@@ -10,7 +10,7 @@ tags:
 coverImage: "/devtalks/housing-on-slopes/housing-stage-02.png"
 ---
 
-You drag a rectangle on uneven ground and expect houses to land sensibly. On flat maps that is easy. On Provinica’s **1 m terrace steps**, a naive fill algorithm places doorsteps in mid-air or buries entrances in dirt.
+You drag a rectangle on uneven ground and expect houses to land sensibly. On flat maps that is easy. On Provincia’s **1 m terrace steps**, a naive fill algorithm places doorsteps in mid-air or buries entrances in dirt.
 
 We did not want manual rotation per hut. We wanted a **district solver** that reads the same terrain and path grid as placement and water.
 
@@ -57,4 +57,4 @@ Housing does not float in a UI vacuum. Districts connect to roads, town hall log
 
 Steep zones with tight path budgets sometimes return fewer houses than requested. We show that in the UI instead of silently cramming bad placements. Terrace editing after solve still requires rebuild passes — editing terrain under an existing row is a solved problem only if you enjoy pain.
 
-Housing is one of the reasons the grid decision from [First Steps](/devtalk/first-steps-with-provinica) still feels correct: the solver, water lips, and haul paths all agree on what a cell is.
+Housing is one of the reasons the grid decision from [First Steps](/devtalk/first-steps-with-provincia) still feels correct: the solver, water lips, and haul paths all agree on what a cell is.

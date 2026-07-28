@@ -16,7 +16,7 @@ import {
 import { getAllDevTalkMeta } from "@/lib/devtalks";
 
 export const metadata: Metadata = {
-  title: "Provinica | Roman Colony Builder",
+  title: "Provincia | Roman Colony Builder",
   description: gamePitch,
 };
 
@@ -47,7 +47,7 @@ export default function Home() {
 
         <div className="relative z-10 mx-auto flex max-w-3xl flex-col items-center gap-5">
           <h1 className="animate-hero-rise font-display text-5xl font-semibold leading-[1.05] tracking-tight text-stone text-balance sm:text-6xl md:text-7xl lg:text-8xl">
-            Provinica
+            Provincia
           </h1>
           <p className="animate-hero-rise-delay max-w-xl font-display text-xl leading-snug text-stone/95 text-balance md:text-2xl">
             {heroTagline}{" "}
@@ -99,7 +99,7 @@ export default function Home() {
           <div className="overflow-hidden border border-ink-border">
             <Image
               src="/game/title-secondary.png"
-              alt="Provinica colony at golden hour"
+              alt="Provincia colony at golden hour"
               width={1200}
               height={800}
               className="h-auto w-full"

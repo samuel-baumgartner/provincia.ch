@@ -25,7 +25,7 @@ export default function SiteNav() {
           href="/"
           className="font-display text-xl font-semibold tracking-tight text-stone"
         >
-          Provinica
+          Provincia
         </Link>
         <ul className="flex items-center gap-5 sm:gap-8">
           {links.map((link) => {

@@ -1,17 +1,17 @@
 ---
-title: "Provinica Steam Page Setup Guide"
+title: "Provincia Steam Page Setup Guide"
 excerpt: "Step-by-step: Coming Soon store page, then demo + Next Fest — copy, assets, and Godot build notes."
 date: "2026-07-01"
 ---
 
-Your public brand is **Provinica**; the Godot repo (`my-colony-sim`, sibling of this site) still uses the internal name "My Colony Sim" in `project.godot`. On Steam, use **Provinica** everywhere. This site (`src/lib/game-content.ts`, `/game`, DevTalk) already contains most of the copy you need.
+Your public brand and domain are **Provincia** / [provincia.ch](https://provincia.ch). The Godot project (`my-colony-sim/project.godot`) already has `config/name="Provincia"` and exports as `Provincia.exe` / `Provincia.x86_64` / `Provincia.app`. This site (`src/lib/game-content.ts`, `/game`, DevTalk) already contains most of the copy you need.
 
 **Do not execute blindly** — work through phases when you are ready. Track high-level progress on `/admin/steam`.
 
 ```mermaid
 flowchart LR
   subgraph phase1 [Phase 1 Coming Soon]
-    A[Steamworks account] --> B[Create app Provinica]
+    A[Steamworks account] --> B[Create app Provincia]
     B --> C[Store listing + art]
     C --> D[Publish Coming Soon]
     D --> E[Wishlists]
@@ -22,7 +22,7 @@ flowchart LR
     H --> I[Next Fest registration]
   end
   E --> F
-  D --> J[Link from provinica.ch]
+  D --> J[Link from provincia.ch]
   J --> E
 ```
 
@@ -34,7 +34,7 @@ flowchart LR
 | --- | --- | --- |
 | Steamworks partner account | Unknown | Pay $100 USD fee at [partner.steamgames.com](https://partner.steamgames.com), complete tax/bank forms (allow 1–3 business days) |
 | Legal entity / tax info | Required | Individual or company — needed before you can publish |
-| Public game name | Ready | **Provinica** (subtitle optional: *Roman Colony Builder*) |
+| Public game name | Ready | **Provincia** (subtitle optional: *Roman Colony Builder*) |
 | Honest dev status | Ready | Pre-alpha, no release date — matches `developmentStatus` in `src/lib/game-content.ts` |
 | Screenshots | Partial | 9 images on site; `colony_overview.png` missing in game repo — run capture script (see Phase 1 art) |
 | Trailer | Not yet | Optional for Coming Soon; **required** for Next Fest demo |
@@ -50,7 +50,7 @@ flowchart LR
 1. Log in to [Steamworks](https://partner.steamgames.com).
 2. **Apps & Packages → All Applications → Add New App**.
 3. Choose **Game** (not DLC/tool).
-4. Set **App name:** `Provinica`.
+4. Set **App name:** `Provincia`.
 5. Note your **App ID** — you will need it for depots, builds, and linking.
 
 ### Step 2: Configure basic app settings
@@ -60,10 +60,10 @@ In **Edit Steamworks Settings** for the app:
 - **Supported systems:** Windows, Linux, macOS (export presets already exist in `my-colony-sim/export_presets.cfg`).
 - **Release state:** set to **Coming Soon** (not full release).
 - **Release date:** leave **To be announced** — no fake date; Steam allows TBA for Coming Soon.
-- **Developer / Publisher:** your studio name (can match "Provinica Dev Team" from devtalks).
+- **Developer / Publisher:** your studio name (can match "Provincia Dev Team" from devtalks).
 - **Franchise / series:** leave blank for now.
-- **Website:** `https://provinica.ch`
-- **Support URL:** `https://provinica.ch` or a mailto until you add a support page.
+- **Website:** `https://provincia.ch`
+- **Support URL:** `https://provincia.ch` or a mailto until you add a support page.
 
 ### Step 3: Store page — written content (copy-paste drafts)
 
@@ -71,7 +71,7 @@ Steam has several text fields. Below is ready-to-adapt copy sourced from this si
 
 **Short description** (appears in search/cards, ~300 chars max):
 
-> Provinica is a Roman colony builder on a fixed terrace grid. Survey your grant, route real water through wells and aqueducts, zone housing on slopes, and keep colonists fed as families arrive from the road. Pre-alpha — follow the build on DevTalk.
+> Provincia is a Roman colony builder on a fixed terrace grid. Survey your grant, route real water through wells and aqueducts, zone housing on slopes, and keep colonists fed as families arrive from the road. Pre-alpha — follow the build on DevTalk.
 
 **About This Game** (long description — use Steam BBCode `[h2]`, `[list]`, `[img]`):
 
@@ -105,7 +105,7 @@ You are the curator of a small colonia at the edge of the province — a strip o
 You start small. Rome gave you the outline. The rest is placement, water, and patience.
 
 [h2]Development status[/h2]
-Provinica is in active pre-alpha. Core placement, water, housing layout, and colonist logistics are playable in the Godot build. Follow honest dev progress at [url=https://provinica.ch/devtalk]provinica.ch/devtalk[/url].
+Provincia is in active pre-alpha. Core placement, water, housing layout, and colonist logistics are playable in the Godot build. Follow honest dev progress at [url=https://provincia.ch/devtalk]provincia.ch/devtalk[/url].
 ```
 
 **Core loop bullets** (optional extra paragraph or feature list):
@@ -133,7 +133,7 @@ Steam requires specific sizes. Map your existing assets:
 
 | Asset | Steam size | Source |
 | --- | --- | --- |
-| **Header capsule** | 460×215 | **Create new** — crop `/game/colony-overview.png` with title "PROVINICA" |
+| **Header capsule** | 460×215 | **Create new** — crop `/game/colony-overview.png` with title "PROVINCIA" |
 | **Small capsule** | 231×87 | Same art, tighter crop |
 | **Main capsule** | 616×353 | Hero: colony overview + tagline |
 | **Vertical capsule** | 748×896 | Curator + colony or housing stage 4 |
@@ -156,7 +156,7 @@ Steam requires specific sizes. Map your existing assets:
 Sync workflow:
 
 ```bash
-# From provinica.ch — copies game assets + runs capture scripts
+# From provincia.ch — copies game assets + runs capture scripts
 pnpm assets:sync
 ```
 
@@ -165,7 +165,7 @@ pnpm assets:sync
 - 0–5s: Title + tagline ("Rome gave you the outline…")
 - 5–25s: Terrace planning, water flowing, aqueduct placement
 - 25–45s: Colonists hauling, housing upgrading, material chain UI
-- 45–60s: "Wishlist on Steam" + provinica.ch/devtalk
+- 45–60s: "Wishlist on Steam" + provincia.ch/devtalk
 
 Capture gameplay at 1080p from the Godot build; no release date card.
 
@@ -182,7 +182,7 @@ Capture gameplay at 1080p from the Godot build; no release date card.
 3. Click **Publish** (or schedule publish).
 4. Steam review can take **3–7 days** for first-time partners.
 
-### Step 7: Wire provinica.ch to Steam
+### Step 7: Wire provincia.ch to Steam
 
 After the page is live, update `storeLinks.steam` in `src/lib/game-content.ts` with the store URL and replace the disabled "Steam — soon" button on the homepage. Add the Steam widget or wishlist link to footer/nav.
 
@@ -201,7 +201,7 @@ Do **not** ship the raw tutorial sandbox as-is. Curate a **20–40 minute** expe
 - **End:** Scripted "demo complete" screen with **Wishlist on Steam** button (opens Steam overlay URL)
 - **Hide:** Dev hotkeys (P playthrough toggle), debug panels, unfinished buildings from `data/buildings.csv` that crash or look broken
 
-Rename export product to **Provinica** in Godot project settings before shipping (currently "My Colony Sim").
+Export product name is already **Provincia** in `project.godot` / `export_presets.cfg` — keep it that way for Steam depots.
 
 **Build size warning:** Linux export was ~1.7 GB at time of writing — Steam allows it, but trim before demo:
 
@@ -211,9 +211,9 @@ Rename export product to **Provinica** in Godot project settings before shipping
 ### Step 9: Steam depots and upload
 
 1. **Steamworks → Installation → General** — set launch executable:
-   - Windows: `Provinica.exe`
-   - Linux: `Provinica.x86_64`
-   - macOS: `Provinica.app`
+   - Windows: `Provincia.exe`
+   - Linux: `Provincia.x86_64`
+   - macOS: `Provincia.app`
 2. **Depots** — one depot per OS or a single multi-OS depot (simpler: 3 depots).
 3. Install [Steamworks SDK](https://partner.steamgames.com/doc/sdk) and use **SteamPipe** (`steamcmd` + `app_build.vdf`).
 4. Upload a **demo branch** or separate **Demo App** (Steam supports free demos linked to the main app — preferred for Next Fest).
@@ -260,11 +260,11 @@ Godot-specific: export **Release** builds, test without console wrapper for play
 ## Suggested order of work (practical checklist)
 
 1. Finish Steamworks account + tax
-2. Create Provinica app
+2. Create Provincia app
 3. Run `pnpm assets:sync` and capture fresh 1920×1080 screenshots
 4. Commission or DIY capsule art (header + main + vertical)
 5. Paste store copy from Phase 1
-6. Publish Coming Soon → update provinica.ch Steam link
+6. Publish Coming Soon → update provincia.ch Steam link
 7. Curate demo slice in Godot + wishlist end screen
 8. Export trim + SteamPipe upload
 9. Register Next Fest when demo is solid

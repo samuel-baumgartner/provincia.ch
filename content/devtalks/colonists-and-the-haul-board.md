@@ -2,7 +2,7 @@
 title: "Colonists and the Haul Board"
 excerpt: "Thirst sends a colonist to a wet cell. Everything else — jobs, stockpiles, happiness — exists so that trip is not the only thing that happens."
 date: "2026-05-08"
-author: "Provinica Dev Team"
+author: "Provincia Dev Team"
 tags:
   - colonists
   - logistics

@@ -31,7 +31,7 @@ export default async function AdminSteamPage() {
       <div className="rounded-xl border-2 border-amber-400/40 bg-amber-950/30 p-5">
         <p className="text-xs font-bold uppercase tracking-[0.2em] text-amber-300">Current status</p>
         <p className="mt-2 text-sm leading-relaxed text-amber-100/95">
-          Provinica does not have a public Steam page yet. Focus on devtalks and Reddit for now. Use
+          Provincia does not have a public Steam page yet. Focus on devtalks and Reddit for now. Use
           this page as a checklist so you are ready when the store page goes live.
         </p>
         <Link

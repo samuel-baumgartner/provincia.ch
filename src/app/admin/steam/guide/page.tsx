@@ -10,7 +10,7 @@ const GUIDE_SLUG = "steam-page-setup";
 
 export const metadata: Metadata = {
   title: "Steam Setup Guide | Admin",
-  description: "Step-by-step Provinica Steam store page and Next Fest prep.",
+  description: "Step-by-step Provincia Steam store page and Next Fest prep.",
 };
 
 const PROSE_CLASS =

@@ -1,5 +1,5 @@
 export const gamePitch =
-  "Provinica is a Roman colony builder on a fixed terrace grid. You are the curator of a small colonia at the edge of the province — survey the land, route water, house families, and keep the haul board moving as refugees arrive from the road.";
+  "Provincia is a Roman colony builder on a fixed terrace grid. You are the curator of a small colonia at the edge of the province — survey the land, route water, house families, and keep the haul board moving as refugees arrive from the road.";
 
 export const heroTagline = "Rome gave you the outline.";
 export const heroTaglineAccent = "The terraces don't care.";
@@ -120,11 +120,11 @@ export const coreLoop = [
 ];
 
 export const developmentStatus =
-  "Provinica is in active pre-alpha. Core placement, water, housing layout, colonist logistics, and battles are playable in the Godot build. Download a build below — expect bugs. No Steam page yet.";
+  "Provincia is in active pre-alpha. Core placement, water, housing layout, colonist logistics, and battles are playable in the Godot build. Download a build below — expect bugs. No Steam page yet.";
 
 export const downloadReleaseTag = "pre-alpha-2026-07-27";
 
-const downloadBase = `https://github.com/samuel-baumgartner/provinica.ch/releases/download/${downloadReleaseTag}`;
+const downloadBase = `https://github.com/samuel-baumgartner/provincia.ch/releases/download/${downloadReleaseTag}`;
 
 export const downloadBuilds = [
   {

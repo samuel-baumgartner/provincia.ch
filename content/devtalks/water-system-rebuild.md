@@ -2,7 +2,7 @@
 title: "Rebuilding Water as Cellular Automata"
 excerpt: "The first water pass looked fine in screenshots and lied about where flow went. We threw it out."
 date: "2026-04-29"
-author: "Provinica Dev Team"
+author: "Provincia Dev Team"
 tags:
   - water
   - cellular-automata

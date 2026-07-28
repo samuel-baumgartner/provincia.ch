@@ -45,7 +45,7 @@ export default async function AdminCreatorsPage() {
           </div>
           <div className="rounded-xl border border-neutral-800 bg-neutral-900/30 p-4">
             <h3 className="font-medium text-neutral-500">Press kit</h3>
-            <p className="mt-1 text-sm text-neutral-600">provinica.ch/press (not built yet)</p>
+            <p className="mt-1 text-sm text-neutral-600">provincia.ch/press (not built yet)</p>
           </div>
           <div className="rounded-xl border border-neutral-800 bg-neutral-900/30 p-4">
             <h3 className="font-medium text-neutral-500">Outreach emails</h3>

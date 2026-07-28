@@ -57,8 +57,8 @@ It outputs a ranked report at `reports/reddit-opportunities.md` with:
 
 Optional environment variables:
 
-- `DEVTALK_URL` (default: `https://provinica.ch/devtalk`)
-- `GAME_URL` (default: `https://provinica.ch`)
+- `DEVTALK_URL` (default: `https://provincia.ch/devtalk`)
+- `GAME_URL` (default: `https://provincia.ch`)
 - `REDDIT_MAX_AGE_HOURS` (default: `96`)
 
 ## Marketing Command Center (`/admin`)

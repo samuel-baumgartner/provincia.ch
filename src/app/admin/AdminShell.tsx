@@ -30,7 +30,7 @@ export default function AdminShell({ sections, children }: Props) {
               <div className="overflow-hidden rounded-xl border border-neutral-800 bg-neutral-900/80">
                 <Image
                   src="/game/stone-cutter.png"
-                  alt="Water-powered stone cutter in Provinica"
+                  alt="Water-powered stone cutter in Provincia"
                   width={597}
                   height={395}
                   className="h-auto w-full"

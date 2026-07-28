@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Sync game screenshots and art into provinica.ch/public for devtalks and /game.
+# Sync game screenshots and art into provincia.ch/public for devtalks and /game.
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
@@ -124,13 +124,13 @@ fi
 # Devtalk images
 DT="$SITE_PUBLIC/devtalks"
 
-copy_file "$GAME/assets/debug/colony_overview.png" "$DT/first-steps-with-provinica/colony-overview.png"
-if [[ ! -f "$DT/first-steps-with-provinica/colony-overview.png" ]]; then
-  copy_file "$GAME/assets/images/sawmill-connected-03.png" "$DT/first-steps-with-provinica/colony-overview.png"
+copy_file "$GAME/assets/debug/colony_overview.png" "$DT/first-steps-with-provincia/colony-overview.png"
+if [[ ! -f "$DT/first-steps-with-provincia/colony-overview.png" ]]; then
+  copy_file "$GAME/assets/images/sawmill-connected-03.png" "$DT/first-steps-with-provincia/colony-overview.png"
 fi
-copy_file "$GAME/assets/images/Huts/roman-living-line1-stage01.png" "$DT/first-steps-with-provinica/housing-stage-01.png"
-copy_file "$GAME/assets/images/Huts/roman-living-line1-stage03.png" "$DT/first-steps-with-provinica/housing-stage-03.png"
-copy_file "$GAME/assets/images/Huts/roman-living-line1-stage04.png" "$DT/first-steps-with-provinica/housing-stage-04.png"
+copy_file "$GAME/assets/images/Huts/roman-living-line1-stage01.png" "$DT/first-steps-with-provincia/housing-stage-01.png"
+copy_file "$GAME/assets/images/Huts/roman-living-line1-stage03.png" "$DT/first-steps-with-provincia/housing-stage-03.png"
+copy_file "$GAME/assets/images/Huts/roman-living-line1-stage04.png" "$DT/first-steps-with-provincia/housing-stage-04.png"
 
 copy_file "$GAME/assets/debug/water_channel.png" "$DT/water-system-rebuild/channel.png"
 if [[ ! -f "$DT/water-system-rebuild/channel.png" ]]; then

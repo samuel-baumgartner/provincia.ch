@@ -6,8 +6,8 @@ import path from "node:path";
 
 const DEV_TALKS_DIR = path.resolve(process.cwd(), "content/devtalks");
 const OUTPUT_DIR = path.resolve(process.cwd(), "reports/social-drafts");
-const GAME_URL = process.env.GAME_URL ?? "https://provinica.ch";
-const DEVTALK_URL = process.env.DEVTALK_URL ?? "https://provinica.ch/devtalk";
+const GAME_URL = process.env.GAME_URL ?? "https://provincia.ch";
+const DEVTALK_URL = process.env.DEVTALK_URL ?? "https://provincia.ch/devtalk";
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY?.trim() ?? "";
 const OPENAI_MODEL = process.env.OPENAI_MODEL ?? "gpt-4o-mini";
 
@@ -75,7 +75,7 @@ function templateDrafts(devtalk) {
     platforms: {
       reddit: {
         title: `[Devlog] ${devtalk.title} — Roman colony builder`,
-        body: `Hey — we shipped a new devlog on **Provinica** (Roman colony builder, logistics-heavy).
+        body: `Hey — we shipped a new devlog on **Provincia** (Roman colony builder, logistics-heavy).
 
 ${excerpt}
 
@@ -85,8 +85,8 @@ Happy to answer questions about our grid/sim approach. Not trying to spam — ge
       },
       x: {
         posts: [
-          `New Provinica devlog: ${devtalk.title}\n\n${excerpt}\n\n${url}\n\n#indiegame #gamedev #citybuilder`,
-          `Provinica is a Roman colonia you actually plan — fixed grid, terrace steps, real logistics.\n\nThis week: ${devtalk.title}\n\n${url}`,
+          `New Provincia devlog: ${devtalk.title}\n\n${excerpt}\n\n${url}\n\n#indiegame #gamedev #citybuilder`,
+          `Provincia is a Roman colonia you actually plan — fixed grid, terrace steps, real logistics.\n\nThis week: ${devtalk.title}\n\n${url}`,
           `Building in public. Feedback welcome.\n\n${GAME_URL}`,
         ],
       },
@@ -107,7 +107,7 @@ Wishlist if you want to follow along — we're building a Roman colony builder w
 async function aiEnhance(devtalk, base) {
   if (!OPENAI_API_KEY) return base;
 
-  const prompt = `You are marketing assistant for Provinica, a Roman colony city-builder indie game.
+  const prompt = `You are marketing assistant for Provincia, a Roman colony city-builder indie game.
 Given this devtalk, rewrite the social drafts to be concrete and non-spammy. Keep URLs exactly as given.
 Return ONLY valid JSON matching this shape:
 {"reddit":{"title":"...","body":"..."},"x":{"posts":["...","..."]},"steam":{"title":"...","body":"..."}}

@@ -2,7 +2,7 @@
 title: "Aqueducts on a Terrace Grid"
 excerpt: "An aqueduct here is terrain surgery, permeable piers, and a Blender UV map — not a single pretty bridge prefab."
 date: "2026-05-05"
-author: "Provinica Dev Team"
+author: "Provincia Dev Team"
 tags:
   - aqueduct
   - water
@@ -59,4 +59,4 @@ Workflow that actually stuck:
 - **Impermeable footprint** — CA backed up entire ponds; pier roles in `building_footprints.csv` fix that.
 - **Merged mesh UV stretch** — fixed by baking per-module instead of averaging UVs on merge.
 
-Aqueducts are the clearest example of why Provinica is a simulation game with Roman dressing, not a asset flipper: the mesh exists to serve grid state the player can reason about.
+Aqueducts are the clearest example of why Provincia is a simulation game with Roman dressing, not a asset flipper: the mesh exists to serve grid state the player can reason about.

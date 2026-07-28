@@ -14,7 +14,7 @@ import {
 } from "@/lib/game-content";
 
 export const metadata: Metadata = {
-  title: "About the Game | Provinica",
+  title: "About the Game | Provincia",
   description:
     "A Roman colony builder on a terrace grid — water simulation, housing districts, colonist logistics, and battles.",
 };

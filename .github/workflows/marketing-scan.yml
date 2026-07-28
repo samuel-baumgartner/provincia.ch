@@ -28,8 +28,8 @@ jobs:
       - name: Run Reddit opportunity scan
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          DEVTALK_URL: https://provinica.ch/devtalk
-          GAME_URL: https://provinica.ch
+          DEVTALK_URL: https://provincia.ch/devtalk
+          GAME_URL: https://provincia.ch
         run: pnpm reddit:scan
 
       - name: Commit report if changed

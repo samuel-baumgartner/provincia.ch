@@ -30,13 +30,13 @@ function loadProjectEnv() {
 loadProjectEnv();
 
 const BASE_URL = "https://www.reddit.com";
-const USER_AGENT = "provinica-opportunity-bot/0.1 (by u/provinica)";
+const USER_AGENT = "provincia-opportunity-bot/0.1 (by u/provincia)";
 const NOW = Date.now();
 const MAX_AGE_HOURS = Number(process.env.REDDIT_MAX_AGE_HOURS ?? 96);
 const QUICK_MODE = process.env.REDDIT_QUICK === "1";
-const DEVTALK_URL = process.env.DEVTALK_URL ?? "https://provinica.ch/devtalk";
-const GAME_URL = process.env.GAME_URL ?? "https://provinica.ch";
-const GAME_NAME = process.env.GAME_NAME ?? "Provinica";
+const DEVTALK_URL = process.env.DEVTALK_URL ?? "https://provincia.ch/devtalk";
+const GAME_URL = process.env.GAME_URL ?? "https://provincia.ch";
+const GAME_NAME = process.env.GAME_NAME ?? "Provincia";
 const OUTPUT_FILE = path.resolve(process.cwd(), "reports/reddit-opportunities.md");
 const DEV_TALKS_DIR = path.resolve(process.cwd(), "content/devtalks");
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY?.trim() ?? "";
