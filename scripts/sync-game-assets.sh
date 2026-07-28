@@ -49,18 +49,34 @@ GAME_DIR="$SITE_PUBLIC/game"
 mkdir -p "$GAME_DIR"
 
 # Prefer HUD-off itch marketing pack when present (tools/capture/capture_itch_pack.sh)
+# Prefer .jpg when the pack ships compressed captures; fall back to .png.
+copy_itch() {
+  local src_base="$1"
+  local dest="$2"
+  local dest_ext="${dest##*.}"
+  if [[ -f "${src_base}.${dest_ext}" ]]; then
+    copy_file "${src_base}.${dest_ext}" "$dest"
+  elif [[ -f "${src_base}.jpg" ]]; then
+    copy_file "${src_base}.jpg" "${dest%.*}.jpg"
+  elif [[ -f "${src_base}.png" ]]; then
+    copy_file "${src_base}.png" "${dest%.*}.png"
+  else
+    echo "    skip missing: ${src_base}.{jpg,png}" >&2
+  fi
+}
+
 ITCH="$GAME/dist/itch/screenshots"
 if [[ -d "$ITCH" ]]; then
   echo "    itch screenshot pack → public/game"
-  copy_file "$ITCH/00_title_hero.png" "$GAME_DIR/title-hero.png"
-  copy_file "$ITCH/01_settlement_overview.png" "$GAME_DIR/colony-overview.png"
-  copy_file "$ITCH/02_town_hall_close.png" "$GAME_DIR/town-hall.png"
-  copy_file "$ITCH/03_housing_district.png" "$GAME_DIR/housing-district.png"
-  copy_file "$ITCH/04_water_aqueduct.png" "$GAME_DIR/aqueduct.png"
-  copy_file "$ITCH/05_production.png" "$GAME_DIR/production.png"
-  copy_file "$ITCH/06_title.png" "$GAME_DIR/title-secondary.png"
-  copy_file "$ITCH/07_battle_overview.png" "$GAME_DIR/battle-overview.png"
-  copy_file "$ITCH/08_battle_clash.png" "$GAME_DIR/battle-clash.png"
+  copy_itch "$ITCH/00_title_hero" "$GAME_DIR/title-hero.png"
+  copy_itch "$ITCH/01_settlement_overview" "$GAME_DIR/colony-overview.png"
+  copy_itch "$ITCH/02_town_hall_close" "$GAME_DIR/town-hall.jpg"
+  copy_itch "$ITCH/03_housing_district" "$GAME_DIR/housing-district.png"
+  copy_itch "$ITCH/04_water_aqueduct" "$GAME_DIR/aqueduct.jpg"
+  copy_itch "$ITCH/05_production" "$GAME_DIR/production.jpg"
+  copy_itch "$ITCH/06_title" "$GAME_DIR/title-secondary.png"
+  copy_itch "$ITCH/07_battle_overview" "$GAME_DIR/battle-overview.png"
+  copy_itch "$ITCH/08_battle_clash" "$GAME_DIR/battle-clash.png"
 fi
 
 # Fallbacks when itch pack is missing
@@ -92,16 +108,16 @@ copy_file "$GAME/assets/images/Huts/roman-living-line1-stage01.png" "$GAME_DIR/h
 copy_file "$GAME/assets/images/Huts/roman-living-line1-stage04.png" "$GAME_DIR/housing-stage-04.png"
 copy_file "$GAME/assets/3d/renders/roman_peasant_v2.png" "$GAME_DIR/roman-peasant-concept.png"
 
-# Only crop aqueduct.png from debug if itch pack did not supply it
-if [[ ! -f "$GAME_DIR/aqueduct.png" ]]; then
+# Only crop aqueduct from debug if itch pack did not supply it
+if [[ ! -f "$GAME_DIR/aqueduct.jpg" ]] && [[ ! -f "$GAME_DIR/aqueduct.png" ]]; then
   _colony_for_aqueduct="$GAME/assets/debug/colony_overview.png"
   if [[ -f "$_colony_for_aqueduct" ]] && command -v python3 >/dev/null; then
     echo "    aqueduct fallback (crop from colony overview)"
     python3 "$ROOT/scripts/crop-aqueduct-straight-run.py" \
       "$_colony_for_aqueduct" \
-      "$GAME_DIR/aqueduct.png"
+      "$GAME_DIR/aqueduct.jpg"
   else
-    copy_file "$_aqueduct_src" "$GAME_DIR/aqueduct.png"
+    copy_file "$_aqueduct_src" "$GAME_DIR/aqueduct.jpg"
   fi
 fi
 

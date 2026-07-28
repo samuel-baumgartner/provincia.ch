@@ -23,14 +23,14 @@ export const landingFeatures = [
     id: "water",
     title: "Living water & aqueducts",
     text: "Ponds, wells, and stone runs use a real flow model. Cut a channel through a terrace and it drains somewhere. Route water before your colonists run dry.",
-    image: "/game/aqueduct.png",
+    image: "/game/aqueduct.jpg",
     imageAlt: "Stone aqueduct carrying water past the colonia",
   },
   {
     id: "logistics",
     title: "Colonists carry the load",
     text: "Timber, stone, and food move by haul jobs — not magic. Workshops stall when stockpiles run empty. Growth is logistics, not just placing buildings.",
-    image: "/game/production.png",
+    image: "/game/production.jpg",
     imageAlt: "Workshops and production buildings on the colony grid",
   },
   {
@@ -69,7 +69,7 @@ export const gameSystems = [
     id: "water",
     title: "Cellular-automata water",
     text: "Water moves downhill by hydraulic head (terrain height + depth). Building cells block flow. Wells push harder than springs. Aqueduct piers stay permeable so channels stay connected to the grid.",
-    image: "/game/aqueduct.png",
+    image: "/game/aqueduct.jpg",
     imageAlt: "Stone aqueduct spanning past town buildings",
   },
   {
@@ -83,7 +83,7 @@ export const gameSystems = [
     id: "colonists",
     title: "Jobs, hauls, needs",
     text: "Town hall spawns workers and holds stockpiles. Foresters, quarries, and workshops pull from a shared haul board. Thirsty colonists path to wet cells. Happiness nudges walk speed between half and one-and-a-half.",
-    image: "/game/production.png",
+    image: "/game/production.jpg",
     imageAlt: "Production buildings and workshop chain",
   },
   {
@@ -98,9 +98,9 @@ export const gameSystems = [
 export const galleryImages = [
   { src: "/game/colony-overview.png", alt: "Settlement overview from the itch capture pack" },
   { src: "/game/housing-district.png", alt: "Housing district beside the aqueduct" },
-  { src: "/game/aqueduct.png", alt: "Water aqueduct through the colonia" },
-  { src: "/game/town-hall.png", alt: "Town hall close-up among the trees" },
-  { src: "/game/production.png", alt: "Production and workshop buildings" },
+  { src: "/game/aqueduct.jpg", alt: "Water aqueduct through the colonia" },
+  { src: "/game/town-hall.jpg", alt: "Town hall close-up among the trees" },
+  { src: "/game/production.jpg", alt: "Production and workshop buildings" },
   { src: "/game/battle-overview.png", alt: "Infantry formation facing the colonia" },
   { src: "/game/battle-clash.png", alt: "Battle clash at the aqueduct wall" },
   { src: "/game/title-secondary.png", alt: "Secondary title key art from the build" },
