@@ -1,0 +1,157 @@
+#!/usr/bin/env bash
+# Sync game screenshots and art into provinica.ch/public for devtalks and /game.
+set -euo pipefail
+
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+GAME="$(cd "$ROOT/../my-colony-sim" && pwd)"
+SITE_PUBLIC="$ROOT/public"
+
+if [[ ! -d "$GAME" ]]; then
+  echo "Game repo not found at $GAME" >&2
+  exit 1
+fi
+
+echo "==> Running game capture scripts (needs display)..."
+cd "$GAME"
+
+if [[ "${SKIP_CAPTURE:-0}" == "1" ]]; then
+  echo "    SKIP_CAPTURE=1 — using existing game assets only"
+else
+_run_capture() {
+  local script="$1"
+  if [[ -x "$script" ]]; then
+    echo "    $script"
+    "$script" || echo "    (capture failed — will use existing files if present)"
+  fi
+}
+
+_run_capture "./tools/aqueduct_iterate.sh"
+_run_capture "./tools/capture_water_channel.sh"
+_run_capture "./tools/capture_colony_overview.sh"
+fi
+
+echo "==> Copying assets to website..."
+
+copy_file() {
+  local src="$1"
+  local dest="$2"
+  if [[ -f "$src" ]]; then
+    mkdir -p "$(dirname "$dest")"
+    cp "$src" "$dest"
+    echo "    $(basename "$dest")"
+  else
+    echo "    skip missing: $src" >&2
+  fi
+}
+
+# Game page gallery
+GAME_DIR="$SITE_PUBLIC/game"
+mkdir -p "$GAME_DIR"
+
+# Prefer HUD-off itch marketing pack when present (tools/capture/capture_itch_pack.sh)
+ITCH="$GAME/dist/itch/screenshots"
+if [[ -d "$ITCH" ]]; then
+  echo "    itch screenshot pack → public/game"
+  copy_file "$ITCH/00_title_hero.png" "$GAME_DIR/title-hero.png"
+  copy_file "$ITCH/01_settlement_overview.png" "$GAME_DIR/colony-overview.png"
+  copy_file "$ITCH/02_town_hall_close.png" "$GAME_DIR/town-hall.png"
+  copy_file "$ITCH/03_housing_district.png" "$GAME_DIR/housing-district.png"
+  copy_file "$ITCH/04_water_aqueduct.png" "$GAME_DIR/aqueduct.png"
+  copy_file "$ITCH/05_production.png" "$GAME_DIR/production.png"
+  copy_file "$ITCH/06_title.png" "$GAME_DIR/title-secondary.png"
+  copy_file "$ITCH/07_battle_overview.png" "$GAME_DIR/battle-overview.png"
+  copy_file "$ITCH/08_battle_clash.png" "$GAME_DIR/battle-clash.png"
+fi
+
+# Fallbacks when itch pack is missing
+if [[ ! -f "$GAME_DIR/colony-overview.png" ]]; then
+  copy_file "$GAME/assets/debug/colony_overview.png" "$GAME_DIR/colony-overview.png"
+fi
+if [[ ! -f "$GAME_DIR/colony-overview.png" ]]; then
+  copy_file "$GAME/assets/images/sawmill-connected-03.png" "$GAME_DIR/colony-overview.png"
+fi
+if [[ ! -f "$GAME_DIR/colony-overview.png" ]]; then
+  copy_file "$GAME/assets/map_overview_popup_main_center_concept.png" "$GAME_DIR/colony-overview.png"
+fi
+if [[ ! -f "$GAME_DIR/title-hero.png" ]]; then
+  copy_file "$GAME/assets/ui/title/title_hero.png" "$GAME_DIR/title-hero.png"
+fi
+
+_aqueduct_src="$GAME/assets/debug/aqueduct_top_corner.png"
+copy_file "$_aqueduct_src" "$GAME_DIR/aqueduct-corner.png"
+copy_file "$GAME/assets/debug/material_chain_panel.png" "$GAME_DIR/material-chain.png"
+copy_file "$GAME/assets/map_overview_popup_main_center_concept.png" "$GAME_DIR/map-concept.png"
+copy_file "$GAME/assets/images/stonehouse.png" "$GAME_DIR/stonehouse.png"
+# Stone cutter / water sawmill (website asset; override from game repo when available)
+if [[ -f "$GAME/assets/images/sawmill-connected-03.png" ]]; then
+  copy_file "$GAME/assets/images/sawmill-connected-03.png" "$GAME_DIR/stone-cutter.png"
+fi
+copy_file "$GAME/assets/images/Colonists/roman_colonist_working.png" "$GAME_DIR/colonist-working.png"
+copy_file "$GAME/assets/images/tutorial/curator_portrait.png" "$GAME_DIR/curator-portrait.png"
+copy_file "$GAME/assets/images/Huts/roman-living-line1-stage01.png" "$GAME_DIR/housing-stage-01.png"
+copy_file "$GAME/assets/images/Huts/roman-living-line1-stage04.png" "$GAME_DIR/housing-stage-04.png"
+copy_file "$GAME/assets/3d/renders/roman_peasant_v2.png" "$GAME_DIR/roman-peasant-concept.png"
+
+# Only crop aqueduct.png from debug if itch pack did not supply it
+if [[ ! -f "$GAME_DIR/aqueduct.png" ]]; then
+  _colony_for_aqueduct="$GAME/assets/debug/colony_overview.png"
+  if [[ -f "$_colony_for_aqueduct" ]] && command -v python3 >/dev/null; then
+    echo "    aqueduct fallback (crop from colony overview)"
+    python3 "$ROOT/scripts/crop-aqueduct-straight-run.py" \
+      "$_colony_for_aqueduct" \
+      "$GAME_DIR/aqueduct.png"
+  else
+    copy_file "$_aqueduct_src" "$GAME_DIR/aqueduct.png"
+  fi
+fi
+
+# Devtalk images
+DT="$SITE_PUBLIC/devtalks"
+
+copy_file "$GAME/assets/debug/colony_overview.png" "$DT/first-steps-with-provinica/colony-overview.png"
+if [[ ! -f "$DT/first-steps-with-provinica/colony-overview.png" ]]; then
+  copy_file "$GAME/assets/images/sawmill-connected-03.png" "$DT/first-steps-with-provinica/colony-overview.png"
+fi
+copy_file "$GAME/assets/images/Huts/roman-living-line1-stage01.png" "$DT/first-steps-with-provinica/housing-stage-01.png"
+copy_file "$GAME/assets/images/Huts/roman-living-line1-stage03.png" "$DT/first-steps-with-provinica/housing-stage-03.png"
+copy_file "$GAME/assets/images/Huts/roman-living-line1-stage04.png" "$DT/first-steps-with-provinica/housing-stage-04.png"
+
+copy_file "$GAME/assets/debug/water_channel.png" "$DT/water-system-rebuild/channel.png"
+if [[ ! -f "$DT/water-system-rebuild/channel.png" ]]; then
+  copy_file "$GAME/assets/images/sawmill-connected-01.png" "$DT/water-system-rebuild/channel.png"
+fi
+copy_file "$_aqueduct_src" "$DT/water-system-rebuild/pond-context.png"
+
+copy_file "$GAME/assets/images/Huts/roman-living-line1-stage02.png" "$DT/housing-on-slopes/housing-stage-02.png"
+copy_file "$GAME/assets/images/stonehouse.png" "$DT/housing-on-slopes/stonehouse.png"
+copy_file "$GAME/assets/debug/colony_overview.png" "$DT/housing-on-slopes/district-context.png"
+if [[ ! -f "$DT/housing-on-slopes/district-context.png" ]]; then
+  copy_file "$GAME/assets/images/sawmill-connected-03.png" "$DT/housing-on-slopes/district-context.png"
+fi
+
+_colony_for_aqueduct="$GAME/assets/debug/colony_overview.png"
+if [[ -f "$_colony_for_aqueduct" ]] && command -v python3 >/dev/null; then
+  echo "    aqueduct straight-run (crop from colony overview → DevTalk only)"
+  python3 "$ROOT/scripts/crop-aqueduct-straight-run.py" \
+    "$_colony_for_aqueduct" \
+    "$DT/aqueducts-on-a-terrace-grid/straight-run.png"
+else
+  copy_file "$_aqueduct_src" "$DT/aqueducts-on-a-terrace-grid/straight-run.png"
+fi
+copy_file "$GAME/assets/debug/aqueduct_top_corner.png" "$DT/aqueducts-on-a-terrace-grid/corner.png"
+if [[ -f "$GAME/assets/textures/aqueduct/ashlar_tile_albedo.png" ]] && \
+   [[ -f "$GAME/assets/debug/aqueduct_top_material_compare.png" ]] && \
+   command -v python3 >/dev/null; then
+  echo "    aqueduct uv-preview (tile + module composite)"
+  python3 "$ROOT/scripts/build-aqueduct-uv-preview.py" \
+    "$GAME/assets/textures/aqueduct/ashlar_tile_albedo.png" \
+    "$GAME/assets/debug/aqueduct_top_material_compare.png" \
+    "$DT/aqueducts-on-a-terrace-grid/uv-preview.png"
+else
+  copy_file "$GAME/assets/debug/aqueduct_uv_preview.png" "$DT/aqueducts-on-a-terrace-grid/uv-preview.png"
+fi
+
+copy_file "$GAME/assets/debug/material_chain_panel.png" "$DT/colonists-and-the-haul-board/material-chain.png"
+copy_file "$GAME/assets/images/Colonists/roman_colonist_working.png" "$DT/colonists-and-the-haul-board/colonist-working.png"
+
+echo "==> Done. Assets in $SITE_PUBLIC"

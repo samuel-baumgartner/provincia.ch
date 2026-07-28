@@ -34,3 +34,47 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Reddit Opportunity Bot
+
+Use this script to discover promising Reddit threads where you can naturally share your devtalk/game.
+
+```bash
+pnpm reddit:scan
+```
+
+It scans:
+
+- `r/gamedev`, `r/indiegames`, `r/IndieDev`, `r/citybuilder`, `r/tycoon`, `r/timberborn`
+- Search topics like "rome based indie game" and "timberborn like game"
+
+It outputs a ranked report at `reports/reddit-opportunities.md` with:
+
+- Thread links
+- Opportunity score
+- Why each thread is a good fit
+- A suggested comment template you can adapt before posting
+
+Optional environment variables:
+
+- `DEVTALK_URL` (default: `https://provinica.ch/devtalk`)
+- `GAME_URL` (default: `https://provinica.ch`)
+- `REDDIT_MAX_AGE_HOURS` (default: `96`)
+
+## Marketing Command Center (`/admin`)
+
+Password-protected hub for Reddit, DevTalk, social drafts, Steam prep, and creator outreach (blocked until ready).
+
+- **Overview** — `/admin` — stats and weekly rhythm
+- **Reddit** — review scan results, accept/deny threads, generate devtalk drafts
+- **DevTalk** — published posts and drafts (`draft: true` in frontmatter stays off the public site)
+- **Social** — copy Reddit / X / Steam posts generated from the latest devtalk
+- **Steam** — Next Fest checklist (setup phase)
+- **Creators** — locked with visible warnings until prerequisites are met
+
+Set `ADMIN_PASSWORD` in `.env.local`. Local automation: `MARKETING_RUNNER=enabled` lets the admin UI run scan/distribute scripts. Production scans use GitHub Actions (`.github/workflows/marketing-scan.yml`) — add `OPENAI_API_KEY` as a repo secret.
+
+```bash
+pnpm reddit:scan          # refresh Reddit opportunities
+pnpm devtalk:distribute   # social drafts from latest devtalk
+```

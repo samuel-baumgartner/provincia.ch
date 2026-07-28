@@ -1,26 +1,86 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Ink slate / cypress — cooler chrome; hero image carries warmth */
+  --background: #12161a;
+  --foreground: #e8ebe6;
+  --ink: #0e1216;
+  --ink-elevated: #1a2128;
+  --ink-border: #2a343e;
+  --stone: #c5cdc0;
+  --stone-muted: #8a9488;
+  --cypress: #6f8f6a;
+  --cypress-bright: #8fb089;
+  --cypress-deep: #3d5340;
+  --accent-ink: #0e1216;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-ink: var(--ink);
+  --color-ink-elevated: var(--ink-elevated);
+  --color-ink-border: var(--ink-border);
+  --color-stone: var(--stone);
+  --color-stone-muted: var(--stone-muted);
+  --color-cypress: var(--cypress);
+  --color-cypress-bright: var(--cypress-bright);
+  --color-cypress-deep: var(--cypress-deep);
+  --font-sans: var(--font-outfit);
+  --font-display: var(--font-fraunces);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-outfit), system-ui, sans-serif;
+}
+
+.font-display {
+  font-family: var(--font-fraunces), Georgia, serif;
+}
+
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-hero-rise {
+  animation: hero-rise 0.9s ease-out both;
+}
+
+.animate-hero-fade {
+  animation: hero-fade 1.2s ease-out both;
+}
+
+.animate-hero-rise-delay {
+  animation: hero-rise 0.9s ease-out 0.15s both;
+}
+
+.animate-hero-rise-delay-2 {
+  animation: hero-rise 0.9s ease-out 0.3s both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-hero-rise,
+  .animate-hero-fade,
+  .animate-hero-rise-delay,
+  .animate-hero-rise-delay-2 {
+    animation: none;
+  }
 }
