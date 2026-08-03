@@ -121,39 +121,69 @@ if [[ ! -f "$GAME_DIR/aqueduct.jpg" ]] && [[ ! -f "$GAME_DIR/aqueduct.png" ]]; t
   fi
 fi
 
-# Devtalk images
+# Devtalk images — prefer itch HUD-off screenshots for covers/context;
+# keep isolated asset sheets for posts that discuss that specific art.
 DT="$SITE_PUBLIC/devtalks"
 
-copy_file "$GAME/assets/debug/colony_overview.png" "$DT/first-steps-with-provincia/colony-overview.png"
-if [[ ! -f "$DT/first-steps-with-provincia/colony-overview.png" ]]; then
-  copy_file "$GAME/assets/images/sawmill-connected-03.png" "$DT/first-steps-with-provincia/colony-overview.png"
-fi
+# Prefer itch / public/game shots (may be .jpg); convert to expected .png dest when needed.
+copy_scene() {
+  local dest="$1"
+  shift
+  local src
+  for src in "$@"; do
+    if [[ -f "$src" ]]; then
+      mkdir -p "$(dirname "$dest")"
+      case "$src" in
+        *.jpg|*.jpeg)
+          if command -v convert >/dev/null; then
+            convert "$src" "$dest"
+          else
+            # Fallback: keep extension if imagemagick missing
+            cp "$src" "${dest%.*}.jpg"
+            echo "    $(basename "${dest%.*}.jpg") (jpg; install imagemagick for png)" >&2
+            return 0
+          fi
+          ;;
+        *)
+          cp "$src" "$dest"
+          ;;
+      esac
+      echo "    $(basename "$dest")"
+      return 0
+    fi
+  done
+  echo "    skip missing scene for: $(basename "$dest")" >&2
+}
+
+echo "    DevTalk covers/context (itch pack preferred)"
+copy_scene "$DT/first-steps-with-provincia/colony-overview.png" \
+  "$ITCH/01_settlement_overview.png" \
+  "$GAME_DIR/colony-overview.png" \
+  "$GAME/assets/debug/colony_overview.png"
+
 copy_file "$GAME/assets/images/Huts/roman-living-line1-stage01.png" "$DT/first-steps-with-provincia/housing-stage-01.png"
 copy_file "$GAME/assets/images/Huts/roman-living-line1-stage03.png" "$DT/first-steps-with-provincia/housing-stage-03.png"
 copy_file "$GAME/assets/images/Huts/roman-living-line1-stage04.png" "$DT/first-steps-with-provincia/housing-stage-04.png"
 
-copy_file "$GAME/assets/debug/water_channel.png" "$DT/water-system-rebuild/channel.png"
-if [[ ! -f "$DT/water-system-rebuild/channel.png" ]]; then
-  copy_file "$GAME/assets/images/sawmill-connected-01.png" "$DT/water-system-rebuild/channel.png"
-fi
-copy_file "$_aqueduct_src" "$DT/water-system-rebuild/pond-context.png"
+copy_scene "$DT/water-system-rebuild/channel.png" \
+  "$ITCH/02_town_hall_close.jpg" \
+  "$GAME_DIR/town-hall.jpg"
+copy_scene "$DT/water-system-rebuild/pond-context.png" \
+  "$ITCH/01_settlement_overview.png" \
+  "$GAME_DIR/colony-overview.png" \
+  "$GAME/assets/debug/colony_overview.png"
 
 copy_file "$GAME/assets/images/Huts/roman-living-line1-stage02.png" "$DT/housing-on-slopes/housing-stage-02.png"
 copy_file "$GAME/assets/images/stonehouse.png" "$DT/housing-on-slopes/stonehouse.png"
-copy_file "$GAME/assets/debug/colony_overview.png" "$DT/housing-on-slopes/district-context.png"
-if [[ ! -f "$DT/housing-on-slopes/district-context.png" ]]; then
-  copy_file "$GAME/assets/images/sawmill-connected-03.png" "$DT/housing-on-slopes/district-context.png"
-fi
+copy_scene "$DT/housing-on-slopes/district-context.png" \
+  "$ITCH/03_housing_district.png" \
+  "$GAME_DIR/housing-district.png" \
+  "$GAME/assets/debug/colony_overview.png"
 
-_colony_for_aqueduct="$GAME/assets/debug/colony_overview.png"
-if [[ -f "$_colony_for_aqueduct" ]] && command -v python3 >/dev/null; then
-  echo "    aqueduct straight-run (crop from colony overview → DevTalk only)"
-  python3 "$ROOT/scripts/crop-aqueduct-straight-run.py" \
-    "$_colony_for_aqueduct" \
-    "$DT/aqueducts-on-a-terrace-grid/straight-run.png"
-else
-  copy_file "$_aqueduct_src" "$DT/aqueducts-on-a-terrace-grid/straight-run.png"
-fi
+copy_scene "$DT/aqueducts-on-a-terrace-grid/straight-run.png" \
+  "$ITCH/04_water_aqueduct.jpg" \
+  "$GAME_DIR/aqueduct.jpg" \
+  "$_aqueduct_src"
 copy_file "$GAME/assets/debug/aqueduct_top_corner.png" "$DT/aqueducts-on-a-terrace-grid/corner.png"
 if [[ -f "$GAME/assets/textures/aqueduct/ashlar_tile_albedo.png" ]] && \
    [[ -f "$GAME/assets/debug/aqueduct_top_material_compare.png" ]] && \
@@ -167,6 +197,10 @@ else
   copy_file "$GAME/assets/debug/aqueduct_uv_preview.png" "$DT/aqueducts-on-a-terrace-grid/uv-preview.png"
 fi
 
+copy_scene "$DT/colonists-and-the-haul-board/colony-at-work.png" \
+  "$ITCH/05_production.jpg" \
+  "$GAME_DIR/production.jpg" \
+  "$GAME_DIR/colony-overview.png"
 copy_file "$GAME/assets/debug/material_chain_panel.png" "$DT/colonists-and-the-haul-board/material-chain.png"
 copy_file "$GAME/assets/images/Colonists/roman_colonist_working.png" "$DT/colonists-and-the-haul-board/colonist-working.png"
 

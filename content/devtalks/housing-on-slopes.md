@@ -7,7 +7,7 @@ tags:
   - housing
   - placement
   - performance
-coverImage: "/devtalks/housing-on-slopes/housing-stage-02.png"
+coverImage: "/devtalks/housing-on-slopes/district-context.png"
 ---
 
 You drag a rectangle on uneven ground and expect houses to land sensibly. On flat maps that is easy. On Provincia’s **1 m terrace steps**, a naive fill algorithm places doorsteps in mid-air or buries entrances in dirt.
@@ -51,7 +51,7 @@ Not every dwelling is a rectangle. Stone huts use trapezoid footprints from `bui
 
 Housing does not float in a UI vacuum. Districts connect to roads, town hall logistics, and sewage underlays reconciled after placement.
 
-![Colony district context from the dev build](/devtalks/housing-on-slopes/district-context.png)
+![Housing district packed against the aqueduct](/devtalks/housing-on-slopes/district-context.png)
 
 ## What still hurts
 

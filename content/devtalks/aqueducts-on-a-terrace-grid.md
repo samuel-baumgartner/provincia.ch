@@ -28,7 +28,7 @@ Footprint cells mark pier positions as **permeable** in `water_simulator.gd` so 
 
 `AqueductRunMesh` merges straight modules into one draw call per layer. Bottom double-height runs and top channels bake from GLBs listed in `BuildingCatalog` (`GLB_AQUEDUCT_BOTTOM_DOUBLE`, `GLB_AQUEDUCT_TOP`).
 
-![Aqueduct run across terrace steps in the dev build](/devtalks/aqueducts-on-a-terrace-grid/straight-run.png)
+![Aqueduct loop framing a district in a recent build](/devtalks/aqueducts-on-a-terrace-grid/straight-run.png)
 
 `./tools/aqueduct_iterate.sh` spawns test modules for material checks. The harness PNG can glitch when the GL pipeline is mid-refactor — we use in-game colony captures for the site instead.
 

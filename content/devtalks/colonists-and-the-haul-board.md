@@ -7,7 +7,7 @@ tags:
   - colonists
   - logistics
   - simulation
-coverImage: "/devtalks/colonists-and-the-haul-board/colonist-working.png"
+coverImage: "/devtalks/colonists-and-the-haul-board/colony-at-work.png"
 ---
 
 A colonist wakes, walks to work, gets thirsty, paths to wet ground, walks back. If that loop stutters, the colony feels broken even when the buildings look fine.
@@ -25,6 +25,8 @@ Tutorial steps can disable consumption while teaching placement — the flag is 
 When a workshop needs planks, someone has to move logs. `haul_job_board.gd` posts those tasks; job priority reshuffles when emergencies stack (food low, construction site waiting, forester low on plant stock).
 
 Town hall is the early-game spine: spawn point, builder assignment, central stockpile. Specialized huts pull from the same material ledger `colony_material_ledger.gd` exposes to the UI.
+
+![Colony streets with colonists moving between jobs](/devtalks/colonists-and-the-haul-board/colony-at-work.png)
 
 ![Material chain graph in the UI](/devtalks/colonists-and-the-haul-board/material-chain.png)
 

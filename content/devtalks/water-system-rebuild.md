@@ -32,9 +32,9 @@ Virtual pipes carry the mass between cells. Tunables we actually touch in balanc
 - `PIPE_FRICTION = 0.92` — damping so pools settle instead of sloshing forever
 - `PIPE_MAX_EDGE_FLOW` — per-edge cap so one tick cannot drain a lake through a pinhole
 
-![Channel test layout — source, trench, outlet](/devtalks/water-system-rebuild/channel.png)
+![Wet cells and courtyard water in the colony](/devtalks/water-system-rebuild/channel.png)
 
-*Regression scene: spring at the north end, trench one step down, sealed side walls. Throughput has to match emission within tolerance.*
+*Still water on the grid: the CA stores depth per cell so colonists and buildings share the same wet state as the renderer.*
 
 ## Rendering split: still tops, sloped flow
 
@@ -58,7 +58,7 @@ We also cap sim steps per second (`max_sim_steps_per_second`, default 3) and sli
 
 `agent_needs.gd` paths colonists to **wet cells** for water. No separate “water building” abstraction for thirst — if the CA lied, colonists would lie too. When we toggle consumption for tutorial steps, we invalidate drink-path caches on day start so routes do not stick to dried ground.
 
-![Aqueduct context on terrace steps](/devtalks/water-system-rebuild/pond-context.png)
+![Settlement with ponds, terraces, and aqueduct runs](/devtalks/water-system-rebuild/pond-context.png)
 
 Aqueduct pier cells stay permeable in the sim (`_aqueduct_permeable`) so a line of arches is not an accidental dam. Placement and water share the same footprint data.
 

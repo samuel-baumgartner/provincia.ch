@@ -14,9 +14,9 @@ We started Provincia with a boring decision: everything lives on a fixed grid.
 
 Not because grids are romantic. Because the moment you let players paint freeform shapes, you need a second hidden model for simulation anyway — occupancy, paths, water cells, haul routes. We wanted one model. The renderer, the placement tools, and the water sim all read the same `Vector2i` coordinates on a **200×200** map with **1 m terrace steps**.
 
-![Early colony layout from the dev build](/devtalks/first-steps-with-provincia/colony-overview.png)
+![Colony settlement overview from a recent build](/devtalks/first-steps-with-provincia/colony-overview.png)
 
-*The grant in our dev save: curia, starter housing, ponds along low ground, work sites creeping outward.*
+*The grant filled in: housing along low ground, aqueduct runs at the edge, work sites and docks pushing outward.*
 
 ## Why Roman, why colony
 
