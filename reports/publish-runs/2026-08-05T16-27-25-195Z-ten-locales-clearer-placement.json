@@ -1,0 +1,23 @@
+{
+  "slug": "ten-locales-clearer-placement",
+  "dryRun": false,
+  "results": {
+    "discord": {
+      "ok": true,
+      "url": "https://provincia.ch/devtalk/ten-locales-clearer-placement?utm_source=discord&utm_medium=social&utm_campaign=ten-locales-clearer-placement"
+    },
+    "steamReminder": {
+      "ok": true
+    },
+    "x": {
+      "ok": true,
+      "ids": [
+        "2085039984013115730"
+      ]
+    },
+    "redditSelf": {
+      "skipped": true,
+      "reason": "REDDIT_AUTO_POST=0"
+    }
+  }
+}

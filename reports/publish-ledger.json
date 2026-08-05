@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-04T14:41:17.583Z",
+  "updatedAt": "2026-08-05T16:27:25.194Z",
   "reddit": {
     "halted": true,
     "haltReason": "Possible shadowban or removal after commenting on t3_1vf4bzu",
@@ -21,6 +21,24 @@
     ]
   },
   "social": {
-    "publishedSlugs": {}
+    "publishedSlugs": {
+      "ten-locales-clearer-placement": {
+        "discord": "https://provincia.ch/devtalk/ten-locales-clearer-placement?utm_source=discord&utm_medium=social&utm_campaign=ten-locales-clearer-placement",
+        "x": {
+          "ok": true,
+          "ids": [
+            "2085039984013115730"
+          ]
+        },
+        "reddit": {
+          "skipped": true,
+          "reason": "REDDIT_AUTO_POST=0"
+        },
+        "steamReminder": {
+          "ok": true
+        },
+        "at": "2026-08-05T16:27:25.194Z"
+      }
+    }
   }
 }
