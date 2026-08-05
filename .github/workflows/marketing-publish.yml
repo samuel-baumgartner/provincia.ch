@@ -2,10 +2,13 @@ name: Marketing publish
 
 on:
   schedule:
-    # After daily scan (08:00) — engage ~09:00 UTC
-    - cron: "0 9 * * *"
-    # Check for new published DevTalk mid-afternoon
-    - cron: "0 15 * * *"
+    # Reddit engage runs a few times a day, spread out to look human (times are UTC and
+    # GitHub adds its own scheduling delay). The daily scan is 08:00, so every window sits
+    # after it. Publish (DevTalk -> Discord/X) only fires on the first window to avoid dupes.
+    - cron: "12 9 * * *"
+    - cron: "47 12 * * *"
+    - cron: "33 16 * * *"
+    - cron: "8 20 * * *"
   workflow_dispatch:
     inputs:
       mode:
@@ -50,7 +53,8 @@ jobs:
         run: pnpm reddit:engage
 
       - name: Distribute + social publish
-        if: ${{ github.event_name != 'workflow_dispatch' || inputs.mode == 'publish' || inputs.mode == 'both' }}
+        # Once/day (first engage window) on schedule, or on manual publish/both.
+        if: ${{ (github.event_name == 'schedule' && github.event.schedule == '12 9 * * *') || (github.event_name == 'workflow_dispatch' && (inputs.mode == 'publish' || inputs.mode == 'both')) }}
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           MARKETING_AUTO_PUBLISH: ${{ secrets.MARKETING_AUTO_PUBLISH }}
