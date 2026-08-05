@@ -20,20 +20,11 @@ export default async function AdminItchPage() {
       <header>
         <h1 className="text-2xl font-bold">itch.io</h1>
         <p className="mt-1 text-sm text-neutral-400">
-          Prep checklist + Markdown copy for itch Devlogs (not BBCode — Devlogs show BBCode as plain
-          text). Enable{" "}
-          <a
-            href="https://itch.io/user/settings"
-            target="_blank"
-            rel="noreferrer"
-            className="text-cyan-300 hover:underline"
-          >
-            Prefer Markdown input
-          </a>{" "}
-          on itch, then create a <em>new</em> Devlog and paste. Cover must be a{" "}
-          <strong className="text-neutral-200">real in-game screenshot</strong> via{" "}
-          <code className="text-cyan-200">coverImage</code> + <code className="text-cyan-200">pnpm assets:sync</code>{" "}
-          (never AI art).
+          Copy as <strong className="text-neutral-200">rich HTML</strong> for itch&apos;s visual
+          Devlog editor (Markdown/BBCode paste shows as raw tags). Covers and inline shots are{" "}
+          <strong className="text-neutral-200">real in-game screenshots</strong> via{" "}
+          <code className="text-cyan-200">coverImage</code> +{" "}
+          <code className="text-cyan-200">pnpm assets:sync</code> (never AI).
         </p>
       </header>
 
@@ -42,8 +33,12 @@ export default async function AdminItchPage() {
       <section>
         <h2 className="text-lg font-semibold">Copy DevTalk → itch</h2>
         <p className="mt-1 text-sm text-neutral-400">
-          Markdown starts with the cover image, then title + link. Paste into a Markdown Devlog
-          editor (not the rich-text/HTML one). Cover button copies URL + downloads the file.
+          <strong className="text-neutral-200">Copy itch HTML</strong> puts rich HTML on the
+          clipboard (with <code className="text-cyan-200">https://provincia.ch/…</code> images) —
+          paste into itch&apos;s <em>visual</em> Devlog editor, not Markdown/source mode. Cover
+          button copies the PNG onto the clipboard. Body images live in the DevTalk markdown at the
+          right sections (real in-game captures via{" "}
+          <code className="text-cyan-200">pnpm assets:sync</code>).
         </p>
         <ul className="mt-3 space-y-2">
           {published.length === 0 ? (
