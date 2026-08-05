@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import { isAdminAuthed } from "@/lib/admin-auth";
 import { getDevTalkAdminItems } from "@/lib/devtalk-admin";
 import DevTalkActions from "../DevTalkActions";
+import CopyItchButton from "../CopyItchButton";
 
 export const dynamic = "force-dynamic";
 
@@ -18,8 +19,11 @@ export default async function AdminDevTalkPage() {
       <header>
         <h1 className="text-2xl font-bold">DevTalk</h1>
         <p className="mt-1 text-sm text-neutral-400">
-          Anchor content for SEO, Reddit links, and social distribution. Publish weekly when
-          possible.
+          Anchor content for SEO, Reddit links, social distribution, and{" "}
+          <Link href="/admin/itch" className="text-cyan-300 hover:underline">
+            itch BBCode copy
+          </Link>
+          .
         </p>
       </header>
 
@@ -40,7 +44,7 @@ export default async function AdminDevTalkPage() {
                   <p className="font-medium">{item.title}</p>
                   <p className="text-xs text-neutral-500">{item.date}</p>
                 </div>
-                <div className="flex gap-2">
+                <div className="flex flex-wrap items-center gap-3">
                   {item.publicUrl ? (
                     <Link
                       href={item.publicUrl}
@@ -50,7 +54,7 @@ export default async function AdminDevTalkPage() {
                       View
                     </Link>
                   ) : null}
-                  <code className="text-xs text-neutral-500">{item.path}</code>
+                  <CopyItchButton slug={item.slug} />
                 </div>
               </li>
             ))

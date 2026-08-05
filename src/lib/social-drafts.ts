@@ -8,6 +8,10 @@ export type SocialDraft = {
   platforms: {
     reddit: { title: string; body: string };
     x: { posts: string[] };
+    discord?: {
+      content?: string;
+      embed?: { title?: string; description?: string; url?: string };
+    };
     steam: { title: string; body: string };
   };
 };

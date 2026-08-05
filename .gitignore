@@ -24,6 +24,9 @@
 .DS_Store
 *.pem
 
+# Reddit Playwright persistent profile (cookies / session)
+/data/reddit-browser-profile/
+
 # debug
 npm-debug.log*
 yarn-debug.log*

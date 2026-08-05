@@ -1,0 +1,86 @@
+name: Marketing publish
+
+on:
+  schedule:
+    # After daily scan (08:00) — engage ~09:00 UTC
+    - cron: "0 9 * * *"
+    # Check for new published DevTalk mid-afternoon
+    - cron: "0 15 * * *"
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "engage | publish | both"
+        required: false
+        default: "both"
+
+permissions:
+  contents: write
+
+jobs:
+  engage-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Reddit auto-engage
+        if: ${{ github.event_name != 'workflow_dispatch' || inputs.mode == 'engage' || inputs.mode == 'both' }}
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          MARKETING_AUTO_PUBLISH: ${{ secrets.MARKETING_AUTO_PUBLISH }}
+          REDDIT_AUTO_POST: ${{ secrets.REDDIT_AUTO_POST }}
+          REDDIT_CLIENT_ID: ${{ secrets.REDDIT_CLIENT_ID }}
+          REDDIT_CLIENT_SECRET: ${{ secrets.REDDIT_CLIENT_SECRET }}
+          REDDIT_USERNAME: ${{ secrets.REDDIT_USERNAME }}
+          REDDIT_PASSWORD: ${{ secrets.REDDIT_PASSWORD }}
+          REDDIT_USER_AGENT: ${{ secrets.REDDIT_USER_AGENT }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          DEVTALK_URL: https://provincia.ch/devtalk
+          GAME_URL: https://provincia.ch
+        run: pnpm reddit:engage
+
+      - name: Distribute + social publish
+        if: ${{ github.event_name != 'workflow_dispatch' || inputs.mode == 'publish' || inputs.mode == 'both' }}
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          MARKETING_AUTO_PUBLISH: ${{ secrets.MARKETING_AUTO_PUBLISH }}
+          DISCORD_AUTO_POST: ${{ secrets.DISCORD_AUTO_POST }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          X_AUTO_POST: ${{ secrets.X_AUTO_POST }}
+          X_API_KEY: ${{ secrets.X_API_KEY }}
+          X_API_SECRET: ${{ secrets.X_API_SECRET }}
+          X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
+          X_ACCESS_SECRET: ${{ secrets.X_ACCESS_SECRET }}
+          REDDIT_AUTO_POST: ${{ secrets.REDDIT_AUTO_POST }}
+          REDDIT_CLIENT_ID: ${{ secrets.REDDIT_CLIENT_ID }}
+          REDDIT_CLIENT_SECRET: ${{ secrets.REDDIT_CLIENT_SECRET }}
+          REDDIT_USERNAME: ${{ secrets.REDDIT_USERNAME }}
+          REDDIT_PASSWORD: ${{ secrets.REDDIT_PASSWORD }}
+          REDDIT_USER_AGENT: ${{ secrets.REDDIT_USER_AGENT }}
+          DEVTALK_URL: https://provincia.ch/devtalk
+          GAME_URL: https://provincia.ch
+        run: |
+          pnpm devtalk:distribute
+          pnpm social:publish
+
+      - name: Commit ledger if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add reports/publish-ledger.json reports/social-drafts reports/publish-runs || true
+          if git diff --staged --quiet; then
+            echo "No changes"
+          else
+            git commit -m "chore: update marketing publish ledger"
+            git push
+          fi

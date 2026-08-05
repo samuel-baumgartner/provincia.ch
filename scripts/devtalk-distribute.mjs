@@ -1,8 +1,11 @@
 #!/usr/bin/env node
 
-import { existsSync, readFileSync, readdirSync } from "node:fs";
+import { readFileSync, readdirSync } from "node:fs";
 import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
+import { loadProjectEnv } from "./lib/env.mjs";
+
+loadProjectEnv();
 
 const DEV_TALKS_DIR = path.resolve(process.cwd(), "content/devtalks");
 const OUTPUT_DIR = path.resolve(process.cwd(), "reports/social-drafts");
@@ -11,23 +14,13 @@ const DEVTALK_URL = process.env.DEVTALK_URL ?? "https://provincia.ch/devtalk";
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY?.trim() ?? "";
 const OPENAI_MODEL = process.env.OPENAI_MODEL ?? "gpt-4o-mini";
 
-function loadEnv() {
-  for (const rel of [".env.local", ".env"]) {
-    const full = path.join(process.cwd(), rel);
-    if (!existsSync(full)) continue;
-    for (const line of readFileSync(full, "utf8").split("\n")) {
-      const trimmed = line.trim();
-      if (!trimmed || trimmed.startsWith("#")) continue;
-      const eq = trimmed.indexOf("=");
-      if (eq === -1) continue;
-      const key = trimmed.slice(0, eq).trim();
-      let val = trimmed.slice(eq + 1).trim().replace(/^['"]|['"]$/g, "");
-      if (!process.env[key]) process.env[key] = val;
-    }
-  }
+function withUtm(url, source, campaign) {
+  const u = new URL(url);
+  u.searchParams.set("utm_source", source);
+  u.searchParams.set("utm_medium", "social");
+  if (campaign) u.searchParams.set("utm_campaign", campaign);
+  return u.toString();
 }
-
-loadEnv();
 
 function parseFrontmatter(raw) {
   if (!raw.startsWith("---")) return { data: {}, body: raw };
@@ -65,7 +58,12 @@ function findLatestPublishedDevtalk() {
 }
 
 function templateDrafts(devtalk) {
-  const url = `${DEVTALK_URL}/${devtalk.slug}`;
+  const baseUrl = `${DEVTALK_URL}/${devtalk.slug}`;
+  const redditUrl = withUtm(baseUrl, "reddit", devtalk.slug);
+  const xUrl = withUtm(baseUrl, "x", devtalk.slug);
+  const discordUrl = withUtm(baseUrl, "discord", devtalk.slug);
+  const gameDiscord = withUtm(GAME_URL, "discord", devtalk.slug);
+  const gameX = withUtm(GAME_URL, "x", devtalk.slug);
   const excerpt = devtalk.excerpt || devtalk.title;
 
   return {
@@ -79,16 +77,24 @@ function templateDrafts(devtalk) {
 
 ${excerpt}
 
-Full post: ${url}
+Full post: ${redditUrl}
 
 Happy to answer questions about our grid/sim approach. Not trying to spam — genuinely curious what city-builder folks think about ${devtalk.title.toLowerCase().includes("water") ? "water systems" : "this kind of scope"}.`,
       },
       x: {
         posts: [
-          `New Provincia devlog: ${devtalk.title}\n\n${excerpt}\n\n${url}\n\n#indiegame #gamedev #citybuilder`,
-          `Provincia is a Roman colonia you actually plan — fixed grid, terrace steps, real logistics.\n\nThis week: ${devtalk.title}\n\n${url}`,
-          `Building in public. Feedback welcome.\n\n${GAME_URL}`,
+          `New Provincia devlog: ${devtalk.title}\n\n${excerpt}\n\n${xUrl}\n\n#indiegame #gamedev #citybuilder`,
+          `Provincia is a Roman colonia you actually plan — fixed grid, terrace steps, real logistics.\n\nThis week: ${devtalk.title}\n\n${xUrl}`,
+          `Building in public. Feedback welcome.\n\n${gameX}`,
         ],
+      },
+      discord: {
+        content: `New Provincia devlog: **${devtalk.title}**\n${excerpt}\n${discordUrl}`,
+        embed: {
+          title: devtalk.title,
+          description: excerpt,
+          url: discordUrl,
+        },
       },
       steam: {
         title: `Dev Update: ${devtalk.title}`,
@@ -96,10 +102,14 @@ Happy to answer questions about our grid/sim approach. Not trying to spam — ge
 
 ${excerpt}
 
-Read the full post: ${url}
+Read the full post: ${baseUrl}
 
 Wishlist if you want to follow along — we're building a Roman colony builder with systemic city planning.`,
       },
+    },
+    links: {
+      site: gameDiscord,
+      devtalk: discordUrl,
     },
   };
 }
@@ -107,14 +117,20 @@ Wishlist if you want to follow along — we're building a Roman colony builder w
 async function aiEnhance(devtalk, base) {
   if (!OPENAI_API_KEY) return base;
 
+  const redditUrl = withUtm(`${DEVTALK_URL}/${devtalk.slug}`, "reddit", devtalk.slug);
+  const xUrl = withUtm(`${DEVTALK_URL}/${devtalk.slug}`, "x", devtalk.slug);
+  const discordUrl = withUtm(`${DEVTALK_URL}/${devtalk.slug}`, "discord", devtalk.slug);
+
   const prompt = `You are marketing assistant for Provincia, a Roman colony city-builder indie game.
-Given this devtalk, rewrite the social drafts to be concrete and non-spammy. Keep URLs exactly as given.
+Given this devtalk, rewrite the social drafts to be concrete and non-spammy. Keep URLs exactly as given (including utm params).
 Return ONLY valid JSON matching this shape:
-{"reddit":{"title":"...","body":"..."},"x":{"posts":["...","..."]},"steam":{"title":"...","body":"..."}}
+{"reddit":{"title":"...","body":"..."},"x":{"posts":["...","..."]},"discord":{"content":"...","embed":{"title":"...","description":"...","url":"..."}},"steam":{"title":"...","body":"..."}}
 
 Devtalk title: ${devtalk.title}
 Excerpt: ${devtalk.excerpt}
-URL: ${DEVTALK_URL}/${devtalk.slug}
+Reddit URL: ${redditUrl}
+X URL: ${xUrl}
+Discord URL: ${discordUrl}
 Body snippet: ${devtalk.body.slice(0, 1500)}`;
 
   try {
@@ -127,7 +143,7 @@ Body snippet: ${devtalk.body.slice(0, 1500)}`;
       body: JSON.stringify({
         model: OPENAI_MODEL,
         temperature: 0.5,
-        max_tokens: 1200,
+        max_tokens: 1400,
         messages: [
           { role: "system", content: "Output JSON only, no markdown fences." },
           { role: "user", content: prompt },
@@ -143,6 +159,10 @@ Body snippet: ${devtalk.body.slice(0, 1500)}`;
       platforms: {
         reddit: { ...base.platforms.reddit, ...parsed.reddit },
         x: { posts: parsed.x?.posts ?? base.platforms.x.posts },
+        discord: {
+          content: parsed.discord?.content ?? base.platforms.discord.content,
+          embed: { ...base.platforms.discord.embed, ...(parsed.discord?.embed ?? {}) },
+        },
         steam: { ...base.platforms.steam, ...parsed.steam },
       },
     };

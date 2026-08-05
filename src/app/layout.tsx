@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Fraunces, Outfit } from "next/font/google";
+import AttributionCapture from "@/components/AttributionCapture";
 import SiteNav from "@/components/SiteNav";
 import "./globals.css";
 
@@ -30,6 +31,7 @@ export default function RootLayout({
       className={`${outfit.variable} ${fraunces.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-background text-foreground">
+        <AttributionCapture />
         <SiteNav />
         <div className="flex-1">{children}</div>
       </body>

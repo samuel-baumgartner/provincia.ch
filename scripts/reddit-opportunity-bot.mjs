@@ -1,37 +1,22 @@
 #!/usr/bin/env node
 
-import { existsSync, readFileSync } from "node:fs";
 import { mkdir, readdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
-
-/** Load `.env.local` / `.env` into `process.env` so `pnpm reddit:scan` sees keys without `--env-file`. */
-function mergeEnvFile(relPath) {
-  const full = path.join(process.cwd(), relPath);
-  if (!existsSync(full)) return;
-  const raw = readFileSync(full, "utf8");
-  for (let line of raw.split("\n")) {
-    line = line.trim();
-    if (!line || line.startsWith("#")) continue;
-    const eq = line.indexOf("=");
-    if (eq === -1) continue;
-    const key = line.slice(0, eq).trim();
-    let val = line.slice(eq + 1).trim().replace(/^['"]/, "").replace(/['"]$/, "");
-    const cur = process.env[key];
-    if (cur !== undefined && String(cur).trim() !== "") continue;
-    process.env[key] = val;
-  }
-}
-
-function loadProjectEnv() {
-  mergeEnvFile(".env.local");
-  mergeEnvFile(".env");
-}
+import { loadProjectEnv } from "./lib/env.mjs";
+import {
+  launchRedditContext,
+  ensureSession,
+  fetchJsonViaSession,
+  profileExists,
+  getProfileDir,
+} from "./lib/reddit-browser.mjs";
 
 loadProjectEnv();
 
-const BASE_URL = "https://www.reddit.com";
-const USER_AGENT = "provincia-opportunity-bot/0.1 (by u/provincia)";
+const BASE_URL = "https://old.reddit.com";
 const NOW = Date.now();
+/** @type {import('playwright').BrowserContext | null} */
+let browserContext = null;
 const MAX_AGE_HOURS = Number(process.env.REDDIT_MAX_AGE_HOURS ?? 96);
 const QUICK_MODE = process.env.REDDIT_QUICK === "1";
 const DEVTALK_URL = process.env.DEVTALK_URL ?? "https://provincia.ch/devtalk";
@@ -203,34 +188,16 @@ function pickRelevantDevTalk(post, talks) {
 
 async function fetchJson(url) {
   const maxAttempts = QUICK_MODE ? 1 : 3;
-  const timeoutMs = QUICK_MODE ? 5000 : 12_000;
   let lastError;
 
   for (let attempt = 1; attempt <= maxAttempts; attempt++) {
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), timeoutMs);
-
     try {
-      const response = await fetch(url, {
-        headers: {
-          "User-Agent": USER_AGENT,
-          Accept: "application/json",
-        },
-        signal: controller.signal,
-      });
-
-      if (!response.ok) {
-        throw new Error(`Fetch failed (${response.status})`);
-      }
-
-      return response.json();
+      return await fetchJsonViaSession(browserContext, url);
     } catch (error) {
       lastError = error;
       if (attempt < maxAttempts) {
         await new Promise((resolve) => setTimeout(resolve, 700 * attempt));
       }
-    } finally {
-      clearTimeout(timeout);
     }
   }
 
@@ -498,7 +465,9 @@ function makeReport(opportunities, scannedStats) {
     lines.push(`- Matching devtalk: ${post.devtalkLink ?? "none"}`);
     lines.push("- Suggested comment:");
     lines.push("");
-    lines.push(`> ${post.suggestedComment}`);
+    for (const para of String(post.suggestedComment ?? "").split("\n")) {
+      lines.push(`> ${para}`);
+    }
     lines.push("");
   });
 
@@ -519,21 +488,39 @@ async function run() {
     return;
   }
 
-  for (const subreddit of subredditsToScan) {
-    try {
-      const posts = await fetchSubredditNew(subreddit);
-      allPosts.push(...posts);
-    } catch (error) {
-      console.error(`[warn] Could not fetch r/${subreddit}: ${error.message}`);
-    }
+  if (!profileExists()) {
+    console.error(`Reddit browser profile missing at ${getProfileDir()}. Run: pnpm reddit:login`);
+    process.exitCode = 1;
+    return;
   }
 
-  for (const query of queriesToScan) {
-    try {
-      const posts = await fetchSearch(query);
-      allPosts.push(...posts);
-    } catch (error) {
-      console.error(`[warn] Could not fetch search query "${query}": ${error.message}`);
+  browserContext = await launchRedditContext({ headless: true });
+  try {
+    const session = await ensureSession(browserContext);
+    console.log(`Scan session: /u/${session.username} (using browser cookies)`);
+    await session.page.close().catch(() => {});
+
+    for (const subreddit of subredditsToScan) {
+      try {
+        const posts = await fetchSubredditNew(subreddit);
+        allPosts.push(...posts);
+      } catch (error) {
+        console.error(`[warn] Could not fetch r/${subreddit}: ${error.message}`);
+      }
+    }
+
+    for (const query of queriesToScan) {
+      try {
+        const posts = await fetchSearch(query);
+        allPosts.push(...posts);
+      } catch (error) {
+        console.error(`[warn] Could not fetch search query "${query}": ${error.message}`);
+      }
+    }
+  } finally {
+    if (browserContext) {
+      await browserContext.close().catch(() => {});
+      browserContext = null;
     }
   }
 

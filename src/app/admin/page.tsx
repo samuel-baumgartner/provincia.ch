@@ -2,11 +2,16 @@ import { cookies } from "next/headers";
 import Link from "next/link";
 import Image from "next/image";
 import { ADMIN_COOKIE_NAME } from "@/lib/admin-auth";
-import { AUTOMATION_JOBS, MARKETING_SECTIONS } from "@/lib/marketing-hub";
+import { MARKETING_SECTIONS } from "@/lib/marketing-hub";
 import { getRedditReport } from "@/lib/reddit-report";
 import { getLatestSocialDraft } from "@/lib/social-drafts";
 import { getDevTalkAdminItems } from "@/lib/devtalk-admin";
+import { getMarketingHealth } from "@/lib/marketing-health";
+import { getPublishLedger, summarizePublishLedger } from "@/lib/publish-ledger";
 import { StatusBadge } from "./AdminShell";
+import MarketingControlsPanel from "./MarketingControlsPanel";
+import JobRunnerPanel from "./JobRunnerPanel";
+import GithubRunsPanel from "./GithubRunsPanel";
 
 export const dynamic = "force-dynamic";
 
@@ -15,14 +20,7 @@ type AdminPageProps = {
 };
 
 export default async function AdminDashboard({ searchParams }: AdminPageProps) {
-  const [{ error }, cookieStore, redditReport, socialDraft, devtalks] = await Promise.all([
-    searchParams,
-    cookies(),
-    getRedditReport(),
-    getLatestSocialDraft(),
-    Promise.resolve(getDevTalkAdminItems()),
-  ]);
-
+  const [{ error }, cookieStore] = await Promise.all([searchParams, cookies()]);
   const isAuthed = cookieStore.get(ADMIN_COOKIE_NAME)?.value === "1";
 
   if (!isAuthed) {
@@ -35,7 +33,7 @@ export default async function AdminDashboard({ searchParams }: AdminPageProps) {
             </p>
             <h1 className="mt-2 text-3xl font-bold">Marketing Command Center</h1>
             <p className="mt-2 text-sm text-neutral-400">
-              Reddit, devtalks, social drafts, and Steam prep — one place.
+              Reddit, DevTalk, social, itch copy, downloads, and kill switches — one place.
             </p>
 
             <form action="/admin/login" method="post" className="mt-8 space-y-4">
@@ -81,43 +79,137 @@ export default async function AdminDashboard({ searchParams }: AdminPageProps) {
     );
   }
 
-  const publishedCount = devtalks.filter((d) => d.isPublished).length;
-  const pendingReddit = redditReport.opportunities.length;
+  const [redditReport, socialDraft, health, ledger] = await Promise.all([
+    getRedditReport(),
+    getLatestSocialDraft(),
+    getMarketingHealth(),
+    getPublishLedger(),
+  ]);
+  const ledgerSummary = summarizePublishLedger(ledger);
+  const publishedCount = getDevTalkAdminItems().filter((d) => d.isPublished).length;
 
   return (
     <div className="space-y-8">
       <header>
         <h1 className="text-2xl font-bold">Overview</h1>
         <p className="mt-1 text-sm text-neutral-400">
-          One place for Reddit, devtalks, social drafts, and Steam prep. Automations run via GitHub
-          Actions — no AWS setup required.
+          Live health, kill switches, jobs, and channel readiness. Setup details:{" "}
+          <Link href="/admin/setup" className="text-cyan-300 hover:underline">
+            /admin/setup
+          </Link>
+          .
         </p>
       </header>
+
+      <section className="rounded-xl border border-neutral-800 bg-neutral-900/50 p-4">
+        <div className="flex flex-wrap items-end justify-between gap-3">
+          <div>
+            <p className="text-xs uppercase tracking-wide text-neutral-500">Health</p>
+            <p className="mt-1 text-3xl font-bold text-cyan-100">
+              {health.score}
+              <span className="text-lg text-neutral-500">/100</span>
+            </p>
+            <p className="mt-1 text-sm font-semibold text-emerald-200">{health.grade}</p>
+            <p className="mt-1 max-w-xl text-sm text-neutral-400">{health.summary}</p>
+          </div>
+          <Link
+            href="/admin/setup"
+            className="rounded-lg border border-cyan-400/40 px-3 py-1.5 text-xs font-semibold text-cyan-200 hover:bg-cyan-500/10"
+          >
+            Open checklists
+          </Link>
+        </div>
+        <div className="mt-4 grid gap-2 sm:grid-cols-2">
+          {health.breakdown.map((b) => (
+            <Link
+              key={b.id}
+              href={b.href ?? "/admin"}
+              className="rounded-lg border border-neutral-800 bg-neutral-950/60 px-3 py-2 text-sm hover:border-cyan-400/30"
+            >
+              <div className="flex justify-between gap-2">
+                <span className="font-medium">{b.label}</span>
+                <span className="text-cyan-200">
+                  {b.score}/{b.max}
+                </span>
+              </div>
+              <p className="mt-1 text-xs text-neutral-500">{b.note}</p>
+            </Link>
+          ))}
+        </div>
+      </section>
 
       <div className="grid gap-4 sm:grid-cols-3">
         <div className="rounded-xl border border-neutral-800 bg-neutral-900/50 p-4">
           <p className="text-xs uppercase tracking-wide text-neutral-500">Reddit queue</p>
-          <p className="mt-1 text-2xl font-bold">{pendingReddit}</p>
-          <p className="mt-1 text-xs text-neutral-400">threads in latest scan</p>
+          <p className="mt-1 text-2xl font-bold">{redditReport.opportunities.length}</p>
+          <p className="mt-1 text-xs text-neutral-400">
+            {ledgerSummary.halted ? "soft-halt active" : "helpful OK"}
+          </p>
         </div>
         <div className="rounded-xl border border-neutral-800 bg-neutral-900/50 p-4">
-          <p className="text-xs uppercase tracking-wide text-neutral-500">Published devtalks</p>
+          <p className="text-xs uppercase tracking-wide text-neutral-500">Published DevTalks</p>
           <p className="mt-1 text-2xl font-bold">{publishedCount}</p>
-          <p className="mt-1 text-xs text-neutral-400">{devtalks.filter((d) => d.isDraft).length} drafts</p>
+          <p className="mt-1 text-xs text-neutral-400">copy to itch from /admin/itch</p>
         </div>
         <div className="rounded-xl border border-neutral-800 bg-neutral-900/50 p-4">
           <p className="text-xs uppercase tracking-wide text-neutral-500">Social drafts</p>
           <p className="mt-1 text-2xl font-bold">{socialDraft ? "Ready" : "None"}</p>
           <p className="mt-1 text-xs text-neutral-400">
-            {socialDraft ? socialDraft.devtalkTitle : "Run distribute after devtalk"}
+            {socialDraft ? socialDraft.devtalkTitle : "Run distribute after a DevTalk"}
           </p>
         </div>
+      </div>
+
+      <MarketingControlsPanel
+        initial={health.controls}
+        softHalted={ledgerSummary.halted}
+        haltReason={ledgerSummary.haltReason}
+      />
+
+      <div className="grid gap-4 lg:grid-cols-2">
+        <JobRunnerPanel
+          canRunLocal={health.canRunLocalJobs}
+          canTriggerGithub={health.canTriggerGithub}
+        />
+        <GithubRunsPanel />
       </div>
 
       <section>
         <h2 className="text-lg font-semibold">Channels</h2>
         <div className="mt-3 grid gap-3 sm:grid-cols-2">
-          {MARKETING_SECTIONS.map((section) => (
+          {health.channels.map((channel) => {
+            const href =
+              channel.id === "reddit"
+                ? "/admin/reddit"
+                : channel.id === "itch"
+                  ? "/admin/itch"
+                  : channel.id === "x" || channel.id === "discord" || channel.id === "ci"
+                    ? "/admin/setup"
+                    : "/admin";
+            return (
+              <Link
+                key={channel.id}
+                href={href}
+                className={`rounded-xl border p-4 transition hover:border-cyan-300/40 ${
+                  channel.status === "blocked"
+                    ? "border-red-500/30 bg-red-950/20"
+                    : "border-neutral-800 bg-neutral-900/50"
+                }`}
+              >
+                <div className="flex items-start justify-between gap-2">
+                  <h3 className="font-semibold">{channel.title}</h3>
+                  <StatusBadge status={channel.status} label={`${channel.score}%`} />
+                </div>
+                <p className="mt-2 text-sm text-neutral-400">{channel.statusLabel}</p>
+                {channel.tweak ? (
+                  <p className="mt-2 text-xs text-amber-200/90">{channel.tweak}</p>
+                ) : null}
+              </Link>
+            );
+          })}
+          {MARKETING_SECTIONS.filter((s) =>
+            ["devtalk", "social", "downloads", "steam", "creators"].includes(s.id),
+          ).map((section) => (
             <Link
               key={section.id}
               href={section.href}
@@ -132,47 +224,9 @@ export default async function AdminDashboard({ searchParams }: AdminPageProps) {
                 <StatusBadge status={section.status} label={section.statusLabel.split("—")[0].trim()} />
               </div>
               <p className="mt-2 text-sm text-neutral-400">{section.description}</p>
-              {section.status === "blocked" ? (
-                <p className="mt-2 text-xs font-semibold text-red-300">⚠ Do not use yet</p>
-              ) : null}
             </Link>
           ))}
         </div>
-      </section>
-
-      <section>
-        <h2 className="text-lg font-semibold">Automation</h2>
-        <p className="mt-1 text-sm text-neutral-400">
-          Reddit scans run on GitHub Actions (free). Social distribution runs on demand from the
-          DevTalk or Social pages.
-        </p>
-        <ul className="mt-3 space-y-3">
-          {AUTOMATION_JOBS.map((job) => (
-            <li
-              key={job.id}
-              className="rounded-xl border border-neutral-800 bg-neutral-900/40 px-4 py-3 text-sm"
-            >
-              <div className="flex flex-wrap items-center justify-between gap-2">
-                <span className="font-semibold text-neutral-100">{job.title}</span>
-                <code className="rounded bg-neutral-800 px-2 py-0.5 text-xs text-cyan-200">
-                  {job.command}
-                </code>
-              </div>
-              <p className="mt-1 text-neutral-400">{job.description}</p>
-              <p className="mt-1 text-xs text-neutral-500">{job.schedule}</p>
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      <section className="rounded-xl border border-cyan-300/20 bg-cyan-500/5 p-4 text-sm text-cyan-100/90">
-        <p className="font-semibold text-cyan-200">Weekly rhythm (manual)</p>
-        <ol className="mt-2 list-decimal space-y-1 pl-5 text-neutral-300">
-          <li>Review Reddit queue → post 1–2 helpful replies (edit before posting)</li>
-          <li>Publish or polish one devtalk</li>
-          <li>Generate social drafts → copy to X / Steam community manually</li>
-          <li>Skip creators until the blocked checklist is done</li>
-        </ol>
       </section>
     </div>
   );

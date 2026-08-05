@@ -1,80 +1,81 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+This is a [Next.js](https://nextjs.org) project for [provincia.ch](https://provincia.ch).
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Marketing automation
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Fully unattended pipeline (OpenAI drafts + platform APIs):
 
-## Learn More
+| Command | What it does |
+| --- | --- |
+| `pnpm reddit:scan` | Find threads → `reports/reddit-opportunities.md` |
+| `pnpm reddit:login` | One-time headed login; saves session to `data/reddit-browser-profile/` |
+| `pnpm reddit:engage` | Safety-gated browser comments via old.reddit.com (~every 4th promo after warming; soft-halt blocks promo only) |
+| `pnpm devtalk:distribute` | Latest DevTalk → Discord/Reddit/X/Steam drafts (UTM’d) |
+| `pnpm social:publish` | Post Discord + optional X/Reddit; Steam reminder via Discord |
 
-To learn more about Next.js, take a look at the following resources:
+GitHub Actions:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [`.github/workflows/marketing-scan.yml`](.github/workflows/marketing-scan.yml) — daily 08:00 UTC scan
+- [`.github/workflows/marketing-publish.yml`](.github/workflows/marketing-publish.yml) — 09:00 engage + 15:00 distribute/publish
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Kill switches
 
-## Deploy on Vercel
+Prefer the **Marketing Command Center** at `/admin` (writes `reports/marketing-controls.json`). Env vars still work and override when set:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- `MARKETING_AUTO_PUBLISH=0` — no engage/publish (default off until you set `1`)
+- `REDDIT_AUTO_POST=0` — drafts only for Reddit
+- `X_AUTO_POST=0` — skip X
+- `DISCORD_AUTO_POST=0` — skip Discord
+- `REDDIT_DRY_RUN=1` / `SOCIAL_DRY_RUN=1` — log what would post
+- `MARKETING_CONTROLS_IGNORE=1` — ignore the controls JSON file
+- `CONTROLS_GITHUB_TOKEN` — optional; lets `/admin` dispatch/list GitHub Actions
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Admin also has `/admin/setup` checklists and `/admin/itch` DevTalk → itch BBCode copy.
 
-## Reddit Opportunity Bot
+### Repo / Action secrets
 
-Use this script to discover promising Reddit threads where you can naturally share your devtalk/game.
+| Secret | Required for |
+| --- | --- |
+| `OPENAI_API_KEY` | Scan + draft rewrite |
+| `MARKETING_AUTO_PUBLISH` | Set to `1` to enable posting |
+| `DISCORD_WEBHOOK_URL` | Discord announcements + Steam reminders |
+| `DISCORD_AUTO_POST` | Optional; default on when publish runs |
+| `REDDIT_AUTO_POST` | Set to `1` for comments / rare self-posts |
+| (local) `pnpm reddit:login` | Browser session profile — required for engage (not OAuth) |
+| `REDDIT_BROWSER_HEADED` | Set to `1` to watch Chromium during engage |
+| `REDDIT_USER_AGENT` | Optional override for public JSON checks |
+| `X_AUTO_POST` | Set to `1` to tweet |
+| `X_API_KEY` / `X_API_SECRET` / `X_ACCESS_TOKEN` / `X_ACCESS_SECRET` | X pay-per-use (~$0.20/link post) |
+| `UPSTASH_REDIS_REST_URL` / `UPSTASH_REDIS_REST_TOKEN` | Download analytics (site env / Vercel) |
 
-```bash
-pnpm reddit:scan
-```
+Warm the Reddit account manually (age + karma gates default to 30d / 100 karma) before enabling `REDDIT_AUTO_POST`.
 
-It scans:
+Ledger: `reports/publish-ledger.json` (committed by Actions).
 
-- `r/gamedev`, `r/indiegames`, `r/IndieDev`, `r/citybuilder`, `r/tycoon`, `r/timberborn`
-- Search topics like "rome based indie game" and "timberborn like game"
+## Download analytics
 
-It outputs a ranked report at `reports/reddit-opportunities.md` with:
+Buttons hit `/api/download/[platform]` → count → 302 to GitHub Release. UTMs from marketing links are stored in `sessionStorage` and attached as `?src=` (no cookie wall).
 
-- Thread links
-- Opportunity score
-- Why each thread is a good fit
-- A suggested comment template you can adapt before posting
-
-Optional environment variables:
-
-- `DEVTALK_URL` (default: `https://provincia.ch/devtalk`)
-- `GAME_URL` (default: `https://provincia.ch`)
-- `REDDIT_MAX_AGE_HOURS` (default: `96`)
+View counts at `/admin/downloads` once Upstash is configured. Downloads still work without Redis.
 
 ## Marketing Command Center (`/admin`)
 
-Password-protected hub for Reddit, DevTalk, social drafts, Steam prep, and creator outreach (blocked until ready).
+Password-protected hub (`ADMIN_PASSWORD` in `.env.local`):
 
-- **Overview** — `/admin` — stats and weekly rhythm
-- **Reddit** — review scan results, accept/deny threads, generate devtalk drafts
-- **DevTalk** — published posts and drafts (`draft: true` in frontmatter stays off the public site)
-- **Social** — copy Reddit / X / Steam posts generated from the latest devtalk
-- **Steam** — Next Fest checklist (setup phase)
-- **Creators** — locked with visible warnings until prerequisites are met
+- **Overview** — stats and automation list
+- **Reddit** — scan queue + publish ledger / halt status
+- **DevTalk** — posts and drafts
+- **Social** — drafts + auto-publish status
+- **Downloads** — platform × source counts
+- **Steam** — Next Fest checklist
+- **Creators** — locked until prerequisites
 
-Set `ADMIN_PASSWORD` in `.env.local`. Local automation: `MARKETING_RUNNER=enabled` lets the admin UI run scan/distribute scripts. Production scans use GitHub Actions (`.github/workflows/marketing-scan.yml`) — add `OPENAI_API_KEY` as a repo secret.
-
-```bash
-pnpm reddit:scan          # refresh Reddit opportunities
-pnpm devtalk:distribute   # social drafts from latest devtalk
-```
+Local runner: `MARKETING_RUNNER=enabled` lets the admin UI run scan/distribute scripts.

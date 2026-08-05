@@ -43,3 +43,5 @@ jobs:
             git commit -m "chore: update Reddit opportunity scan"
             git push
           fi
+
+      # Note: auto-engage runs in marketing-publish.yml (~09:00 UTC) after this scan.

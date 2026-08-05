@@ -1,0 +1,26 @@
+{
+  "masterPublish": false,
+  "redditAutoPost": false,
+  "xAutoPost": false,
+  "discordAutoPost": true,
+  "redditDryRun": false,
+  "socialDryRun": false,
+  "itch": {
+    "pageReady": false,
+    "pageUrl": "",
+    "coverReady": false,
+    "demoLinked": false,
+    "tagsSet": false
+  },
+  "reddit": {
+    "maxHelpfulPerDay": 3,
+    "maxPromoPerDay": 1,
+    "minHelpfulPerPromo": 3,
+    "minAccountAgeDays": 30,
+    "minKarma": 100,
+    "maxActionsPerRun": 2,
+    "subCooldownHours": 12
+  },
+  "updatedAt": null,
+  "updatedBy": null
+}

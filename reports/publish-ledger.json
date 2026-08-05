@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "updatedAt": "2026-08-04T14:41:17.583Z",
+  "reddit": {
+    "halted": true,
+    "haltReason": "Possible shadowban or removal after commenting on t3_1vf4bzu",
+    "actions": [
+      {
+        "id": "t1_p1nqs6j",
+        "type": "helpful",
+        "thingId": "t3_1vf4bzu",
+        "subreddit": "indiegames",
+        "permalink": "https://www.reddit.com/r/indiegames/comments/1vf4bzu/i_made_a_main_menu_unfinished/p1nqs6j/",
+        "commentId": "t1_p1nqs6j",
+        "at": "2026-08-04T14:41:09.413Z",
+        "title": "I made a main menu ( unfinished )"
+      }
+    ],
+    "postedThingIds": [
+      "t3_1vf4bzu"
+    ]
+  },
+  "social": {
+    "publishedSlugs": {}
+  }
+}

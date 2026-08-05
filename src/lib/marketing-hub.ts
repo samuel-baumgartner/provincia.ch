@@ -25,9 +25,9 @@ export const MARKETING_SECTIONS: MarketingSection[] = [
     id: "reddit",
     title: "Reddit",
     href: "/admin/reddit",
-    description: "Scan threads, review AI-drafted replies, post manually.",
+    description: "Scan threads, safety-gated auto-replies, ledger status.",
     status: "active",
-    statusLabel: "Active — run scan, then review queue",
+    statusLabel: "Active — helpful-only while warming; ~every 4th promo after",
   },
   {
     id: "devtalk",
@@ -39,11 +39,35 @@ export const MARKETING_SECTIONS: MarketingSection[] = [
   },
   {
     id: "social",
-    title: "Social drafts",
+    title: "Social",
     href: "/admin/social",
-    description: "Platform-specific posts generated from your latest devtalk.",
+    description: "Drafts + auto-publish to Discord / X / Reddit (Steam reminder).",
     status: "active",
-    statusLabel: "Active — generate after each devtalk",
+    statusLabel: "Active — controlled by kill switches",
+  },
+  {
+    id: "itch",
+    title: "itch.io",
+    href: "/admin/itch",
+    description: "Page checklist + copy DevTalk as itch BBCode.",
+    status: "setup",
+    statusLabel: "Setup — paste BBCode into itch Devlogs",
+  },
+  {
+    id: "setup",
+    title: "Setup",
+    href: "/admin/setup",
+    description: "Checklists for Reddit, X, Discord, itch, and CI secrets.",
+    status: "ready",
+    statusLabel: "Ready — see what each channel needs",
+  },
+  {
+    id: "downloads",
+    title: "Downloads",
+    href: "/admin/downloads",
+    description: "Platform + source download counts (soft redirect).",
+    status: "active",
+    statusLabel: "Active — needs Upstash for counts",
   },
   {
     id: "steam",
@@ -84,16 +108,34 @@ export const AUTOMATION_JOBS: AutomationJob[] = [
     schedule: "Daily 08:00 UTC (GitHub Actions)",
     runner: "github-actions",
     description:
-      "Fetches fresh threads from city-builder subs and writes reports/reddit-opportunities.md. The admin UI reads that file — no AWS needed.",
+      "Fetches fresh threads from city-builder subs and writes reports/reddit-opportunities.md.",
+  },
+  {
+    id: "reddit-engage",
+    title: "Reddit auto-engage",
+    command: "pnpm reddit:engage",
+    schedule: "Daily 09:00 UTC (GitHub Actions)",
+    runner: "github-actions",
+    description:
+      "Safety-gated browser comments (~3 helpful : 1 promo, caps, cooldown, soft-halt on invisible). Requires master+Reddit toggles. Local/VPS browser profile.",
   },
   {
     id: "devtalk-distribute",
     title: "DevTalk → social drafts",
     command: "pnpm devtalk:distribute",
-    schedule: "After each new devtalk (manual or button)",
+    schedule: "Before social:publish / after each new devtalk",
     runner: "manual",
     description:
-      "Turns your latest devtalk into Reddit, X, and Steam community post drafts in reports/social-drafts/.",
+      "Turns your latest devtalk into Reddit, Discord, X, and Steam drafts (UTM’d) in reports/social-drafts/.",
+  },
+  {
+    id: "social-publish",
+    title: "Social auto-publish",
+    command: "pnpm social:publish",
+    schedule: "Daily 15:00 UTC + after distribute (GitHub Actions)",
+    runner: "github-actions",
+    description:
+      "Posts Discord webhook + optional X/Reddit self-post; Steam gets a Discord paste reminder. Kill switch: MARKETING_AUTO_PUBLISH=0.",
   },
   {
     id: "cursor-loop",

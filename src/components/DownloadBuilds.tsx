@@ -1,10 +1,20 @@
+"use client";
+
+import type { MouseEvent } from "react";
 import { downloadBuilds, downloadReleaseTag } from "@/lib/game-content";
+import { readAttributionSource } from "@/components/AttributionCapture";
 
 type Props = {
   compact?: boolean;
 };
 
 export default function DownloadBuilds({ compact = false }: Props) {
+  function onDownloadClick(e: MouseEvent<HTMLAnchorElement>, platform: string) {
+    const src = readAttributionSource();
+    if (!src || src === "direct") return;
+    e.currentTarget.href = `/api/download/${platform}?src=${encodeURIComponent(src)}`;
+  }
+
   return (
     <div className={compact ? "space-y-4" : "space-y-6"}>
       <div
@@ -13,9 +23,9 @@ export default function DownloadBuilds({ compact = false }: Props) {
         {downloadBuilds.map((build) => (
           <a
             key={build.id}
-            href={build.href}
+            href={`/api/download/${build.id}`}
+            onClick={(e) => onDownloadClick(e, build.id)}
             className="min-w-[9.5rem] rounded-md bg-cypress px-5 py-3 text-center text-sm font-semibold tracking-wide text-ink transition hover:bg-cypress-bright"
-            download
           >
             {build.label}
           </a>

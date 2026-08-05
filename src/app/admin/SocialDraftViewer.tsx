@@ -79,6 +79,33 @@ export default function SocialDraftViewer({ draft }: Props) {
         </ul>
       </section>
 
+      {draft.platforms.discord ? (
+        <section className="rounded-xl border border-neutral-800 bg-neutral-900/50 p-5">
+          <div className="flex items-center justify-between gap-2">
+            <h2 className="font-semibold">Discord</h2>
+            <button
+              type="button"
+              onClick={() =>
+                onCopy(
+                  "Discord",
+                  draft.platforms.discord?.content ??
+                    `${draft.platforms.discord?.embed?.title ?? ""}\n${draft.platforms.discord?.embed?.url ?? ""}`,
+                )
+              }
+              className="text-sm text-cyan-300 hover:underline"
+            >
+              Copy
+            </button>
+          </div>
+          <p className="mt-2 whitespace-pre-wrap text-sm text-neutral-300">
+            {draft.platforms.discord.content}
+          </p>
+          {draft.platforms.discord.embed?.url ? (
+            <p className="mt-2 text-xs text-neutral-500">{draft.platforms.discord.embed.url}</p>
+          ) : null}
+        </section>
+      ) : null}
+
       <section className="rounded-xl border border-neutral-800 bg-neutral-900/50 p-5">
         <div className="flex items-center justify-between gap-2">
           <h2 className="font-semibold">Steam community post</h2>
@@ -100,8 +127,8 @@ export default function SocialDraftViewer({ draft }: Props) {
           {draft.platforms.steam.body}
         </p>
         <p className="mt-3 text-xs text-amber-200/90">
-          Steam community posts only work after you have a store page. Safe to save this draft until
-          then.
+          No Steam write API — auto-publish sends this as a Discord reminder to paste into
+          Steamworks Events.
         </p>
       </section>
     </div>
