@@ -34,6 +34,32 @@ applyControlsToEnv(loadControlsSync());
 const DRY_RUN = envFlag("REDDIT_DRY_RUN", false);
 const AUTO = envFlag("REDDIT_AUTO_POST", false) && envFlag("MARKETING_AUTO_PUBLISH", false);
 
+// --- Human-like pacing / selection knobs ---
+// New/low-trust accounts are usually invisible logged-out (looks like a shadowban).
+// That resolves itself with age + karma, so we do NOT halt on it by default.
+const HALT_ON_INVISIBLE = envFlag("REDDIT_HALT_ON_INVISIBLE", false);
+// Chance to just lurk (no actions) this run — people don't comment every session.
+const SESSION_SKIP_PROB = clamp01(Number(process.env.REDDIT_SESSION_SKIP_PROB ?? 0.25));
+// Chance to pass on an otherwise-eligible thread — nobody replies to everything.
+const CANDIDATE_SKIP_PROB = clamp01(Number(process.env.REDDIT_CANDIDATE_SKIP_PROB ?? 0.35));
+// Pick from the top-N threads (shuffled) instead of always the single highest score.
+const TOP_N = Math.max(1, Number(process.env.REDDIT_TOP_N ?? 6));
+// Random idle before the first action so runs don't fire exactly on the cron minute.
+const START_JITTER_MAX_MS = Math.max(0, Number(process.env.REDDIT_START_JITTER_MAX_MS ?? 300_000));
+
+function clamp01(n) {
+  return Number.isFinite(n) ? Math.min(1, Math.max(0, n)) : 0;
+}
+
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
 async function alertWarn(reason) {
   if (!process.env.DISCORD_WEBHOOK_URL?.trim()) return;
   try {
@@ -71,6 +97,19 @@ async function main() {
 
   const summary = summarizeLedger(ledger);
   console.log("Ledger:", JSON.stringify(summary));
+
+  // Humans don't engage every session — sometimes just read and leave.
+  if (!DRY_RUN && Math.random() < SESSION_SKIP_PROB) {
+    console.log(`Lurking this session (skip prob ${SESSION_SKIP_PROB}). No actions.`);
+    return;
+  }
+
+  // Idle a random bit so we don't act at the exact scheduled minute.
+  if (!DRY_RUN && START_JITTER_MAX_MS > 0) {
+    const jitter = randomInt(0, START_JITTER_MAX_MS);
+    console.log(`Warm-up idle ${(jitter / 1000).toFixed(0)}s before acting…`);
+    await sleep(jitter);
+  }
 
   if (!profileExists() && !DRY_RUN) {
     console.error(
@@ -124,9 +163,13 @@ async function main() {
     return;
   }
 
-  const ranked = [...opportunities].sort((a, b) => (b.score ?? 0) - (a.score ?? 0));
+  const sorted = [...opportunities].sort((a, b) => (b.score ?? 0) - (a.score ?? 0));
+  // Consider only the strongest few, then shuffle so we don't always hit the same top thread.
+  const ranked = shuffle(sorted.slice(0, TOP_N));
   let posted = 0;
-  const maxThisRun = Number(process.env.REDDIT_MAX_ACTIONS_PER_RUN ?? 2);
+  const maxActions = Math.max(1, Number(process.env.REDDIT_MAX_ACTIONS_PER_RUN ?? 2));
+  // Vary how much we do per run (1..maxActions) so cadence isn't robotic.
+  const maxThisRun = randomInt(1, maxActions);
 
   try {
     for (const opp of ranked) {
@@ -160,6 +203,12 @@ async function main() {
         continue;
       }
 
+      // Sometimes pass on a perfectly good thread — humans don't reply to everything.
+      if (!DRY_RUN && Math.random() < CANDIDATE_SKIP_PROB) {
+        console.log(`Passing on r/${opp.subreddit} (natural skip): ${opp.title}`);
+        continue;
+      }
+
       console.log(
         `${DRY_RUN ? "[dry-run] Would post" : "Posting"} ${gate.type} on r/${opp.subreddit}: ${opp.title}`,
       );
@@ -179,8 +228,8 @@ async function main() {
       }
 
       try {
-        const delayMin = Number(process.env.REDDIT_ACTION_DELAY_MIN_MS ?? 30_000);
-        const delayMax = Number(process.env.REDDIT_ACTION_DELAY_MAX_MS ?? 120_000);
+        const delayMin = Number(process.env.REDDIT_ACTION_DELAY_MIN_MS ?? 45_000);
+        const delayMax = Number(process.env.REDDIT_ACTION_DELAY_MAX_MS ?? 240_000);
         const delayMs = randomInt(Math.max(0, delayMin), Math.max(delayMin, delayMax));
         console.log(`Waiting ${(delayMs / 1000).toFixed(0)}s…`);
         await sleep(delayMs);
@@ -207,15 +256,17 @@ async function main() {
             permalink: result.permalink ?? opp.link,
           });
           if (!visible) {
-            const reason =
-              `Comment not visible logged-out after posting on ${thingId} ` +
-              `(${result.permalink ?? result.name}). Continuing helpful-only until public again.`;
-            // Soft halt: block promo, keep helpful (genuine low-trust account behavior)
-            ledger = haltReddit(ledger, reason);
-            allowPromo = false;
-            await saveLedger(ledger);
-            console.warn(reason);
-            await alertWarn(reason);
+            const note =
+              `Comment not visible logged-out on ${thingId} ` +
+              `(${result.permalink ?? result.name}). Expected for a new/low-trust account — resolves with age + karma.`;
+            console.warn(note);
+            // New accounts read as shadowbanned until Reddit trusts them; don't halt on it by default.
+            if (HALT_ON_INVISIBLE) {
+              ledger = haltReddit(ledger, note);
+              allowPromo = false;
+              await saveLedger(ledger);
+              await alertWarn(note);
+            }
           } else if (ledger.reddit?.halted) {
             console.log("Comment is publicly visible — clearing soft halt (promos allowed again when warmed).");
             ledger = clearRedditHalt(ledger);
