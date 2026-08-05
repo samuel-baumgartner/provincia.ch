@@ -12,6 +12,8 @@ export type DevTalkAdminItem = {
   isPublished: boolean;
   path: string;
   publicUrl: string | null;
+  coverImage: string | null;
+  coverExists: boolean;
 };
 
 export function getDevTalkAdminItems(): DevTalkAdminItem[] {
@@ -25,9 +27,21 @@ export function getDevTalkAdminItems(): DevTalkAdminItem[] {
       const fullPath = path.join(DEV_TALKS_DIR, filename);
       const raw = fs.readFileSync(fullPath, "utf8");
       const parsed = matter(raw);
-      const data = parsed.data as { title?: string; date?: string; draft?: boolean };
+      const data = parsed.data as {
+        title?: string;
+        date?: string;
+        draft?: boolean;
+        coverImage?: string;
+      };
       const isDraft = data.draft === true;
       const isPublished = !isDraft;
+      const coverImage =
+        typeof data.coverImage === "string" && data.coverImage.trim()
+          ? data.coverImage.trim()
+          : null;
+      const coverExists = coverImage
+        ? fs.existsSync(path.join(process.cwd(), "public", coverImage.replace(/^\//, "")))
+        : false;
 
       return {
         slug,
@@ -37,6 +51,8 @@ export function getDevTalkAdminItems(): DevTalkAdminItem[] {
         isPublished,
         path: `content/devtalks/${filename}`,
         publicUrl: isPublished ? `/devtalk/${slug}` : null,
+        coverImage,
+        coverExists,
       };
     })
     .sort((a, b) => (a.date < b.date ? 1 : -1));

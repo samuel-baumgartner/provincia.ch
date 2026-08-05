@@ -4,6 +4,7 @@ import { isAdminAuthed } from "@/lib/admin-auth";
 import { getDevTalkAdminItems } from "@/lib/devtalk-admin";
 import { getMarketingControls } from "@/lib/marketing-controls";
 import CopyItchButton from "../CopyItchButton";
+import CopyCoverButton from "../CopyCoverButton";
 import ItchChecklistForm from "../ItchChecklistForm";
 
 export const dynamic = "force-dynamic";
@@ -19,18 +20,28 @@ export default async function AdminItchPage() {
       <header>
         <h1 className="text-2xl font-bold">itch.io</h1>
         <p className="mt-1 text-sm text-neutral-400">
-          Prep checklist + one-click BBCode copy of a DevTalk for an itch Devlog. No API upload —
-          paste into itch&apos;s editor.
+          Prep checklist + Markdown copy for itch Devlogs (not BBCode — Devlogs show BBCode as plain
+          text). Enable{" "}
+          <a
+            href="https://itch.io/user/settings"
+            target="_blank"
+            rel="noreferrer"
+            className="text-cyan-300 hover:underline"
+          >
+            Prefer Markdown input
+          </a>{" "}
+          on itch, then create a <em>new</em> Devlog and paste. Cover comes from{" "}
+          <code className="text-cyan-200">coverImage</code>.
         </p>
       </header>
 
       <ItchChecklistForm initial={controls.itch} />
 
       <section>
-        <h2 className="text-lg font-semibold">Copy DevTalk → itch BBCode</h2>
+        <h2 className="text-lg font-semibold">Copy DevTalk → itch</h2>
         <p className="mt-1 text-sm text-neutral-400">
-          Opens with title + link back to provincia.ch, then converts markdown headings/links/images
-          to itch BBCode.
+          Markdown starts with the cover image, then title + link. Paste into a Markdown Devlog
+          editor (not the rich-text/HTML one). Cover button copies URL + downloads the file.
         </p>
         <ul className="mt-3 space-y-2">
           {published.length === 0 ? (
@@ -43,7 +54,10 @@ export default async function AdminItchPage() {
               >
                 <div>
                   <p className="font-medium">{item.title}</p>
-                  <p className="text-xs text-neutral-500">{item.date}</p>
+                  <p className="text-xs text-neutral-500">
+                    {item.date}
+                    {item.coverExists ? " · cover OK" : " · missing coverImage / file"}
+                  </p>
                 </div>
                 <div className="flex flex-wrap items-center gap-3">
                   {item.publicUrl ? (
@@ -56,6 +70,10 @@ export default async function AdminItchPage() {
                     </Link>
                   ) : null}
                   <CopyItchButton slug={item.slug} />
+                  <CopyCoverButton
+                    slug={item.slug}
+                    coverPath={item.coverExists ? item.coverImage : null}
+                  />
                 </div>
               </li>
             ))

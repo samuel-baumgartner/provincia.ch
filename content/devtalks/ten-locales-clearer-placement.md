@@ -8,6 +8,7 @@ tags:
   - placement
   - performance
   - ui
+coverImage: "/devtalks/ten-locales-clearer-placement/cover.png"
 ---
 
 This main ship is three player-facing pieces that land together: **locales**, **honest placement feedback**, and **quieter day/night transitions**.

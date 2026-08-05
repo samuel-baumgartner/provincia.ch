@@ -29,6 +29,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${talk.title} | DevTalk`,
     description: talk.excerpt,
+    openGraph: talk.coverImage
+      ? {
+          images: [{ url: talk.coverImage }],
+        }
+      : undefined,
   };
 }
 
@@ -63,6 +68,17 @@ export default async function DevTalkDetailPage({ params }: Props) {
             ))}
           </div>
         </header>
+
+        {talk.coverImage ? (
+          <figure className="mt-8 overflow-hidden border border-ink-border">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={talk.coverImage}
+              alt=""
+              className="h-auto w-full object-cover"
+            />
+          </figure>
+        ) : null}
 
         <section
           className="mt-8 border border-ink-border bg-ink-elevated/20 p-6 text-lg leading-8 text-stone md:p-8 [&_a]:text-cypress-bright [&_a]:underline-offset-4 [&_a:hover]:underline [&_blockquote]:border-l-2 [&_blockquote]:border-ink-border [&_blockquote]:pl-4 [&_em]:text-stone-muted [&_figcaption]:mt-2 [&_figcaption]:text-center [&_figcaption]:text-sm [&_figcaption]:text-stone-muted [&_figure]:my-8 [&_h2]:mt-10 [&_h2]:font-display [&_h2]:text-2xl [&_h2]:font-semibold [&_h3]:mt-8 [&_h3]:font-display [&_h3]:text-xl [&_h3]:font-semibold [&_img]:w-full [&_img]:border [&_img]:border-ink-border [&_li]:my-2 [&_ol]:my-6 [&_ol]:list-decimal [&_ol]:pl-6 [&_p]:my-6 [&_strong]:font-semibold [&_ul]:my-6 [&_ul]:list-disc [&_ul]:pl-6"
