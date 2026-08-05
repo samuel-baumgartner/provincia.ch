@@ -110,8 +110,9 @@ export default async function AdminDevTalkPage() {
             required <code>coverImage</code>
           </li>
           <li>
-            Put the cover file at <code>public/devtalks/your-slug/cover.png</code> (topic-fitting
-            screenshot or generated image)
+            Put a <strong>real in-game</strong> cover at{" "}
+            <code>public/devtalks/your-slug/cover.png</code> (wire it in{" "}
+            <code>scripts/sync-game-assets.sh</code> — no AI images)
           </li>
           <li>Run distribute (button above) to create social drafts</li>
           <li>Link from Reddit replies to <code>provincia.ch/devtalk/…</code></li>

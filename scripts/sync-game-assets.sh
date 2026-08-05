@@ -204,4 +204,12 @@ copy_scene "$DT/colonists-and-the-haul-board/colony-at-work.png" \
 copy_file "$GAME/assets/debug/material_chain_panel.png" "$DT/colonists-and-the-haul-board/material-chain.png"
 copy_file "$GAME/assets/images/Colonists/roman_colonist_working.png" "$DT/colonists-and-the-haul-board/colonist-working.png"
 
+# Ten locales / clearer placement — real in-game placement feedback capture (never AI)
+copy_scene "$DT/ten-locales-clearer-placement/cover.png" \
+  "$GAME/assets/debug/fertility_overlay_placement.png" \
+  "$ITCH/01_settlement_overview.png" \
+  "$GAME_DIR/colony-overview.png"
+copy_file "$GAME/assets/debug/fertility_overlay_placement.png" \
+  "$DT/ten-locales-clearer-placement/placement-feedback.png"
+
 echo "==> Done. Assets in $SITE_PUBLIC"

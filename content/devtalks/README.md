@@ -9,17 +9,24 @@ Add a new markdown file in this folder:
   - `date` (YYYY-MM-DD)
   - `author`
   - `tags` (array)
-  - `coverImage` (**required** — path under `/public`, e.g. `/devtalks/my-update/cover.png`). Every DevTalk must have at least this one image; the site list + article hero use it, and itch BBCode puts it first.
+  - `coverImage` (**required** — path under `/public`). This must be a **real in-game screenshot of what changed** (HUD/scene capture from the Godot repo). **Do not use AI-generated covers.**
 
-## Images
+## Images (in-game only)
 
-Store images under `public/devtalks/{slug}/` and reference them in markdown with absolute paths. The cover file must exist on disk before push.
+1. Capture or use an existing debug/itch screenshot from `my-colony-sim` that shows the feature.
+2. Put it under `public/devtalks/{slug}/` (usually `cover.png`).
+3. Wire it in [`scripts/sync-game-assets.sh`](../../scripts/sync-game-assets.sh) so `pnpm assets:sync` keeps it updated from the game repo.
+4. Set frontmatter `coverImage: "/devtalks/{slug}/cover.png"`.
+
+Inline body images use absolute paths under `/public` the same way:
 
 ```md
 ![Water flowing through a cut channel](/devtalks/water-system-rebuild/channel.png)
 ```
 
-Run `pnpm assets:sync` to copy screenshots from the Godot game repo and refresh capture scripts. If no good screenshot exists yet, generate a topic-fitting cover and save it as `public/devtalks/{slug}/cover.png`.
+```bash
+pnpm assets:sync
+```
 
 Example:
 

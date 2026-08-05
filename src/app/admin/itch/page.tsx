@@ -30,8 +30,10 @@ export default async function AdminItchPage() {
           >
             Prefer Markdown input
           </a>{" "}
-          on itch, then create a <em>new</em> Devlog and paste. Cover comes from{" "}
-          <code className="text-cyan-200">coverImage</code>.
+          on itch, then create a <em>new</em> Devlog and paste. Cover must be a{" "}
+          <strong className="text-neutral-200">real in-game screenshot</strong> via{" "}
+          <code className="text-cyan-200">coverImage</code> + <code className="text-cyan-200">pnpm assets:sync</code>{" "}
+          (never AI art).
         </p>
       </header>
 
