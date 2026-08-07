@@ -21,11 +21,15 @@ export type MarketingControls = {
   reddit: {
     maxHelpfulPerDay: number;
     maxPromoPerDay: number;
+    maxCommentsPerDay: number;
     minHelpfulPerPromo: number;
     minAccountAgeDays: number;
     minKarma: number;
     maxActionsPerRun: number;
     subCooldownHours: number;
+    dayRunProbability: number;
+    sessionSpanMinutes: number;
+    lurkFetchesPerRun: number;
   };
   updatedAt: string | null;
   updatedBy: string | null;
@@ -49,11 +53,15 @@ export function defaultMarketingControls(): MarketingControls {
     reddit: {
       maxHelpfulPerDay: 3,
       maxPromoPerDay: 1,
+      maxCommentsPerDay: 4,
       minHelpfulPerPromo: 3,
       minAccountAgeDays: 30,
       minKarma: 100,
-      maxActionsPerRun: 2,
+      maxActionsPerRun: 4,
       subCooldownHours: 12,
+      dayRunProbability: 0.8,
+      sessionSpanMinutes: 30,
+      lurkFetchesPerRun: 8,
     },
     updatedAt: null,
     updatedBy: null,

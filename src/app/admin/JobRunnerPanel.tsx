@@ -10,11 +10,11 @@ type Props = {
 };
 
 const JOBS: { id: Job; label: string; local: boolean; github: boolean }[] = [
-  { id: "scan", label: "Reddit scan", local: true, github: true },
-  { id: "engage", label: "Reddit engage", local: true, github: true },
+  { id: "scan", label: "Reddit scan", local: true, github: false },
+  { id: "engage", label: "Reddit engage", local: true, github: false },
   { id: "distribute", label: "DevTalk distribute", local: true, github: false },
   { id: "publish", label: "Social publish", local: true, github: true },
-  { id: "both", label: "Engage + publish (GH)", local: false, github: true },
+  { id: "both", label: "Publish (GH)", local: false, github: true },
 ];
 
 export default function JobRunnerPanel({ canRunLocal, canTriggerGithub }: Props) {

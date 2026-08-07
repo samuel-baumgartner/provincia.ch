@@ -37,9 +37,10 @@ export default async function AdminRedditPage() {
           />
         </div>
         <p className="mt-1 text-sm text-neutral-400">
-          Browser session + safety gates. Cadence ≈ every 4th answer promo (
-          {controls.reddit.minHelpfulPerPromo} helpful : 1) after the account is warmed. Master and
-          Reddit kill switches live on Overview.
+          Local browser session: ~{(controls.reddit.dayRunProbability * 100).toFixed(0)}% of days
+          post (~{controls.reddit.maxCommentsPerDay} comments over ~
+          {controls.reddit.sessionSpanMinutes}m) with lurk fetches that never comment. Promo ≈
+          every 4th after warming. Run on your machine — GHA skips engage.
         </p>
       </header>
 

@@ -28,11 +28,15 @@ export function defaultControls() {
     reddit: {
       maxHelpfulPerDay: 3,
       maxPromoPerDay: 1,
+      maxCommentsPerDay: 4,
       minHelpfulPerPromo: 3,
       minAccountAgeDays: 30,
       minKarma: 100,
-      maxActionsPerRun: 2,
+      maxActionsPerRun: 4,
       subCooldownHours: 12,
+      dayRunProbability: 0.8,
+      sessionSpanMinutes: 30,
+      lurkFetchesPerRun: 8,
     },
     updatedAt: null,
     updatedBy: null,
@@ -99,9 +103,13 @@ export function applyControlsToEnv(controls = loadControlsSync()) {
   };
   setNumIfEmpty("REDDIT_MAX_HELPFUL_PER_DAY", r.maxHelpfulPerDay);
   setNumIfEmpty("REDDIT_MAX_PROMO_PER_DAY", r.maxPromoPerDay);
+  setNumIfEmpty("REDDIT_MAX_COMMENTS_PER_DAY", r.maxCommentsPerDay);
   setNumIfEmpty("REDDIT_MIN_HELPFUL_PER_PROMO", r.minHelpfulPerPromo);
   setNumIfEmpty("REDDIT_MIN_ACCOUNT_AGE_DAYS", r.minAccountAgeDays);
   setNumIfEmpty("REDDIT_MIN_KARMA", r.minKarma);
   setNumIfEmpty("REDDIT_MAX_ACTIONS_PER_RUN", r.maxActionsPerRun);
   setNumIfEmpty("REDDIT_SUB_COOLDOWN_HOURS", r.subCooldownHours);
+  setNumIfEmpty("REDDIT_DAY_RUN_PROBABILITY", r.dayRunProbability);
+  setNumIfEmpty("REDDIT_SESSION_SPAN_MINUTES", r.sessionSpanMinutes);
+  setNumIfEmpty("REDDIT_LURK_FETCHES_PER_RUN", r.lurkFetchesPerRun);
 }

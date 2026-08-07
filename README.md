@@ -17,26 +17,29 @@ Fully unattended pipeline (OpenAI drafts + platform APIs):
 | --- | --- |
 | `pnpm reddit:scan` | Find threads → `reports/reddit-opportunities.md` |
 | `pnpm reddit:login` | One-time headed login; saves session to `data/reddit-browser-profile/` |
-| `pnpm reddit:engage` | Safety-gated browser comments via old.reddit.com (~every 4th promo after warming; soft-halt blocks promo only) |
+| `pnpm reddit:engage` | Local/VPS paced session (~80% days, ~4 comments / 30m + lurk fetches; soft-halt blocks promo only) |
 | `pnpm devtalk:distribute` | Latest DevTalk → Discord/Reddit/X/Steam drafts (UTM’d) |
 | `pnpm social:publish` | Post Discord + optional X/Reddit; Steam reminder via Discord |
 
 GitHub Actions:
 
-- [`.github/workflows/marketing-scan.yml`](.github/workflows/marketing-scan.yml) — daily 08:00 UTC scan
-- [`.github/workflows/marketing-publish.yml`](.github/workflows/marketing-publish.yml) — 09:00 engage + 15:00 distribute/publish
+- [`.github/workflows/marketing-publish.yml`](.github/workflows/marketing-publish.yml) — 09:00 + 15:00 UTC distribute/publish (Discord/X; Reddit comments are local via `pnpm reddit:engage`)
+
+Reddit scan is **manual**: `pnpm reddit:scan` (no scheduled workflow).
 
 ### Kill switches
 
 Prefer the **Marketing Command Center** at `/admin` (writes `reports/marketing-controls.json`). Env vars still work and override when set:
 
-- `MARKETING_AUTO_PUBLISH=0` — no engage/publish (default off until you set `1`)
+- `MARKETING_AUTO_PUBLISH=0` — no engage/publish
 - `REDDIT_AUTO_POST=0` — drafts only for Reddit
 - `X_AUTO_POST=0` — skip X
 - `DISCORD_AUTO_POST=0` — skip Discord
 - `REDDIT_DRY_RUN=1` / `SOCIAL_DRY_RUN=1` — log what would post
 - `MARKETING_CONTROLS_IGNORE=1` — ignore the controls JSON file
 - `CONTROLS_GITHUB_TOKEN` — optional; lets `/admin` dispatch/list GitHub Actions
+
+**Note:** If a GitHub Actions secret sets these to `0`, that secret wins over the JSON file on CI.
 
 Admin also has `/admin/setup` checklists and `/admin/itch` DevTalk → itch BBCode copy.
 

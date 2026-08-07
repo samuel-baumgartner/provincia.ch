@@ -60,10 +60,12 @@ export default function MarketingControlsPanel({ initial, softHalted, haltReason
   }
 
   function saveRedditTweaks(form: FormData) {
+    const dayPct = Number(form.get("dayRunProbabilityPct") ?? "");
     const reddit = {
       ...controls.reddit,
       maxHelpfulPerDay: Number(form.get("maxHelpfulPerDay") || controls.reddit.maxHelpfulPerDay),
       maxPromoPerDay: Number(form.get("maxPromoPerDay") || controls.reddit.maxPromoPerDay),
+      maxCommentsPerDay: Number(form.get("maxCommentsPerDay") || controls.reddit.maxCommentsPerDay),
       minHelpfulPerPromo: Number(
         form.get("minHelpfulPerPromo") || controls.reddit.minHelpfulPerPromo,
       ),
@@ -71,6 +73,13 @@ export default function MarketingControlsPanel({ initial, softHalted, haltReason
       minKarma: Number(form.get("minKarma") || controls.reddit.minKarma),
       maxActionsPerRun: Number(form.get("maxActionsPerRun") || controls.reddit.maxActionsPerRun),
       subCooldownHours: Number(form.get("subCooldownHours") || controls.reddit.subCooldownHours),
+      dayRunProbability: Number.isFinite(dayPct)
+        ? Math.min(1, Math.max(0, dayPct / 100))
+        : controls.reddit.dayRunProbability,
+      sessionSpanMinutes: Number(
+        form.get("sessionSpanMinutes") || controls.reddit.sessionSpanMinutes,
+      ),
+      lurkFetchesPerRun: Number(form.get("lurkFetchesPerRun") || controls.reddit.lurkFetchesPerRun),
     };
     const next = { ...controls, reddit };
     setControls(next);
@@ -139,11 +148,14 @@ export default function MarketingControlsPanel({ initial, softHalted, haltReason
             [
               ["maxHelpfulPerDay", "Helpful / day"],
               ["maxPromoPerDay", "Promo / day"],
+              ["maxCommentsPerDay", "Comments / day"],
               ["minHelpfulPerPromo", "Helpful per promo"],
-              ["minAccountAgeDays", "Min age (days)"],
-              ["minKarma", "Min karma"],
+              ["minAccountAgeDays", "Promo min age (d)"],
+              ["minKarma", "Promo min karma"],
               ["maxActionsPerRun", "Max / run"],
               ["subCooldownHours", "Sub cooldown (h)"],
+              ["sessionSpanMinutes", "Session span (min)"],
+              ["lurkFetchesPerRun", "Lurk fetches / run"],
             ] as const
           ).map(([key, label]) => (
             <label key={key} className="block text-xs text-neutral-400">
@@ -156,7 +168,22 @@ export default function MarketingControlsPanel({ initial, softHalted, haltReason
               />
             </label>
           ))}
+          <label className="block text-xs text-neutral-400">
+            Active days (%)
+            <input
+              name="dayRunProbabilityPct"
+              type="number"
+              min={0}
+              max={100}
+              defaultValue={Math.round((controls.reddit.dayRunProbability ?? 0.8) * 100)}
+              className="mt-1 w-full rounded border border-neutral-700 bg-neutral-950 px-2 py-1.5 text-sm text-neutral-100"
+            />
+          </label>
         </div>
+        <p className="text-xs text-neutral-500">
+          Age/karma gates only block promo pitches — helpful comments still run. Local/VPS: ~80% of
+          days comment (~4 over ~30m); rest days lurk-only. GHA skips engage.
+        </p>
         <button
           type="submit"
           disabled={pending}

@@ -278,6 +278,48 @@ export async function fetchJsonViaSession(context, url) {
   }
 }
 
+function sleepMs(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function jitter(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+/**
+ * Lurk: JSON listing fetch only (no comment). Mimics browsing a sub feed.
+ * @param {import('playwright').BrowserContext} context
+ * @param {string} subreddit
+ * @param {"hot"|"new"|"rising"} [sort]
+ */
+export async function lurkSubredditJson(context, subreddit, sort = "hot") {
+  const name = String(subreddit || "").replace(/^r\//, "").trim();
+  if (!name) throw new Error("lurkSubredditJson: empty subreddit");
+  const url = `${OLD_REDDIT}/r/${encodeURIComponent(name)}/${sort}.json?limit=25`;
+  return fetchJsonViaSession(context, url);
+}
+
+/**
+ * Lurk: open a thread in the browser, dwell briefly, leave without commenting.
+ * @param {import('playwright').BrowserContext} context
+ * @param {string} permalink
+ * @param {{ minMs?: number, maxMs?: number }} [opts]
+ */
+export async function lurkThreadPage(context, permalink, opts = {}) {
+  const page = await context.newPage();
+  try {
+    await page.goto(toOldRedditUrl(permalink), {
+      waitUntil: "domcontentloaded",
+      timeout: 60_000,
+    });
+    const dwell = jitter(opts.minMs ?? 2_500, opts.maxMs ?? 9_000);
+    await page.mouse.wheel(0, jitter(200, 900));
+    await sleepMs(dwell);
+  } finally {
+    await page.close().catch(() => {});
+  }
+}
+
 /**
  * Visibility check from a cookieless Chromium context (avoids Node 403 + own-cookie false positives).
  * @param {string} commentFullname e.g. t1_abc

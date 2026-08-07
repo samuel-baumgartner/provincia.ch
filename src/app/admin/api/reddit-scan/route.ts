@@ -40,7 +40,7 @@ export async function POST() {
     return NextResponse.json(
       {
         error:
-          "Scans only run locally or with MARKETING_RUNNER=enabled. On production, use GitHub Actions or run: pnpm reddit:scan",
+          "Scans only run locally or with MARKETING_RUNNER=enabled. Run: pnpm reddit:scan",
       },
       { status: 503 },
     );

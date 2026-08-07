@@ -152,6 +152,7 @@ export const downloadBuilds = [
 
 export const storeLinks = {
   steam: null as string | null,
+  itch: "https://cybersaemi.itch.io/provincia" as string | null,
   discord: null as string | null,
   downloads: "/#download",
 };

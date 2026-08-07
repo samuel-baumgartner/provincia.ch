@@ -43,17 +43,29 @@ export function getSafetyConfig() {
     minKarma: Number(process.env.REDDIT_MIN_KARMA ?? r.minKarma ?? 100),
     maxPromoPerDay: Number(process.env.REDDIT_MAX_PROMO_PER_DAY ?? r.maxPromoPerDay ?? 1),
     maxHelpfulPerDay: Number(process.env.REDDIT_MAX_HELPFUL_PER_DAY ?? r.maxHelpfulPerDay ?? 3),
+    /** Hard cap on helpful+promo comments in a UTC day. */
+    maxCommentsPerDay: Number(process.env.REDDIT_MAX_COMMENTS_PER_DAY ?? r.maxCommentsPerDay ?? 4),
     maxSelfPostPerWeek: Number(process.env.REDDIT_MAX_SELF_POST_PER_WEEK ?? 1),
     minScore: Number(process.env.REDDIT_AUTO_MIN_SCORE ?? 55),
     promoRatioWindowDays: 30,
     /** Helpful comments required per promo (~every 4th answer = 3:1). */
     minHelpfulPerPromo: Number(process.env.REDDIT_MIN_HELPFUL_PER_PROMO ?? r.minHelpfulPerPromo ?? 3),
     subredditCooldownHours: Number(process.env.REDDIT_SUB_COOLDOWN_HOURS ?? r.subCooldownHours ?? 12),
+    /** Chance an active local session day will post (0–1). */
+    dayRunProbability: Number(process.env.REDDIT_DAY_RUN_PROBABILITY ?? r.dayRunProbability ?? 0.8),
+    /** Spread comments across this many minutes in one local session. */
+    sessionSpanMinutes: Number(process.env.REDDIT_SESSION_SPAN_MINUTES ?? r.sessionSpanMinutes ?? 30),
+    /** Extra browse/API fetches that never comment. */
+    lurkFetchesPerRun: Number(process.env.REDDIT_LURK_FETCHES_PER_RUN ?? r.lurkFetchesPerRun ?? 8),
   };
 }
 
+/**
+ * Whether promo / pitch comments are allowed yet.
+ * Age & karma never block helpful replies — only promo when ok is false.
+ */
 export function accountReady(me, config = getSafetyConfig()) {
-  if (!me) return { ok: false, reason: "Could not load Reddit account (/api/v1/me)" };
+  if (!me) return { ok: false, reason: "Could not load Reddit account", ageDays: 0, karma: 0 };
   const created = Number(me.created_utc ?? 0) * 1000;
   const ageDays = (Date.now() - created) / (1000 * 60 * 60 * 24);
   const karma = Number(me.link_karma ?? 0) + Number(me.comment_karma ?? 0);
@@ -61,16 +73,20 @@ export function accountReady(me, config = getSafetyConfig()) {
   if (ageDays < config.minAccountAgeDays) {
     return {
       ok: false,
-      reason: `Account age ${ageDays.toFixed(1)}d < required ${config.minAccountAgeDays}d — warm the account manually first`,
+      ageDays,
+      karma,
+      reason: `Promo locked: account age ${ageDays.toFixed(1)}d < ${config.minAccountAgeDays}d (helpful comments still allowed)`,
     };
   }
   if (karma < config.minKarma) {
     return {
       ok: false,
-      reason: `Karma ${karma} < required ${config.minKarma} — participate manually before auto-posting`,
+      ageDays,
+      karma,
+      reason: `Promo locked: karma ${karma} < ${config.minKarma} (helpful comments still allowed)`,
     };
   }
-  return { ok: true, ageDays, karma };
+  return { ok: true, ageDays, karma, reason: null };
 }
 
 function countByType(actions, type) {
@@ -123,8 +139,16 @@ export function evaluateRedditAction(ledger, plan, config = getSafetyConfig()) {
 
   const promoToday = countByType(dayActions, "promo");
   const helpfulToday = countByType(dayActions, "helpful");
+  const commentsToday = promoToday + helpfulToday;
   const selfThisWeek = countByType(weekActions, "self_post");
 
+  if ((type === "promo" || type === "helpful") && commentsToday >= config.maxCommentsPerDay) {
+    return {
+      ok: false,
+      reason: `Daily comment cap reached (${config.maxCommentsPerDay})`,
+      type,
+    };
+  }
   if (type === "promo" && promoToday >= config.maxPromoPerDay) {
     return { ok: false, reason: `Promo daily cap reached (${config.maxPromoPerDay})`, type };
   }

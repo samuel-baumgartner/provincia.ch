@@ -198,9 +198,10 @@ export async function getMarketingHealth(): Promise<MarketingHealth> {
 
   const ciItems: ChecklistItem[] = [
     {
-      id: "scan-wf",
-      label: "marketing-scan.yml present",
-      done: workflowExists("marketing-scan.yml"),
+      id: "scan-local",
+      label: "Reddit scan is local/manual (pnpm reddit:scan)",
+      done: true,
+      hint: "Scheduled marketing-scan.yml removed — run when you want a fresh queue",
     },
     {
       id: "publish-wf",
@@ -217,7 +218,7 @@ export async function getMarketingHealth(): Promise<MarketingHealth> {
       id: "note-reddit",
       label: "Understand: Reddit engage is local/VPS (browser), not GHA",
       done: true,
-      hint: "CI can scan/distribute/publish Discord+X; Reddit comments need your machine",
+      hint: "CI can distribute/publish Discord+X; Reddit comments need your machine",
     },
   ];
 
@@ -249,7 +250,7 @@ export async function getMarketingHealth(): Promise<MarketingHealth> {
       "reddit",
       "Reddit",
       redditItems,
-      "Warm account manually; keep helpful-only until comments are public",
+      "Age/karma only block promo; keep posting helpful until comments are public",
     ),
     channelFrom("x", "X (Twitter)", xItems, "Enable X auto-post only after keys are verified"),
     channelFrom("discord", "Discord", discordItems),
@@ -316,16 +317,15 @@ export async function getMarketingHealth(): Promise<MarketingHealth> {
 
   // CI 20
   let ci = 0;
-  if (workflowExists("marketing-scan.yml")) ci += 6;
-  if (workflowExists("marketing-publish.yml")) ci += 6;
-  if (secrets.OPENAI_API_KEY) ci += 4;
-  if (secrets.GITHUB_TOKEN) ci += 4;
+  if (workflowExists("marketing-publish.yml")) ci += 8;
+  if (secrets.OPENAI_API_KEY) ci += 6;
+  if (secrets.GITHUB_TOKEN) ci += 6;
   breakdown.push({
     id: "ci",
     label: "CI",
     score: Math.min(20, ci),
     max: 20,
-    note: "Scan/publish workflows; Reddit engage stays local",
+    note: "Publish workflow + secrets; Reddit scan/engage stay local",
     href: "/admin/setup",
   });
 

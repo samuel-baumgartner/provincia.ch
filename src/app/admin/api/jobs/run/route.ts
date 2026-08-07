@@ -38,8 +38,6 @@ const LOCAL_SCRIPTS: Record<string, string> = {
 };
 
 const GH_WORKFLOWS: Record<string, { workflow: string; inputs?: Record<string, string> }> = {
-  scan: { workflow: "marketing-scan.yml" },
-  engage: { workflow: "marketing-publish.yml", inputs: { mode: "engage" } },
   publish: { workflow: "marketing-publish.yml", inputs: { mode: "publish" } },
   both: { workflow: "marketing-publish.yml", inputs: { mode: "both" } },
 };
@@ -88,6 +86,17 @@ export async function POST(req: Request) {
   const via = body.via ?? "local";
 
   if (via === "github") {
+    if (job === "scan" || job === "engage") {
+      return NextResponse.json(
+        {
+          error:
+            job === "scan"
+              ? "Reddit scan is local only (marketing-scan.yml removed). Run: pnpm reddit:scan"
+              : "Reddit engage is local/VPS only. Run: pnpm reddit:engage",
+        },
+        { status: 400 },
+      );
+    }
     try {
       const result = await triggerGithub(job === "distribute" ? "publish" : job);
       return NextResponse.json({ via: "github", ...result });

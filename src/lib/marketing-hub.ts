@@ -16,7 +16,7 @@ export type AutomationJob = {
   title: string;
   command: string;
   schedule: string;
-  runner: "github-actions" | "cursor-loop" | "manual";
+  runner: "github-actions" | "cursor-loop" | "manual" | "local";
   description: string;
 };
 
@@ -27,7 +27,7 @@ export const MARKETING_SECTIONS: MarketingSection[] = [
     href: "/admin/reddit",
     description: "Scan threads, safety-gated auto-replies, ledger status.",
     status: "active",
-    statusLabel: "Active — helpful-only while warming; ~every 4th promo after",
+    statusLabel: "Helpful OK while young; promo after age/karma + public comments",
   },
   {
     id: "devtalk",
@@ -105,8 +105,8 @@ export const AUTOMATION_JOBS: AutomationJob[] = [
     id: "reddit-scan",
     title: "Reddit opportunity scan",
     command: "pnpm reddit:scan",
-    schedule: "Daily 08:00 UTC (GitHub Actions)",
-    runner: "github-actions",
+    schedule: "Manual / local (no GitHub schedule)",
+    runner: "manual",
     description:
       "Fetches fresh threads from city-builder subs and writes reports/reddit-opportunities.md.",
   },
@@ -114,10 +114,10 @@ export const AUTOMATION_JOBS: AutomationJob[] = [
     id: "reddit-engage",
     title: "Reddit auto-engage",
     command: "pnpm reddit:engage",
-    schedule: "Daily 09:00 UTC (GitHub Actions)",
-    runner: "github-actions",
+    schedule: "Local/VPS daily (~80% days, ~4 comments / 30m + lurk)",
+    runner: "local",
     description:
-      "Safety-gated browser comments (~3 helpful : 1 promo, caps, cooldown, soft-halt on invisible). Requires master+Reddit toggles. Local/VPS browser profile.",
+      "Paced browser session: random rest days, lurk/API fetches without commenting, then spaced replies. Requires master+Reddit toggles + login profile. Skips GitHub Actions.",
   },
   {
     id: "devtalk-distribute",

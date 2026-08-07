@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-05T16:27:25.194Z",
+  "updatedAt": "2026-08-06T17:17:57.772Z",
   "reddit": {
     "halted": true,
     "haltReason": "Possible shadowban or removal after commenting on t3_1vf4bzu",
@@ -18,7 +18,13 @@
     ],
     "postedThingIds": [
       "t3_1vf4bzu"
-    ]
+    ],
+    "dayPlan": {
+      "date": "2026-08-06",
+      "active": true,
+      "decidedAt": "2026-08-06T17:05:50.581Z",
+      "probability": 0.8
+    }
   },
   "social": {
     "publishedSlugs": {

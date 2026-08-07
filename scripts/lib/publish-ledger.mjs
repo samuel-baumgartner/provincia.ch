@@ -94,6 +94,42 @@ export function clearRedditHalt(ledger) {
   };
 }
 
+/** UTC calendar day key YYYY-MM-DD */
+export function utcDayKey(date = new Date()) {
+  return date.toISOString().slice(0, 10);
+}
+
+/**
+ * Flip once per UTC day whether engage is active (e.g. 80% days).
+ * Re-runs the same day reuse the stored decision.
+ * @param {object} ledger
+ * @param {number} probability 0–1
+ */
+export function ensureRedditDayPlan(ledger, probability = 0.8) {
+  const today = utcDayKey();
+  const prev = ledger.reddit?.dayPlan;
+  if (prev?.date === today && typeof prev.active === "boolean") {
+    return { ledger, plan: prev };
+  }
+  const p = Math.min(1, Math.max(0, Number(probability) || 0));
+  const plan = {
+    date: today,
+    active: Math.random() < p,
+    decidedAt: new Date().toISOString(),
+    probability: p,
+  };
+  return {
+    ledger: {
+      ...ledger,
+      reddit: {
+        ...(ledger.reddit ?? emptyLedger().reddit),
+        dayPlan: plan,
+      },
+    },
+    plan,
+  };
+}
+
 export function markSocialPublished(ledger, slug, channels) {
   const social = ledger.social ?? emptyLedger().social;
   const prev = social.publishedSlugs?.[slug] ?? {};

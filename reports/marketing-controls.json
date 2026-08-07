@@ -1,26 +1,30 @@
 {
-  "masterPublish": false,
-  "redditAutoPost": false,
-  "xAutoPost": false,
+  "masterPublish": true,
+  "redditAutoPost": true,
+  "xAutoPost": true,
   "discordAutoPost": true,
   "redditDryRun": false,
   "socialDryRun": false,
   "itch": {
-    "pageReady": false,
-    "pageUrl": "",
-    "coverReady": false,
-    "demoLinked": false,
+    "pageReady": true,
+    "pageUrl": "https://cybersaemi.itch.io/provincia",
+    "coverReady": true,
+    "demoLinked": true,
     "tagsSet": false
   },
   "reddit": {
     "maxHelpfulPerDay": 3,
     "maxPromoPerDay": 1,
+    "maxCommentsPerDay": 4,
     "minHelpfulPerPromo": 3,
     "minAccountAgeDays": 30,
     "minKarma": 100,
-    "maxActionsPerRun": 2,
-    "subCooldownHours": 12
+    "maxActionsPerRun": 4,
+    "subCooldownHours": 12,
+    "dayRunProbability": 0.8,
+    "sessionSpanMinutes": 30,
+    "lurkFetchesPerRun": 8
   },
-  "updatedAt": null,
-  "updatedBy": null
+  "updatedAt": "2026-08-06T17:05:00.000Z",
+  "updatedBy": "admin"
 }
