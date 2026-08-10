@@ -1,0 +1,33 @@
+{
+  "slug": "ten-locales-clearer-placement",
+  "devtalkTitle": "Ten Locales and Clearer Placement",
+  "generatedAt": "2026-08-10T10:14:57.443Z",
+  "platforms": {
+    "reddit": {
+      "title": "Exciting Updates: Ten Locales and Improved Placement in Provincia",
+      "body": "We're thrilled to announce some major improvements in our latest update for Provincia! Our build UI now supports ten languages, making it more accessible to players around the world. We've also enhanced placement feedback to help you understand why certain placements fail, and we've streamlined day/night transitions to ensure a smoother gameplay experience. Check out the full details here: https://provincia.ch/devtalk/ten-locales-clearer-placement?utm_source=reddit&utm_medium=social&utm_campaign=ten-locales-clearer-placement"
+    },
+    "x": {
+      "posts": [
+        "Big news for Provincia! Our build UI now speaks ten languages, making it easier for players globally. Plus, we've improved placement feedback and made day/night transitions smoother. Learn more: https://provincia.ch/devtalk/ten-locales-clearer-placement?utm_source=x&utm_medium=social&utm_campaign=ten-locales-clearer-placement",
+        "Provincia just got better! With support for ten languages and clearer placement feedback, your colony-building experience will be more intuitive than ever. Discover the updates here: https://provincia.ch/devtalk/ten-locales-clearer-placement?utm_source=x&utm_medium=social&utm_campaign=ten-locales-clearer-placement"
+      ]
+    },
+    "discord": {
+      "content": "We've made some fantastic updates to Provincia! The build UI now supports ten languages, and we've improved how placement failures are communicated. Plus, day/night transitions are now smoother than ever. Check out the full details!",
+      "embed": {
+        "title": "Provincia Update: Ten Locales and Clearer Placement",
+        "description": "Discover how our new features enhance your gameplay experience, including ten language support, improved placement feedback, and smoother day/night transitions.",
+        "url": "https://provincia.ch/devtalk/ten-locales-clearer-placement?utm_source=discord&utm_medium=social&utm_campaign=ten-locales-clearer-placement"
+      }
+    },
+    "steam": {
+      "title": "Provincia Update: Enhanced UI and Gameplay Features",
+      "body": "We're excited to share that Provincia now supports ten languages in the build UI, provides clearer placement feedback, and features smoother day/night transitions. These updates are designed to enhance your gameplay experience and make building your colony more enjoyable. For more details, visit: https://provincia.ch/devtalk/ten-locales-clearer-placement?utm_source=steam&utm_medium=social&utm_campaign=ten-locales-clearer-placement"
+    }
+  },
+  "links": {
+    "site": "https://provincia.ch/?utm_source=discord&utm_medium=social&utm_campaign=ten-locales-clearer-placement",
+    "devtalk": "https://provincia.ch/devtalk/ten-locales-clearer-placement?utm_source=discord&utm_medium=social&utm_campaign=ten-locales-clearer-placement"
+  }
+}
