@@ -220,4 +220,14 @@ copy_scene "$DT/ten-locales-clearer-placement/colony-busy.png" \
   "$GAME_DIR/production.jpg" \
   "$GAME_DIR/colony-overview.png"
 
+# Missile volleys at bow range — in-game battle promo captures (never AI)
+copy_scene "$DT/missile-volleys-at-bow-range/cover.png" \
+  "$GAME/assets/promo/07_battle_volley_mid.png" \
+  "$ITCH/08_battle_clash.png" \
+  "$GAME_DIR/battle-clash.png"
+copy_file "$GAME/assets/promo/07_battle_volley_close.png" \
+  "$DT/missile-volleys-at-bow-range/volley-close.png"
+copy_file "$GAME/assets/promo/07_battle_overview_mid.png" \
+  "$DT/missile-volleys-at-bow-range/apron-overview.png"
+
 echo "==> Done. Assets in $SITE_PUBLIC"
