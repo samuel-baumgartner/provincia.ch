@@ -1,0 +1,23 @@
+{
+  "slug": "missile-volleys-at-bow-range",
+  "dryRun": false,
+  "results": {
+    "discord": {
+      "ok": true,
+      "url": "https://provincia.ch/devtalk/missile-volleys-at-bow-range?utm_source=discord&utm_medium=social&utm_campaign=missile-volleys-at-bow-range"
+    },
+    "steamReminder": {
+      "ok": true
+    },
+    "x": {
+      "ok": true,
+      "ids": [
+        "2087842259509105087"
+      ]
+    },
+    "redditSelf": {
+      "skipped": true,
+      "reason": "REDDIT_AUTO_POST=0"
+    }
+  }
+}
