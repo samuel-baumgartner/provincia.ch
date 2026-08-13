@@ -192,7 +192,8 @@ if [[ -f "$GAME/assets/textures/aqueduct/ashlar_tile_albedo.png" ]] && \
   python3 "$ROOT/scripts/build-aqueduct-uv-preview.py" \
     "$GAME/assets/textures/aqueduct/ashlar_tile_albedo.png" \
     "$GAME/assets/debug/aqueduct_top_material_compare.png" \
-    "$DT/aqueducts-on-a-terrace-grid/uv-preview.png"
+    "$DT/aqueducts-on-a-terrace-grid/uv-preview.png" \
+    || echo "    (aqueduct uv-preview failed — continuing)"
 else
   copy_file "$GAME/assets/debug/aqueduct_uv_preview.png" "$DT/aqueducts-on-a-terrace-grid/uv-preview.png"
 fi
@@ -229,5 +230,16 @@ copy_file "$GAME/assets/promo/07_battle_volley_close.png" \
   "$DT/missile-volleys-at-bow-range/volley-close.png"
 copy_file "$GAME/assets/promo/07_battle_overview_mid.png" \
   "$DT/missile-volleys-at-bow-range/apron-overview.png"
+
+
+# Soft music reloops — refreshed in-game promo stills (never AI)
+copy_scene "$DT/soft-music-reloops/cover.png" \
+  "$GAME/assets/promo/06_golden_hour_mid.png" \
+  "$ITCH/01_settlement_overview.png" \
+  "$GAME_DIR/colony-overview.png"
+copy_file "$GAME/assets/promo/01_settlement_orbit_mid.png" \
+  "$DT/soft-music-reloops/settlement-orbit.png"
+copy_file "$GAME/assets/promo/02_city_timelapse_mid.png" \
+  "$DT/soft-music-reloops/city-timelapse.png"
 
 echo "==> Done. Assets in $SITE_PUBLIC"
