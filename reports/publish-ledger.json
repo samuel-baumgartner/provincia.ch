@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-13T10:02:39.707Z",
+  "updatedAt": "2026-08-13T15:51:28.370Z",
   "reddit": {
     "halted": true,
     "haltReason": "Possible shadowban or removal after commenting on t3_1vf4bzu",
@@ -61,6 +61,23 @@
           "ok": true
         },
         "at": "2026-08-13T10:02:39.707Z"
+      },
+      "soft-music-reloops": {
+        "discord": "https://provincia.ch/devtalk/soft-music-reloops?utm_source=discord&utm_medium=social&utm_campaign=soft-music-reloops",
+        "x": {
+          "ok": true,
+          "ids": [
+            "2087930040541392928"
+          ]
+        },
+        "reddit": {
+          "skipped": true,
+          "reason": "REDDIT_AUTO_POST=0"
+        },
+        "steamReminder": {
+          "ok": true
+        },
+        "at": "2026-08-13T15:51:28.370Z"
       }
     }
   }
