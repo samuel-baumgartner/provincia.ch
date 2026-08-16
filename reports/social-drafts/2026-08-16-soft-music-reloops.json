@@ -1,0 +1,33 @@
+{
+  "slug": "soft-music-reloops",
+  "devtalkTitle": "Soft Music Reloops",
+  "generatedAt": "2026-08-16T09:24:54.209Z",
+  "platforms": {
+    "reddit": {
+      "title": "Improved Music Experience in Provincia",
+      "body": "We've made significant improvements to the music experience in Provincia! The day, night, title, and combat beds now transition smoothly without hard cuts. Our new long equal-power self-crossfade ensures a seamless audio experience. Check out the details here: https://provincia.ch/devtalk/soft-music-reloops?utm_source=reddit&utm_medium=social&utm_campaign=soft-music-reloops"
+    },
+    "x": {
+      "posts": [
+        "Exciting news! We've enhanced the audio experience in Provincia. The music now transitions smoothly between different states, eliminating those awkward cuts. Learn more about how we achieved this: https://provincia.ch/devtalk/soft-music-reloops?utm_source=x&utm_medium=social&utm_campaign=soft-music-reloops",
+        "Great updates for Provincia! Our audio system now features a seamless crossfade for music transitions, improving your gameplay experience. Discover the full details here: https://provincia.ch/devtalk/soft-music-reloops?utm_source=x&utm_medium=social&utm_campaign=soft-music-reloops"
+      ]
+    },
+    "discord": {
+      "content": "Hey everyone! We're excited to share some great improvements to the music in Provincia. The day, night, title, and combat beds now transition smoothly without hard cuts, thanks to our new audio system. Check out the full details here: https://provincia.ch/devtalk/soft-music-reloops?utm_source=discord&utm_medium=social&utm_campaign=soft-music-reloops",
+      "embed": {
+        "title": "Soft Music Reloops in Provincia",
+        "description": "Discover how we've enhanced the audio experience in Provincia with new seamless transitions for music beds.",
+        "url": "https://provincia.ch/devtalk/soft-music-reloops?utm_source=discord&utm_medium=social&utm_campaign=soft-music-reloops"
+      }
+    },
+    "steam": {
+      "title": "Enhanced Audio Experience in Provincia",
+      "body": "We're thrilled to announce that we've improved the audio experience in Provincia! The transitions between day, night, title, and combat music beds are now seamless, thanks to our new long equal-power self-crossfade system. This means no more jarring cuts in your gameplay. For more information, check out our latest devtalk: https://provincia.ch/devtalk/soft-music-reloops?utm_source=steam&utm_medium=social&utm_campaign=soft-music-reloops"
+    }
+  },
+  "links": {
+    "site": "https://provincia.ch/?utm_source=discord&utm_medium=social&utm_campaign=soft-music-reloops",
+    "devtalk": "https://provincia.ch/devtalk/soft-music-reloops?utm_source=discord&utm_medium=social&utm_campaign=soft-music-reloops"
+  }
+}
