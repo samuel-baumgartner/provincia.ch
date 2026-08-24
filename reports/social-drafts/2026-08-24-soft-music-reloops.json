@@ -1,0 +1,33 @@
+{
+  "slug": "soft-music-reloops",
+  "devtalkTitle": "Soft Music Reloops",
+  "generatedAt": "2026-08-24T09:44:44.303Z",
+  "platforms": {
+    "reddit": {
+      "title": "Improved Music Experience in Provincia",
+      "body": "We've made significant improvements to the music system in Provincia! No more hard cuts between day, night, title, and combat beds. Our new long equal-power self-crossfade ensures a seamless audio experience, enhancing your gameplay. Check out the full details here: https://provincia.ch/devtalk/soft-music-reloops?utm_source=reddit&utm_medium=social&utm_campaign=soft-music-reloops"
+    },
+    "x": {
+      "posts": [
+        "Exciting news! We've refined the audio experience in Provincia with smooth transitions between music beds. Learn more about the updates and how they enhance gameplay: https://provincia.ch/devtalk/soft-music-reloops?utm_source=x&utm_medium=social&utm_campaign=soft-music-reloops",
+        "Our latest devtalk covers the improvements to the music system in Provincia, including seamless audio transitions. Dive into the details and see how it enhances your experience: https://provincia.ch/devtalk/soft-music-reloops?utm_source=x&utm_medium=social&utm_campaign=soft-music-reloops"
+      ]
+    },
+    "discord": {
+      "content": "We've just released a devtalk about the audio improvements in Provincia! Discover how we've eliminated hard cuts in music transitions for a smoother gameplay experience.",
+      "embed": {
+        "title": "Soft Music Reloops in Provincia",
+        "description": "Learn about our new long equal-power self-crossfade for music beds that enhances your audio experience while playing.",
+        "url": "https://provincia.ch/devtalk/soft-music-reloops?utm_source=discord&utm_medium=social&utm_campaign=soft-music-reloops"
+      }
+    },
+    "steam": {
+      "title": "Enhancing the Soundscape of Provincia",
+      "body": "We're excited to announce improvements to the music system in Provincia! Say goodbye to awkward audio transitions with our new crossfade technique, ensuring a more immersive experience. For more details, check out our latest devtalk: https://provincia.ch/devtalk/soft-music-reloops?utm_source=steam&utm_medium=social&utm_campaign=soft-music-reloops"
+    }
+  },
+  "links": {
+    "site": "https://provincia.ch/?utm_source=discord&utm_medium=social&utm_campaign=soft-music-reloops",
+    "devtalk": "https://provincia.ch/devtalk/soft-music-reloops?utm_source=discord&utm_medium=social&utm_campaign=soft-music-reloops"
+  }
+}
