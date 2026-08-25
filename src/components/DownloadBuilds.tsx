@@ -51,8 +51,14 @@ export default function DownloadBuilds({ compact = false }: Props) {
       <p
         className={`text-xs text-stone-muted/80 ${compact ? "text-left" : "text-center"}`}
       >
-        Pre-alpha build <span className="font-mono">{downloadReleaseTag}</span> — free download,
-        expect bugs. Steam coming later.
+        Pre-alpha build <span className="font-mono">{downloadReleaseTag}</span> on{" "}
+        <a
+          href="https://cybersaemi.itch.io/provincia"
+          className="text-cypress-bright hover:underline"
+        >
+          itch.io
+        </a>
+        {" "}— free download, expect bugs. Steam coming later.
       </p>
     </div>
   );

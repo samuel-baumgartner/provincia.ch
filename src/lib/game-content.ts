@@ -122,30 +122,30 @@ export const coreLoop = [
 export const developmentStatus =
   "Provincia is in active pre-alpha. Core placement, water, housing layout, colonist logistics, and battles are playable in the Godot build. Download a build below — expect bugs. No Steam page yet.";
 
-export const downloadReleaseTag = "pre-alpha-2026-07-27";
+export const downloadReleaseTag = "656efbf";
 
-const downloadBase = `https://github.com/samuel-baumgartner/provincia.ch/releases/download/${downloadReleaseTag}`;
+export const downloadPageUrl = "https://cybersaemi.itch.io/provincia";
 
 export const downloadBuilds = [
   {
     id: "windows",
     label: "Windows",
-    file: "Provincia-windows.zip",
-    href: `${downloadBase}/Provincia-windows.zip`,
+    file: "provincia-windows.zip",
+    href: downloadPageUrl,
     hint: "Unzip and run Provincia.exe",
   },
   {
     id: "macos",
     label: "macOS",
-    file: "Provincia-macos.zip",
-    href: `${downloadBase}/Provincia-macos.zip`,
+    file: "provincia-osx.zip",
+    href: downloadPageUrl,
     hint: "Unzip and open Provincia.app",
   },
   {
     id: "linux",
     label: "Linux",
-    file: "Provincia-linux.zip",
-    href: `${downloadBase}/Provincia-linux.zip`,
+    file: "provincia-linux.zip",
+    href: downloadPageUrl,
     hint: "Unzip and run Provincia.x86_64",
   },
 ] as const;

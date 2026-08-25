@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getGithubDownloadUrl, normalizeSource, trackDownload } from "@/lib/download-stats";
+import { getDownloadRedirectUrl, normalizeSource, trackDownload } from "@/lib/download-stats";
 import { downloadBuilds } from "@/lib/game-content";
 
 export const dynamic = "force-dynamic";
@@ -9,9 +9,9 @@ type Params = { params: Promise<{ platform: string }> };
 export async function GET(request: Request, { params }: Params) {
   const { platform } = await params;
   const allowed = downloadBuilds.some((b) => b.id === platform);
-  const githubUrl = getGithubDownloadUrl(platform);
+  const itchUrl = getDownloadRedirectUrl(platform);
 
-  if (!allowed || !githubUrl) {
+  if (!allowed || !itchUrl) {
     return NextResponse.json({ error: "Unknown platform" }, { status: 404 });
   }
 
@@ -23,5 +23,11 @@ export async function GET(request: Request, { params }: Params) {
   // Fire-and-forget count; never block the redirect on Redis errors.
   void trackDownload(platform, src);
 
-  return NextResponse.redirect(githubUrl, 302);
+  const target = new URL(itchUrl);
+  target.searchParams.set("utm_source", "provincia.ch");
+  target.searchParams.set("utm_medium", "download");
+  target.searchParams.set("utm_campaign", platform);
+  if (src !== "unknown") target.searchParams.set("utm_content", src);
+
+  return NextResponse.redirect(target.toString(), 302);
 }

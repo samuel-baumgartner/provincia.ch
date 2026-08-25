@@ -8,6 +8,7 @@ import { getLatestSocialDraft } from "@/lib/social-drafts";
 import { getDevTalkAdminItems } from "@/lib/devtalk-admin";
 import { getMarketingHealth } from "@/lib/marketing-health";
 import { getPublishLedger, summarizePublishLedger } from "@/lib/publish-ledger";
+import { getDownloadStats } from "@/lib/download-stats";
 import { StatusBadge } from "./AdminShell";
 import MarketingControlsPanel from "./MarketingControlsPanel";
 import JobRunnerPanel from "./JobRunnerPanel";
@@ -79,11 +80,12 @@ export default async function AdminDashboard({ searchParams }: AdminPageProps) {
     );
   }
 
-  const [redditReport, socialDraft, health, ledger] = await Promise.all([
+  const [redditReport, socialDraft, health, ledger, downloadStats] = await Promise.all([
     getRedditReport(),
     getLatestSocialDraft(),
     getMarketingHealth(),
     getPublishLedger(),
+    getDownloadStats(30),
   ]);
   const ledgerSummary = summarizePublishLedger(ledger);
   const publishedCount = getDevTalkAdminItems().filter((d) => d.isPublished).length;
@@ -138,7 +140,7 @@ export default async function AdminDashboard({ searchParams }: AdminPageProps) {
         </div>
       </section>
 
-      <div className="grid gap-4 sm:grid-cols-3">
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <div className="rounded-xl border border-neutral-800 bg-neutral-900/50 p-4">
           <p className="text-xs uppercase tracking-wide text-neutral-500">Reddit queue</p>
           <p className="mt-1 text-2xl font-bold">{redditReport.opportunities.length}</p>
@@ -158,6 +160,28 @@ export default async function AdminDashboard({ searchParams }: AdminPageProps) {
             {socialDraft ? socialDraft.devtalkTitle : "Run distribute after a DevTalk"}
           </p>
         </div>
+        <Link
+          href="/admin/downloads"
+          className="rounded-xl border border-neutral-800 bg-neutral-900/50 p-4 transition hover:border-cyan-300/40"
+        >
+          <div className="flex items-start justify-between gap-2">
+            <p className="text-xs uppercase tracking-wide text-neutral-500">Site downloads</p>
+            <StatusBadge
+              status={downloadStats.configured ? "active" : "setup"}
+              label={downloadStats.configured ? "tracked" : "no Redis"}
+            />
+          </div>
+          <p className="mt-1 text-2xl font-bold">{downloadStats.total}</p>
+          <p className="mt-1 text-xs text-neutral-400">
+            {downloadStats.configured
+              ? `last 30d · ${downloadStats.releaseTag}`
+              : "configure Upstash to count"}
+          </p>
+          <p className="mt-2 text-xs text-neutral-500">
+            win {downloadStats.byPlatform.windows ?? 0} · mac {downloadStats.byPlatform.macos ?? 0} ·
+            linux {downloadStats.byPlatform.linux ?? 0}
+          </p>
+        </Link>
       </div>
 
       <MarketingControlsPanel

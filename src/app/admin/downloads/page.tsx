@@ -24,8 +24,8 @@ export default async function AdminDownloadsPage() {
         </div>
         <p className="mt-1 text-sm text-neutral-400">
           Soft-redirect counts from{" "}
-          <code className="text-cyan-200">/api/download/[platform]</code>. Source comes from UTMs on
-          marketing links (sessionStorage) — no cookie wall.
+          <code className="text-cyan-200">/api/download/[platform]</code> → itch.io. Source comes
+          from UTMs on marketing links (sessionStorage) — no cookie wall.
         </p>
       </header>
 
@@ -41,7 +41,7 @@ export default async function AdminDownloadsPage() {
         <div className="rounded-xl border border-neutral-800 bg-neutral-900/50 p-4">
           <p className="text-xs uppercase tracking-wide text-neutral-500">Total (tracked)</p>
           <p className="mt-1 text-3xl font-bold">{stats.total}</p>
-          <p className="mt-1 text-xs text-neutral-500">Release {stats.releaseTag}</p>
+          <p className="mt-1 text-xs text-neutral-500">itch build {stats.releaseTag}</p>
         </div>
         {platforms.map(([id, n]) => (
           <div key={id} className="rounded-xl border border-neutral-800 bg-neutral-900/50 p-4">

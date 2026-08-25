@@ -67,7 +67,7 @@ export const MARKETING_SECTIONS: MarketingSection[] = [
     href: "/admin/downloads",
     description: "Platform + source download counts (soft redirect).",
     status: "active",
-    statusLabel: "Active — needs Upstash for counts",
+    statusLabel: "Active — counts at /admin/downloads",
   },
   {
     id: "steam",

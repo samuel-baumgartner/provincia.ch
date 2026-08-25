@@ -65,7 +65,7 @@ Ledger: `reports/publish-ledger.json` (committed by Actions).
 
 ## Download analytics
 
-Buttons hit `/api/download/[platform]` → count → 302 to GitHub Release. UTMs from marketing links are stored in `sessionStorage` and attached as `?src=` (no cookie wall).
+Buttons hit `/api/download/[platform]` → count → 302 to [itch.io](https://cybersaemi.itch.io/provincia). UTMs from marketing links are stored in `sessionStorage` and attached as `?src=` (no cookie wall).
 
 View counts at `/admin/downloads` once Upstash is configured. Downloads still work without Redis.
 

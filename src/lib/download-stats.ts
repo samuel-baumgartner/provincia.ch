@@ -13,7 +13,7 @@ const KNOWN_SOURCES = new Set([
 
 export type DownloadPlatform = (typeof downloadBuilds)[number]["id"];
 
-export function getGithubDownloadUrl(platform: string): string | null {
+export function getDownloadRedirectUrl(platform: string): string | null {
   const build = downloadBuilds.find((b) => b.id === platform);
   return build?.href ?? null;
 }
