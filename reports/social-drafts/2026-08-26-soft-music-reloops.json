@@ -1,29 +1,29 @@
 {
   "slug": "soft-music-reloops",
   "devtalkTitle": "Soft Music Reloops",
-  "generatedAt": "2026-08-26T09:38:06.790Z",
+  "generatedAt": "2026-08-26T16:10:58.626Z",
   "platforms": {
     "reddit": {
       "title": "Improved Music Transitions in Provincia",
-      "body": "We've made significant improvements to how music transitions work in Provincia. Instead of abrupt cuts, our new system uses a smooth crossfade for day, night, title, and combat music. This means a more immersive experience as you build your colony. Check out the full details on our devtalk: https://provincia.ch/devtalk/soft-music-reloops?utm_source=reddit&utm_medium=social&utm_campaign=soft-music-reloops"
+      "body": "We've made significant improvements to the music in Provincia! No more abrupt cuts between day, night, title, and combat beds. Our new long equal-power self-crossfade ensures a smooth transition, enhancing your colony-building experience. Check out the details here: https://provincia.ch/devtalk/soft-music-reloops?utm_source=reddit&utm_medium=social&utm_campaign=soft-music-reloops"
     },
     "x": {
       "posts": [
-        "Exciting news! We've enhanced our music transitions in Provincia. The new system allows for seamless crossfades instead of harsh cuts. Dive into the details here: https://provincia.ch/devtalk/soft-music-reloops?utm_source=x&utm_medium=social&utm_campaign=soft-music-reloops",
-        "Our latest update focuses on audio improvements! Enjoy smoother music transitions while managing your colony. Learn more about the changes in our devtalk: https://provincia.ch/devtalk/soft-music-reloops?utm_source=x&utm_medium=social&utm_campaign=soft-music-reloops"
+        "Exciting news! We've enhanced the audio experience in Provincia by implementing smooth music transitions. Say goodbye to hard cuts and enjoy seamless loops! Read more about it here: https://provincia.ch/devtalk/soft-music-reloops?utm_source=x&utm_medium=social&utm_campaign=soft-music-reloops",
+        "Our latest update features improved music transitions in Provincia! Enjoy a more immersive experience with our new audio system. Learn more: https://provincia.ch/devtalk/soft-music-reloops?utm_source=x&utm_medium=social&utm_campaign=soft-music-reloops"
       ]
     },
     "discord": {
-      "content": "We've just rolled out an update that enhances music transitions in Provincia! Instead of hard cuts, our new system utilizes smooth crossfades for a more immersive experience. For more details, check out our devtalk: https://provincia.ch/devtalk/soft-music-reloops?utm_source=discord&utm_medium=social&utm_campaign=soft-music-reloops",
+      "content": "Hey everyone! We've made a big improvement to the music in Provincia. The transitions between different music beds are now smooth and seamless, thanks to our new audio system. Check out the full details here: https://provincia.ch/devtalk/soft-music-reloops?utm_source=discord&utm_medium=social&utm_campaign=soft-music-reloops",
       "embed": {
-        "title": "Soft Music Reloops Update",
-        "description": "Experience smoother music transitions in Provincia with our new crossfade system. No more abrupt cuts!",
+        "title": "Soft Music Reloops in Provincia",
+        "description": "Experience smoother transitions between day, night, title, and combat music beds. Our new audio system enhances your gameplay experience!",
         "url": "https://provincia.ch/devtalk/soft-music-reloops?utm_source=discord&utm_medium=social&utm_campaign=soft-music-reloops"
       }
     },
     "steam": {
-      "title": "Audio Improvements: Smooth Music Transitions",
-      "body": "We're excited to announce an update that enhances the audio experience in Provincia! The music now transitions smoothly between different states, eliminating hard cuts. This change adds to the immersive feel of managing your colony. Check out the full details in our devtalk: https://provincia.ch/devtalk/soft-music-reloops?utm_source=steam&utm_medium=social&utm_campaign=soft-music-reloops"
+      "title": "Enhanced Audio Experience in Provincia",
+      "body": "We’re excited to announce an upgrade to the music system in Provincia! The transitions between different music beds are now smoother than ever, eliminating hard cuts and creating a more immersive atmosphere. Discover all the details in our latest devtalk: https://provincia.ch/devtalk/soft-music-reloops?utm_source=steam&utm_medium=social&utm_campaign=soft-music-reloops"
     }
   },
   "links": {
