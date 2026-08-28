@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Fraunces, Outfit } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import AttributionCapture from "@/components/AttributionCapture";
 import SiteNav from "@/components/SiteNav";
 import "./globals.css";
@@ -34,6 +35,7 @@ export default function RootLayout({
         <AttributionCapture />
         <SiteNav />
         <div className="flex-1">{children}</div>
+        <Analytics />
       </body>
     </html>
   );
