@@ -174,7 +174,7 @@ for path in "$GAMES_ROOT"/*; do
   [[ "$base" == "$KEEP_SITE" || "$base" == "$KEEP_GAME" ]] && continue
   case "$base" in
     provinciia|provinicia|provinica|provinicia.ch|provinica.ch|provincia|my-colony-sim|my-colony-sim-game.old)
-      say "  - $base  (${KIND[$base]: unknown}, ${REMOTE[$base]:-})"
+      say "  - $base  (${KIND[$base]:-unknown}, ${REMOTE[$base]:-})"
       ;;
     *)
       say "  - $base  (left alone; not a known typo name)"
