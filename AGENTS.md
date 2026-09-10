@@ -8,6 +8,22 @@ This version has breaking changes — APIs, conventions, and file structure may 
 
 Next.js 16 (Turbopack) + React 19 marketing/content site. Package manager is **pnpm** (`pnpm-lock.yaml`); dependencies are installed by the VM update script, so you do not need to run install manually. Standard scripts live in `package.json` and the [`README.md`](README.md): `pnpm dev` (dev server on `http://localhost:3000`), `pnpm build`, `pnpm lint`.
 
+## Canonical local layout (keep only these two)
+
+```
+~/games/provincia.ch          → samuel-baumgartner/provincia.ch      (this site)
+~/games/my-colony-sim-game    → samuel-baumgartner/my-colony-sim-game (Godot game “Provincia”)
+```
+
+Do **not** open or keep: `provinicia`, `provinica`, `provincia` (bare), or `my-colony-sim` (archived starter). Those split Cursor chats across duplicate workspace paths. On Pop!_OS run:
+
+```bash
+bash scripts/consolidate-local-folders.sh          # dry run
+bash scripts/consolidate-local-folders.sh --apply  # rename to the keepers above
+```
+
+Then open only the two keep folders in Cursor and remove typo folders from Recents.
+
 Non-obvious notes for this environment:
 
 - This repo shares the VM with the sibling Godot game repo (`../my-colony-sim-game`). The game uses the X11 display + software Vulkan; this site only needs Node/pnpm, so both can run at once.

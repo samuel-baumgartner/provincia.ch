@@ -3,12 +3,25 @@
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-GAME="$(cd "$ROOT/../my-colony-sim" && pwd)"
 SITE_PUBLIC="$ROOT/public"
 
-if [[ ! -d "$GAME" ]]; then
-  echo "Game repo not found at $GAME" >&2
+# Canonical game repo is my-colony-sim-game (the obsolete my-colony-sim starter is archived).
+GAME=""
+for candidate in "$ROOT/../my-colony-sim-game" "$ROOT/../my-colony-sim"; do
+  if [[ -d "$candidate" && -f "$candidate/project.godot" ]]; then
+    GAME="$(cd "$candidate" && pwd)"
+    break
+  fi
+done
+
+if [[ -z "$GAME" ]]; then
+  echo "Game repo not found. Clone samuel-baumgartner/my-colony-sim-game as a sibling of provincia.ch:" >&2
+  echo "  ../my-colony-sim-game" >&2
   exit 1
+fi
+
+if [[ "$(basename "$GAME")" != "my-colony-sim-game" ]]; then
+  echo "Warning: using $GAME — prefer renaming/cloning as ../my-colony-sim-game" >&2
 fi
 
 echo "==> Running game capture scripts (needs display)..."
