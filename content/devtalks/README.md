@@ -13,7 +13,7 @@ Add a new markdown file in this folder:
 
 ## Images (in-game only)
 
-1. Capture or use an existing debug/itch screenshot from `my-colony-sim` that shows the feature.
+1. Capture or use an existing debug/itch screenshot from `my-colony-sim-game` that shows the feature.
 2. Put it under `public/devtalks/{slug}/` (usually `cover.png`).
 3. Wire it in [`scripts/sync-game-assets.sh`](../../scripts/sync-game-assets.sh) so `pnpm assets:sync` keeps it updated from the game repo.
 4. Set frontmatter `coverImage: "/devtalks/{slug}/cover.png"`.

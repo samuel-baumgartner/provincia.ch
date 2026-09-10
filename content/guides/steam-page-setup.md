@@ -4,7 +4,7 @@ excerpt: "Step-by-step: Coming Soon store page, then demo + Next Fest — copy, 
 date: "2026-07-01"
 ---
 
-Your public brand and domain are **Provincia** / [provincia.ch](https://provincia.ch). The Godot project (`my-colony-sim/project.godot`) already has `config/name="Provincia"` and exports as `Provincia.exe` / `Provincia.x86_64` / `Provincia.app`. This site (`src/lib/game-content.ts`, `/game`, DevTalk) already contains most of the copy you need.
+Your public brand and domain are **Provincia** / [provincia.ch](https://provincia.ch). The Godot project (`my-colony-sim-game/project.godot`) already has `config/name="Provincia"` and exports as `Provincia.exe` / `Provincia.x86_64` / `Provincia.app`. This site (`src/lib/game-content.ts`, `/game`, DevTalk) already contains most of the copy you need.
 
 **Do not execute blindly** — work through phases when you are ready. Track high-level progress on `/admin/steam`.
 
@@ -57,7 +57,7 @@ flowchart LR
 
 In **Edit Steamworks Settings** for the app:
 
-- **Supported systems:** Windows, Linux, macOS (export presets already exist in `my-colony-sim/export_presets.cfg`).
+- **Supported systems:** Windows, Linux, macOS (export presets already exist in `my-colony-sim-game/export_presets.cfg`).
 - **Release state:** set to **Coming Soon** (not full release).
 - **Release date:** leave **To be announced** — no fake date; Steam allows TBA for Coming Soon.
 - **Developer / Publisher:** your studio name (can match "Provincia Dev Team" from devtalks).
@@ -144,7 +144,7 @@ Steam requires specific sizes. Map your existing assets:
 
 **Screenshot shot list** (5–10 images, lead with strongest):
 
-1. Colony overview — town hall, districts, terraces (`my-colony-sim/tools/capture_colony_overview.sh` at 1920×1080)
+1. Colony overview — town hall, districts, terraces (`my-colony-sim-game/tools/capture_colony_overview.sh` at 1920×1080)
 2. Aqueduct on terrace steps — `/game/aqueduct-corner.png`
 3. Water channel / pond context — devtalk water assets
 4. Housing stages 1→4 progression — `/game/housing-stage-01.png` through stage 04
@@ -192,7 +192,7 @@ After the page is live, update `storeLinks.steam` in `src/lib/game-content.ts` w
 
 The checklist on `/admin/steam` defines the bar.
 
-### Step 8: Design the demo slice (in my-colony-sim)
+### Step 8: Design the demo slice (in my-colony-sim-game)
 
 Do **not** ship the raw tutorial sandbox as-is. Curate a **20–40 minute** experience:
 
@@ -277,5 +277,5 @@ Godot-specific: export **Release** builds, test without console wrapper for play
 - `src/lib/game-content.ts` — `storeLinks.steam`
 - `src/app/page.tsx` — enable Steam wishlist button
 - `src/lib/marketing-hub.ts` — mark checklist items done
-- `my-colony-sim/project.godot` — `config/name`, bundle ID
-- `my-colony-sim/export_presets.cfg` — demo export path/name
+- `my-colony-sim-game/project.godot` — `config/name`, bundle ID
+- `my-colony-sim-game/export_presets.cfg` — demo export path/name
