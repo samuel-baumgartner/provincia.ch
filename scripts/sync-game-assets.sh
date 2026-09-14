@@ -255,4 +255,14 @@ copy_file "$GAME/assets/promo/01_settlement_orbit_mid.png" \
 copy_file "$GAME/assets/promo/02_city_timelapse_mid.png" \
   "$DT/soft-music-reloops/city-timelapse.png"
 
+# Cutting colonist lag — busy colony promo stills (never AI)
+copy_scene "$DT/cutting-colonist-lag/cover.png" \
+  "$GAME/assets/promo/02_city_timelapse_mid.png" \
+  "$ITCH/01_settlement_overview.png" \
+  "$GAME_DIR/colony-overview.png"
+copy_file "$GAME/assets/promo/01_settlement_orbit_mid.png" \
+  "$DT/cutting-colonist-lag/settlement-orbit.png"
+copy_file "$GAME/assets/promo/03_housing_push_mid.png" \
+  "$DT/cutting-colonist-lag/housing-push.png"
+
 echo "==> Done. Assets in $SITE_PUBLIC"
