@@ -265,4 +265,18 @@ copy_file "$GAME/assets/promo/01_settlement_orbit_mid.png" \
 copy_file "$GAME/assets/promo/03_housing_push_mid.png" \
   "$DT/cutting-colonist-lag/housing-push.png"
 
+# Water that sees dirt edits — real CA / terrace fixtures (never AI)
+copy_scene "$DT/water-that-sees-dirt-edits/cover.png" \
+  "$GAME/assets/debug/water_deep_step/top.png" \
+  "$ITCH/04_water_aqueduct.jpg" \
+  "$GAME_DIR/aqueduct.jpg"
+copy_file "$GAME/assets/debug/water_deep_step/close.png" \
+  "$DT/water-that-sees-dirt-edits/channel.png"
+copy_file "$GAME/assets/debug/water_deep_step/mid.png" \
+  "$DT/water-that-sees-dirt-edits/terrace-pool.png"
+copy_scene "$DT/water-that-sees-dirt-edits/colony-context.png" \
+  "$ITCH/01_settlement_overview.png" \
+  "$GAME_DIR/colony-overview.png" \
+  "$GAME/assets/debug/colony_overview.png"
+
 echo "==> Done. Assets in $SITE_PUBLIC"
