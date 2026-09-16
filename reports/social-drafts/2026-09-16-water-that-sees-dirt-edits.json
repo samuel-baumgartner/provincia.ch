@@ -1,29 +1,29 @@
 {
   "slug": "water-that-sees-dirt-edits",
   "devtalkTitle": "Water That Sees Dirt Edits",
-  "generatedAt": "2026-09-16T14:01:51.526Z",
+  "generatedAt": "2026-09-16T18:33:38.735Z",
   "platforms": {
     "reddit": {
       "title": "Exciting Updates on Water Mechanics in Provincia!",
-      "body": "We've made significant improvements to how water interacts with the terrain in Provincia. The new system allows for more realistic water behavior without freezing your game. Check out the details of these changes and how they enhance gameplay: https://provincia.ch/devtalk/water-that-sees-dirt-edits?utm_source=reddit&utm_medium=social&utm_campaign=water-that-sees-dirt-edits"
+      "body": "We've made significant improvements to how water interacts with the terrain in Provincia. Our new native sparse cellular automata (CA) keeps ponds affordable and efficient. You can now dig, raise, and manipulate terrain without freezing your game. Check out the full details here: https://provincia.ch/devtalk/water-that-sees-dirt-edits?utm_source=reddit&utm_medium=social&utm_campaign=water-that-sees-dirt-edits"
     },
     "x": {
       "posts": [
-        "Water mechanics in Provincia just got a major upgrade! Our new system ensures that water depth and terrain changes happen seamlessly, improving your building experience. Learn more about it here: https://provincia.ch/devtalk/water-that-sees-dirt-edits?utm_source=x&utm_medium=social&utm_campaign=water-that-sees-dirt-edits",
-        "We're thrilled to share the latest advancements in water interaction within Provincia. Say goodbye to freezing frames when adjusting terrain! Dive into the details: https://provincia.ch/devtalk/water-that-sees-dirt-edits?utm_source=x&utm_medium=social&utm_campaign=water-that-sees-dirt-edits"
+        "We've optimized water mechanics in Provincia! Now, shaping the terrain won't cause lag. Learn more about our latest updates here: https://provincia.ch/devtalk/water-that-sees-dirt-edits?utm_source=x&utm_medium=social&utm_campaign=water-that-sees-dirt-edits",
+        "Big news for Provincia players! Our new water system allows for smoother terrain manipulation. Dive into the details here: https://provincia.ch/devtalk/water-that-sees-dirt-edits?utm_source=x&utm_medium=social&utm_campaign=water-that-sees-dirt-edits"
       ]
     },
     "discord": {
-      "content": "Hey everyone! We've made some fantastic improvements to the water mechanics in Provincia. The new system allows for smoother interactions with terrain changes, enhancing your gameplay experience. Check out the full details here: https://provincia.ch/devtalk/water-that-sees-dirt-edits?utm_source=discord&utm_medium=social&utm_campaign=water-that-sees-dirt-edits",
+      "content": "Hey everyone! We’ve made some exciting changes to how water interacts with terrain in Provincia. Our new system ensures that your water features are both efficient and visually accurate. Check out the full devtalk for more info!",
       "embed": {
-        "title": "Water That Sees Dirt Edits",
-        "description": "Discover how our new water mechanics enhance gameplay without freezing frames. Explore the details!",
+        "title": "Water Mechanics Update",
+        "description": "Discover how our new water system enhances gameplay by allowing for real-time terrain adjustments without lag.",
         "url": "https://provincia.ch/devtalk/water-that-sees-dirt-edits?utm_source=discord&utm_medium=social&utm_campaign=water-that-sees-dirt-edits"
       }
     },
     "steam": {
-      "title": "New Water Mechanics Update!",
-      "body": "We're excited to announce an update to the water mechanics in Provincia! With the new system, water depth and terrain adjustments happen smoothly, preventing any freezing issues during gameplay. For a deeper dive into the changes, check out the full details here: https://provincia.ch/devtalk/water-that-sees-dirt-edits?utm_source=steam&utm_medium=social&utm_campaign=water-that-sees-dirt-edits"
+      "title": "Water That Sees Dirt Edits - Major Improvements!",
+      "body": "We've revamped our water mechanics to make them more efficient and responsive. With the new native sparse CA, you can now manipulate the terrain without any freezing issues. This update ensures that water depth and terrain features work seamlessly together. Learn more about these changes in our latest devtalk: https://provincia.ch/devtalk/water-that-sees-dirt-edits?utm_source=steam&utm_medium=social&utm_campaign=water-that-sees-dirt-edits"
     }
   },
   "links": {
