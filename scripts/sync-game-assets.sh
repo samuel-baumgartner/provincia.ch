@@ -279,4 +279,18 @@ copy_scene "$DT/water-that-sees-dirt-edits/colony-context.png" \
   "$GAME_DIR/colony-overview.png" \
   "$GAME/assets/debug/colony_overview.png"
 
+# Cavalry, cards, and raid lines — battle HUD / marker iterate + promo apron (never AI)
+copy_scene "$DT/cavalry-cards-and-raid-lines/cover.png" \
+  "$GAME/assets/debug/battle_hud_iter.png" \
+  "$ITCH/07_battle_overview.png" \
+  "$GAME_DIR/battle-overview.png"
+copy_file "$GAME/assets/debug/battle_hud_iter_close.png" \
+  "$DT/cavalry-cards-and-raid-lines/unit-cards-close.png"
+copy_file "$GAME/assets/debug/combat_markers_iter_close.png" \
+  "$DT/cavalry-cards-and-raid-lines/formation-markers.png"
+copy_scene "$DT/cavalry-cards-and-raid-lines/apron-battle.png" \
+  "$GAME/assets/promo/07_battle_overview_mid.png" \
+  "$ITCH/07_battle_overview.png" \
+  "$GAME_DIR/battle-overview.png"
+
 echo "==> Done. Assets in $SITE_PUBLIC"
