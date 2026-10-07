@@ -293,4 +293,16 @@ copy_scene "$DT/cavalry-cards-and-raid-lines/apron-battle.png" \
   "$ITCH/07_battle_overview.png" \
   "$GAME_DIR/battle-overview.png"
 
+# Water as one sheet — polish iterate captures (never AI)
+copy_file "$GAME/assets/debug/water_polish/pond_mid.png" \
+  "$DT/water-as-one-sheet/cover.png"
+copy_file "$GAME/assets/debug/water_polish/shallow_mid.png" \
+  "$DT/water-as-one-sheet/shallow.png"
+copy_file "$GAME/assets/debug/water_polish/channel_mid.png" \
+  "$DT/water-as-one-sheet/channel.png"
+copy_file "$GAME/assets/debug/water_polish/drop_close.png" \
+  "$DT/water-as-one-sheet/fall.png"
+copy_file "$GAME/assets/debug/water_polish/aqueduct_mid.png" \
+  "$DT/water-as-one-sheet/aqueduct.png"
+
 echo "==> Done. Assets in $SITE_PUBLIC"
