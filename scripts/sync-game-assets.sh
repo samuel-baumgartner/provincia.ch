@@ -305,4 +305,14 @@ copy_file "$GAME/assets/debug/water_polish/drop_close.png" \
 copy_file "$GAME/assets/debug/water_polish/aqueduct_mid.png" \
   "$DT/water-as-one-sheet/aqueduct.png"
 
+# When the colony talks back — thought / alert / juice / stats iterate (never AI)
+copy_file "$GAME/assets/debug/colonist_thoughts/colony_mid.png" \
+  "$DT/when-the-colony-talks-back/cover.png"
+copy_file "$GAME/assets/debug/problem_alerts_colony_720_mid.png" \
+  "$DT/when-the-colony-talks-back/alerts.png"
+copy_file "$GAME/assets/debug/juice_iter_mid.png" \
+  "$DT/when-the-colony-talks-back/juice.png"
+copy_file "$GAME/assets/debug/stats_iter_open_01.png" \
+  "$DT/when-the-colony-talks-back/stats.png"
+
 echo "==> Done. Assets in $SITE_PUBLIC"
