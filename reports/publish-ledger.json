@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-14T19:41:30.894Z",
+  "updatedAt": "2026-10-07T16:05:17.664Z",
   "reddit": {
     "halted": true,
     "haltReason": "Possible shadowban or removal after commenting on t3_1vf4bzu",
@@ -95,6 +95,23 @@
           "ok": true
         },
         "at": "2026-09-14T19:41:30.894Z"
+      },
+      "when-the-colony-talks-back": {
+        "discord": "https://provincia.ch/devtalk/when-the-colony-talks-back?utm_source=discord&utm_medium=social&utm_campaign=when-the-colony-talks-back",
+        "x": {
+          "ok": true,
+          "ids": [
+            "2107864851468988555"
+          ]
+        },
+        "reddit": {
+          "skipped": true,
+          "reason": "REDDIT_AUTO_POST=0"
+        },
+        "steamReminder": {
+          "ok": true
+        },
+        "at": "2026-10-07T16:05:17.663Z"
       }
     }
   }

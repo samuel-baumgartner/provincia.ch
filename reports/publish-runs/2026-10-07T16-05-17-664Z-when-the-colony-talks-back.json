@@ -1,0 +1,23 @@
+{
+  "slug": "when-the-colony-talks-back",
+  "dryRun": false,
+  "results": {
+    "discord": {
+      "ok": true,
+      "url": "https://provincia.ch/devtalk/when-the-colony-talks-back?utm_source=discord&utm_medium=social&utm_campaign=when-the-colony-talks-back"
+    },
+    "steamReminder": {
+      "ok": true
+    },
+    "x": {
+      "ok": true,
+      "ids": [
+        "2107864851468988555"
+      ]
+    },
+    "redditSelf": {
+      "skipped": true,
+      "reason": "REDDIT_AUTO_POST=0"
+    }
+  }
+}
