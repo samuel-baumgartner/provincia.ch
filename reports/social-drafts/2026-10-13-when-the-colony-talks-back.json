@@ -1,29 +1,29 @@
 {
   "slug": "when-the-colony-talks-back",
   "devtalkTitle": "When the Colony Talks Back",
-  "generatedAt": "2026-10-13T16:43:14.154Z",
+  "generatedAt": "2026-10-13T20:26:49.892Z",
   "platforms": {
     "reddit": {
-      "title": "Introducing New Features in Provincia: When the Colony Talks Back",
-      "body": "We've made significant improvements to how your colony communicates with you. Settlers now display thought badges that indicate their needs and tasks, making it easier to manage your colony. You'll receive alerts for idle workshops or resource shortages without having to search for them. Plus, when you place or remove buildings, you'll see immediate visual feedback in the game. For more details, check out our latest devtalk: https://provincia.ch/devtalk/when-the-colony-talks-back?utm_source=reddit&utm_medium=social&utm_campaign=when-the-colony-talks-back"
+      "title": "Introducing New Features: When the Colony Talks Back",
+      "body": "We've made significant improvements to how your colony communicates with you! No longer will you have to click around to understand what's happening. With thought badges for settlers, a problem-alert stack, and dynamic stats, your settlement now speaks for itself. Check out the details here: https://provincia.ch/devtalk/when-the-colony-talks-back?utm_source=reddit&utm_medium=social&utm_campaign=when-the-colony-talks-back"
     },
     "x": {
       "posts": [
-        "Excited to share our latest devtalk on how we're improving colony interactions in Provincia! Settlers will now show their needs and tasks directly, making management smoother. Read more here: https://provincia.ch/devtalk/when-the-colony-talks-back?utm_source=x&utm_medium=social&utm_campaign=when-the-colony-talks-back",
-        "Check out our new features in Provincia that let your colony communicate better! From thought badges to problem alerts, managing your city just got easier. Dive into the details: https://provincia.ch/devtalk/when-the-colony-talks-back?utm_source=x&utm_medium=social&utm_campaign=when-the-colony-talks-back"
+        "Exciting updates are here! Your colony is now more interactive with thought badges and problem alerts. Explore how these features enhance gameplay: https://provincia.ch/devtalk/when-the-colony-talks-back?utm_source=x&utm_medium=social&utm_campaign=when-the-colony-talks-back",
+        "Discover how your settlement now communicates better with you. From thought badges to real-time alerts, learn more about our latest features: https://provincia.ch/devtalk/when-the-colony-talks-back?utm_source=x&utm_medium=social&utm_campaign=when-the-colony-talks-back"
       ]
     },
     "discord": {
-      "content": "We've just released a new devtalk about enhancing colony communication in Provincia! Now, settlers will show their needs directly, and you'll get alerts for issues in real-time. Check it out for all the details!",
+      "content": "We're thrilled to share our latest devtalk on colony communication! With new features like thought badges and problem alerts, your settlers will keep you informed like never before. Dive into the details here: https://provincia.ch/devtalk/when-the-colony-talks-back?utm_source=discord&utm_medium=social&utm_campaign=when-the-colony-talks-back",
       "embed": {
         "title": "When the Colony Talks Back",
-        "description": "Discover how we're making your colony more interactive with thought badges, problem alerts, and more!",
+        "description": "Learn about the new features that allow your settlement to communicate effectively, from thought badges to problem alerts.",
         "url": "https://provincia.ch/devtalk/when-the-colony-talks-back?utm_source=discord&utm_medium=social&utm_campaign=when-the-colony-talks-back"
       }
     },
     "steam": {
-      "title": "New Communication Features in Provincia!",
-      "body": "We're excited to share our latest updates on how your colony communicates with you. Settlers now wear thought badges for their needs, and you'll receive alerts for any issues that arise. Experience a more interactive city-building experience! Learn more in our devtalk: https://provincia.ch/devtalk/when-the-colony-talks-back?utm_source=steam&utm_medium=social&utm_campaign=when-the-colony-talks-back"
+      "title": "New Communication Features in Provincia",
+      "body": "We've revamped how your colony interacts with you! With thought badges for settlers and real-time problem alerts, managing your city has never been easier. Learn more about these exciting features in our latest devtalk: https://provincia.ch/devtalk/when-the-colony-talks-back?utm_source=steam&utm_medium=social&utm_campaign=when-the-colony-talks-back"
     }
   },
   "links": {
