@@ -315,4 +315,12 @@ copy_file "$GAME/assets/debug/juice_iter_mid.png" \
 copy_file "$GAME/assets/debug/stats_iter_open_01.png" \
   "$DT/when-the-colony-talks-back/stats.png"
 
+# Cutting flowing water cost — large wet surfaces where script time used to hitch (never AI)
+copy_file "$GAME/assets/debug/water_polish/pond_far.png" \
+  "$DT/cutting-flowing-water-cost/cover.png"
+copy_file "$GAME/assets/debug/water_polish/channel_far.png" \
+  "$DT/cutting-flowing-water-cost/channel.png"
+copy_file "$GAME/assets/debug/water_deep_step/mid.png" \
+  "$DT/cutting-flowing-water-cost/lake.png"
+
 echo "==> Done. Assets in $SITE_PUBLIC"
