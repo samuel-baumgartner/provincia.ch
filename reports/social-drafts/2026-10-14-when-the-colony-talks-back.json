@@ -1,0 +1,33 @@
+{
+  "slug": "when-the-colony-talks-back",
+  "devtalkTitle": "When the Colony Talks Back",
+  "generatedAt": "2026-10-14T14:19:55.843Z",
+  "platforms": {
+    "reddit": {
+      "title": "Discover How Your Colony Communicates with You",
+      "body": "We've introduced new features that allow your settlement to report its status more effectively! Check out our latest devtalk on how thought badges, problem alerts, and more enhance your city-building experience. Learn more here: https://provincia.ch/devtalk/when-the-colony-talks-back?utm_source=reddit&utm_medium=social&utm_campaign=when-the-colony-talks-back"
+    },
+    "x": {
+      "posts": [
+        "Exciting updates are here! Your colony will now communicate its needs and issues directly to you. Read about it in our latest devtalk: https://provincia.ch/devtalk/when-the-colony-talks-back?utm_source=x&utm_medium=social&utm_campaign=when-the-colony-talks-back",
+        "Your settlers will now display badges for their needs and alert you to problems in real-time. Dive into the details in our new devtalk: https://provincia.ch/devtalk/when-the-colony-talks-back?utm_source=x&utm_medium=social&utm_campaign=when-the-colony-talks-back"
+      ]
+    },
+    "discord": {
+      "content": "We're thrilled to share new updates that let your colony communicate its needs and issues more clearly! Check out our latest devtalk for all the details.",
+      "embed": {
+        "title": "When the Colony Talks Back",
+        "description": "Discover how thought badges, problem alerts, and more will enhance your gameplay experience.",
+        "url": "https://provincia.ch/devtalk/when-the-colony-talks-back?utm_source=discord&utm_medium=social&utm_campaign=when-the-colony-talks-back"
+      }
+    },
+    "steam": {
+      "title": "Enhancing Colony Communication",
+      "body": "In our latest update, your colony will now communicate its needs and issues more effectively. Explore features like thought badges and real-time problem alerts to improve your city-building experience. Read more about these changes here: https://provincia.ch/devtalk/when-the-colony-talks-back?utm_source=steam&utm_medium=social&utm_campaign=when-the-colony-talks-back"
+    }
+  },
+  "links": {
+    "site": "https://provincia.ch/?utm_source=discord&utm_medium=social&utm_campaign=when-the-colony-talks-back",
+    "devtalk": "https://provincia.ch/devtalk/when-the-colony-talks-back?utm_source=discord&utm_medium=social&utm_campaign=when-the-colony-talks-back"
+  }
+}
