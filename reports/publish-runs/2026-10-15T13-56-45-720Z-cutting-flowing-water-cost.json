@@ -1,0 +1,23 @@
+{
+  "slug": "cutting-flowing-water-cost",
+  "dryRun": false,
+  "results": {
+    "discord": {
+      "ok": true,
+      "url": "https://provincia.ch/devtalk/cutting-flowing-water-cost?utm_source=discord&utm_medium=social&utm_campaign=cutting-flowing-water-cost"
+    },
+    "steamReminder": {
+      "ok": true
+    },
+    "x": {
+      "ok": true,
+      "ids": [
+        "2110731608131060134"
+      ]
+    },
+    "redditSelf": {
+      "skipped": true,
+      "reason": "REDDIT_AUTO_POST=0"
+    }
+  }
+}

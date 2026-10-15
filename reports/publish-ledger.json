@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-07T16:05:17.664Z",
+  "updatedAt": "2026-10-15T13:56:45.718Z",
   "reddit": {
     "halted": true,
     "haltReason": "Possible shadowban or removal after commenting on t3_1vf4bzu",
@@ -112,6 +112,23 @@
           "ok": true
         },
         "at": "2026-10-07T16:05:17.663Z"
+      },
+      "cutting-flowing-water-cost": {
+        "discord": "https://provincia.ch/devtalk/cutting-flowing-water-cost?utm_source=discord&utm_medium=social&utm_campaign=cutting-flowing-water-cost",
+        "x": {
+          "ok": true,
+          "ids": [
+            "2110731608131060134"
+          ]
+        },
+        "reddit": {
+          "skipped": true,
+          "reason": "REDDIT_AUTO_POST=0"
+        },
+        "steamReminder": {
+          "ok": true
+        },
+        "at": "2026-10-15T13:56:45.718Z"
       }
     }
   }
