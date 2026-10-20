@@ -1,29 +1,29 @@
 {
   "slug": "cutting-flowing-water-cost",
   "devtalkTitle": "Cutting Flowing Water Cost",
-  "generatedAt": "2026-10-20T14:06:08.603Z",
+  "generatedAt": "2026-10-20T18:50:03.662Z",
   "platforms": {
     "reddit": {
-      "title": "Improving Flowing Water Performance in Provincia",
-      "body": "We've made significant improvements to the performance of flowing lakes in Provincia! By optimizing how we handle drying cells, we've reduced the script time for a 64x64 lake from about 20 ms to just 12 ms. This means smoother gameplay and less frame hitching. Check out the full details of these changes here: https://provincia.ch/devtalk/cutting-flowing-water-cost?utm_source=reddit&utm_medium=social&utm_campaign=cutting-flowing-water-cost"
+      "title": "Improved Performance in Flowing Water Simulation",
+      "body": "We've made significant improvements to our flowing water mechanics in Provincia! By optimizing how we handle drying cells, we've reduced the script time for a 64×64 lake from about 20 ms to just 12 ms. This means a smoother gameplay experience without sacrificing visual fidelity. Check out the details here: https://provincia.ch/devtalk/cutting-flowing-water-cost?utm_source=reddit&utm_medium=social&utm_campaign=cutting-flowing-water-cost"
     },
     "x": {
       "posts": [
-        "Exciting news for Provincia players! We've cut down the processing time for flowing lakes significantly. Now, drying one cell only refreshes its immediate neighbors instead of rescanning the entire map. This change enhances performance and reduces frame hitches. Read more about it here: https://provincia.ch/devtalk/cutting-flowing-water-cost?utm_source=x&utm_medium=social&utm_campaign=cutting-flowing-water-cost",
-        "Flowing lakes in Provincia just got a performance boost! The script time for a 64x64 lake has dropped from 20 ms to 12 ms. This improvement means a smoother experience while building your Roman colony. Discover how we achieved this optimization: https://provincia.ch/devtalk/cutting-flowing-water-cost?utm_source=x&utm_medium=social&utm_campaign=cutting-flowing-water-cost"
+        "Exciting news! We've cut down the processing time for flowing water in Provincia. A 64×64 lake now runs much more efficiently, enhancing your city-building experience. Learn more about the improvements: https://provincia.ch/devtalk/cutting-flowing-water-cost?utm_source=x&utm_medium=social&utm_campaign=cutting-flowing-water-cost",
+        "Flowing water just got a performance boost in Provincia! Discover how we've optimized our simulation and what it means for your gameplay: https://provincia.ch/devtalk/cutting-flowing-water-cost?utm_source=x&utm_medium=social&utm_campaign=cutting-flowing-water-cost"
       ]
     },
     "discord": {
-      "content": "We've optimized the performance of flowing lakes in Provincia! The time to process a 64x64 lake has decreased from 20 ms to 12 ms, thanks to smarter handling of drying cells. This means a smoother experience for everyone! Learn more about the changes here: https://provincia.ch/devtalk/cutting-flowing-water-cost?utm_source=discord&utm_medium=social&utm_campaign=cutting-flowing-water-cost",
+      "content": "We've made some exciting optimizations for flowing water in Provincia! The drying process now only affects nearby cells, significantly improving performance. Dive into the details and see how this enhances your gameplay experience!",
       "embed": {
-        "title": "Flowing Water Performance Improvements",
-        "description": "Discover how we've enhanced the performance of flowing lakes in Provincia, leading to smoother gameplay and reduced frame hitches.",
+        "title": "Flowing Water Optimization in Provincia",
+        "description": "Learn about our latest improvements that reduce processing time for flowing water and enhance your city-building experience.",
         "url": "https://provincia.ch/devtalk/cutting-flowing-water-cost?utm_source=discord&utm_medium=social&utm_campaign=cutting-flowing-water-cost"
       }
     },
     "steam": {
-      "title": "Performance Update: Flowing Water Optimization",
-      "body": "We're excited to announce that we've optimized the performance of flowing lakes in Provincia! The script time for a 64x64 lake has been reduced significantly, leading to a smoother gameplay experience. This improvement is part of our ongoing commitment to enhance the game. Check out the full details of the update: https://provincia.ch/devtalk/cutting-flowing-water-cost?utm_source=steam&utm_medium=social&utm_campaign=cutting-flowing-water-cost"
+      "title": "Flowing Water Performance Update",
+      "body": "We're excited to announce a performance update for flowing water in Provincia! Thanks to recent optimizations, drying cells now only affect their immediate neighbors, resulting in a significant reduction in processing time. This change will lead to a smoother gameplay experience. For more details, check out our devtalk: https://provincia.ch/devtalk/cutting-flowing-water-cost?utm_source=steam&utm_medium=social&utm_campaign=cutting-flowing-water-cost"
     }
   },
   "links": {
