@@ -1,0 +1,33 @@
+{
+  "slug": "cutting-flowing-water-cost",
+  "devtalkTitle": "Cutting Flowing Water Cost",
+  "generatedAt": "2026-10-21T14:20:42.181Z",
+  "platforms": {
+    "reddit": {
+      "title": "Improving Performance with Flowing Water in Provincia",
+      "body": "We've made significant improvements to the performance of flowing lakes in Provincia. By optimizing the way water presence is managed, we've reduced the script time for a 64×64 lake from around 20 ms to just 12 ms. This means smoother gameplay and less lag during your city-building adventures. Check out the details here: https://provincia.ch/devtalk/cutting-flowing-water-cost?utm_source=reddit&utm_medium=social&utm_campaign=cutting-flowing-water-cost"
+    },
+    "x": {
+      "posts": [
+        "Exciting news! We've optimized how flowing water works in Provincia, leading to smoother gameplay. A 64×64 lake now processes in just 12 ms! Learn more: https://provincia.ch/devtalk/cutting-flowing-water-cost?utm_source=x&utm_medium=social&utm_campaign=cutting-flowing-water-cost",
+        "Performance enhancements are here! Flowing lakes in Provincia are now more efficient, reducing lag significantly. Dive into the details: https://provincia.ch/devtalk/cutting-flowing-water-cost?utm_source=x&utm_medium=social&utm_campaign=cutting-flowing-water-cost"
+      ]
+    },
+    "discord": {
+      "content": "We've just rolled out some performance improvements for flowing water in Provincia! The script time for a 64×64 lake has been cut down from 20 ms to 12 ms, resulting in a much smoother experience. For a deeper dive into the changes, check out our latest devtalk: https://provincia.ch/devtalk/cutting-flowing-water-cost?utm_source=discord&utm_medium=social&utm_campaign=cutting-flowing-water-cost",
+      "embed": {
+        "title": "Performance Improvements for Flowing Water",
+        "description": "Discover how we've optimized the performance of flowing lakes in Provincia, ensuring a smoother gameplay experience.",
+        "url": "https://provincia.ch/devtalk/cutting-flowing-water-cost?utm_source=discord&utm_medium=social&utm_campaign=cutting-flowing-water-cost"
+      }
+    },
+    "steam": {
+      "title": "Flowing Water Performance Update",
+      "body": "We're excited to announce a performance update that significantly improves the handling of flowing water in Provincia. The script time for a 64×64 lake has been reduced from about 20 ms to 12 ms, enhancing the overall gameplay experience. Read more about the changes in our latest devtalk: https://provincia.ch/devtalk/cutting-flowing-water-cost?utm_source=steam&utm_medium=social&utm_campaign=cutting-flowing-water-cost"
+    }
+  },
+  "links": {
+    "site": "https://provincia.ch/?utm_source=discord&utm_medium=social&utm_campaign=cutting-flowing-water-cost",
+    "devtalk": "https://provincia.ch/devtalk/cutting-flowing-water-cost?utm_source=discord&utm_medium=social&utm_campaign=cutting-flowing-water-cost"
+  }
+}
