@@ -323,4 +323,14 @@ copy_file "$GAME/assets/debug/water_polish/channel_far.png" \
 copy_file "$GAME/assets/debug/water_deep_step/mid.png" \
   "$DT/cutting-flowing-water-cost/lake.png"
 
+# Ranks that turn and march — formation movement / attack-turn / status chips (never AI)
+copy_file "$GAME/assets/debug/archer_movement/mid.png" \
+  "$DT/ranks-that-turn-and-march/cover.png"
+copy_file "$GAME/assets/debug/attack_turn/mid.png" \
+  "$DT/ranks-that-turn-and-march/attack-turn.png"
+copy_file "$GAME/assets/debug/cavalry_movement/mid.png" \
+  "$DT/ranks-that-turn-and-march/cavalry.png"
+copy_file "$GAME/assets/debug/building_status_chips_mid.png" \
+  "$DT/ranks-that-turn-and-march/status-chips.png"
+
 echo "==> Done. Assets in $SITE_PUBLIC"
