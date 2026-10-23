@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-15T13:56:45.718Z",
+  "updatedAt": "2026-10-23T14:03:43.697Z",
   "reddit": {
     "halted": true,
     "haltReason": "Possible shadowban or removal after commenting on t3_1vf4bzu",
@@ -129,6 +129,23 @@
           "ok": true
         },
         "at": "2026-10-15T13:56:45.718Z"
+      },
+      "ranks-that-turn-and-march": {
+        "discord": "https://provincia.ch/devtalk/ranks-that-turn-and-march?utm_source=discord&utm_medium=social&utm_campaign=ranks-that-turn-and-march",
+        "x": {
+          "ok": true,
+          "ids": [
+            "2113632464186884431"
+          ]
+        },
+        "reddit": {
+          "skipped": true,
+          "reason": "REDDIT_AUTO_POST=0"
+        },
+        "steamReminder": {
+          "ok": true
+        },
+        "at": "2026-10-23T14:03:43.697Z"
       }
     }
   }
