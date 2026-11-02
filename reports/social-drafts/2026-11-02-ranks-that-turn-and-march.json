@@ -1,0 +1,33 @@
+{
+  "slug": "ranks-that-turn-and-march",
+  "devtalkTitle": "Ranks That Turn and March",
+  "generatedAt": "2026-11-02T19:11:04.579Z",
+  "platforms": {
+    "reddit": {
+      "title": "Introducing Improved Unit Movement in Provincia",
+      "body": "In our latest devtalk, we discuss significant changes to unit movement mechanics in Provincia. Formation drags now align soldiers based on your direction, ensuring a more realistic march without teleportation. Attacks from behind will no longer cause units to wheel through one another, enhancing tactical gameplay. Check out the full details here: https://provincia.ch/devtalk/ranks-that-turn-and-march?utm_source=reddit&utm_medium=social&utm_campaign=ranks-that-turn-and-march"
+    },
+    "x": {
+      "posts": [
+        "We've made substantial improvements to unit movement in Provincia! Soldiers now move in a more realistic manner, with no teleportation during formation changes. Learn more about these updates: https://provincia.ch/devtalk/ranks-that-turn-and-march?utm_source=x&utm_medium=social&utm_campaign=ranks-that-turn-and-march",
+        "Exciting changes are coming to how units march in Provincia! Our latest devtalk covers the new mechanics that ensure soldiers maintain formation and move realistically. Read more: https://provincia.ch/devtalk/ranks-that-turn-and-march?utm_source=x&utm_medium=social&utm_campaign=ranks-that-turn-and-march"
+      ]
+    },
+    "discord": {
+      "content": "We've made some exciting updates to unit movement in Provincia! Soldiers now march and turn without teleporting, providing a more immersive gameplay experience. For all the details, check out our latest devtalk: https://provincia.ch/devtalk/ranks-that-turn-and-march?utm_source=discord&utm_medium=social&utm_campaign=ranks-that-turn-and-march",
+      "embed": {
+        "title": "New Movement Mechanics in Provincia",
+        "description": "Discover how we're enhancing unit formations and movement in our latest devtalk. Soldiers now slide into position without teleporting, making battles feel more realistic.",
+        "url": "https://provincia.ch/devtalk/ranks-that-turn-and-march?utm_source=discord&utm_medium=social&utm_campaign=ranks-that-turn-and-march"
+      }
+    },
+    "steam": {
+      "title": "Enhanced Unit Movement Mechanics",
+      "body": "We're thrilled to announce improvements to how units move in Provincia! Our latest devtalk reveals changes that allow for realistic formations and movements without teleportation. Dive into the details and see how these updates will enhance your gameplay experience: https://provincia.ch/devtalk/ranks-that-turn-and-march?utm_source=steam&utm_medium=social&utm_campaign=ranks-that-turn-and-march"
+    }
+  },
+  "links": {
+    "site": "https://provincia.ch/?utm_source=discord&utm_medium=social&utm_campaign=ranks-that-turn-and-march",
+    "devtalk": "https://provincia.ch/devtalk/ranks-that-turn-and-march?utm_source=discord&utm_medium=social&utm_campaign=ranks-that-turn-and-march"
+  }
+}
