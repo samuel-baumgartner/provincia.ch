@@ -1,0 +1,33 @@
+{
+  "slug": "ranks-that-turn-and-march",
+  "devtalkTitle": "Ranks That Turn and March",
+  "generatedAt": "2026-11-03T16:50:20.704Z",
+  "platforms": {
+    "reddit": {
+      "title": "Introducing Ranks That Turn and March in Provincia",
+      "body": "We're excited to share our latest update on the mechanics of troop movements in Provincia! In our upcoming patch, soldiers will no longer teleport or wheel through each other during attacks. Instead, they will slide into position based on their new facing, ensuring a more realistic and engaging gameplay experience. Check out the full details here: https://provincia.ch/devtalk/ranks-that-turn-and-march?utm_source=reddit&utm_medium=social&utm_campaign=ranks-that-turn-and-march"
+    },
+    "x": {
+      "posts": [
+        "Exciting changes are coming to troop movements in Provincia! Soldiers will now slide into formation instead of teleporting. Learn more about the new mechanics here: https://provincia.ch/devtalk/ranks-that-turn-and-march?utm_source=x&utm_medium=social&utm_campaign=ranks-that-turn-and-march",
+        "Get ready for a more immersive battle experience in Provincia! Our latest update focuses on how ranks turn and march, eliminating the teleportation mechanic. Discover the details here: https://provincia.ch/devtalk/ranks-that-turn-and-march?utm_source=x&utm_medium=social&utm_campaign=ranks-that-turn-and-march"
+      ]
+    },
+    "discord": {
+      "content": "We're thrilled to announce a significant update to troop mechanics in Provincia! Soldiers will now slide into formation rather than teleporting, enhancing the realism of battles. For a deeper dive into these changes, check out our latest devtalk: https://provincia.ch/devtalk/ranks-that-turn-and-march?utm_source=discord&utm_medium=social&utm_campaign=ranks-that-turn-and-march",
+      "embed": {
+        "title": "Ranks That Turn and March",
+        "description": "Discover how our new mechanics will change the way your troops move and engage in battle. No more teleporting or wheeling through formations!",
+        "url": "https://provincia.ch/devtalk/ranks-that-turn-and-march?utm_source=discord&utm_medium=social&utm_campaign=ranks-that-turn-and-march"
+      }
+    },
+    "steam": {
+      "title": "New Troop Movement Mechanics in Provincia",
+      "body": "We're implementing exciting changes to how troops move in Provincia! The new update will make soldiers slide into formation based on their facing, eliminating teleportation and creating a more authentic battlefield experience. Learn more about these changes and how they'll affect gameplay in our latest devtalk: https://provincia.ch/devtalk/ranks-that-turn-and-march?utm_source=steam&utm_medium=social&utm_campaign=ranks-that-turn-and-march"
+    }
+  },
+  "links": {
+    "site": "https://provincia.ch/?utm_source=discord&utm_medium=social&utm_campaign=ranks-that-turn-and-march",
+    "devtalk": "https://provincia.ch/devtalk/ranks-that-turn-and-march?utm_source=discord&utm_medium=social&utm_campaign=ranks-that-turn-and-march"
+  }
+}
