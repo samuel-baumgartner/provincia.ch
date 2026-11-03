@@ -333,4 +333,12 @@ copy_file "$GAME/assets/debug/cavalry_movement/mid.png" \
 copy_file "$GAME/assets/debug/building_status_chips_mid.png" \
   "$DT/ranks-that-turn-and-march/status-chips.png"
 
+# Five territories beyond the basin — frontier / quarry conquest iterate (never AI)
+copy_file "$GAME/assets/debug/frontier/locked_far.png" \
+  "$DT/five-territories-beyond-the-basin/cover.png"
+copy_file "$GAME/assets/debug/frontier/locked_mid.png" \
+  "$DT/five-territories-beyond-the-basin/locked.png"
+copy_file "$GAME/assets/debug/frontier/conquered_mid.png" \
+  "$DT/five-territories-beyond-the-basin/conquered.png"
+
 echo "==> Done. Assets in $SITE_PUBLIC"
