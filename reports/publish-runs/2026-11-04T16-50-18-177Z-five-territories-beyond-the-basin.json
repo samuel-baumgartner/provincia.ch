@@ -1,0 +1,23 @@
+{
+  "slug": "five-territories-beyond-the-basin",
+  "dryRun": false,
+  "results": {
+    "discord": {
+      "ok": true,
+      "url": "https://provincia.ch/devtalk/five-territories-beyond-the-basin?utm_source=discord&utm_medium=social&utm_campaign=five-territories-beyond-the-basin"
+    },
+    "steamReminder": {
+      "ok": true
+    },
+    "x": {
+      "ok": true,
+      "ids": [
+        "2118023038209839300"
+      ]
+    },
+    "redditSelf": {
+      "skipped": true,
+      "reason": "REDDIT_AUTO_POST=0"
+    }
+  }
+}

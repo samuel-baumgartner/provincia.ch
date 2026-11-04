@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-23T14:03:43.697Z",
+  "updatedAt": "2026-11-04T16:50:18.175Z",
   "reddit": {
     "halted": true,
     "haltReason": "Possible shadowban or removal after commenting on t3_1vf4bzu",
@@ -146,6 +146,23 @@
           "ok": true
         },
         "at": "2026-10-23T14:03:43.697Z"
+      },
+      "five-territories-beyond-the-basin": {
+        "discord": "https://provincia.ch/devtalk/five-territories-beyond-the-basin?utm_source=discord&utm_medium=social&utm_campaign=five-territories-beyond-the-basin",
+        "x": {
+          "ok": true,
+          "ids": [
+            "2118023038209839300"
+          ]
+        },
+        "reddit": {
+          "skipped": true,
+          "reason": "REDDIT_AUTO_POST=0"
+        },
+        "steamReminder": {
+          "ok": true
+        },
+        "at": "2026-11-04T16:50:18.175Z"
       }
     }
   }
