@@ -341,4 +341,12 @@ copy_file "$GAME/assets/debug/frontier/locked_mid.png" \
 copy_file "$GAME/assets/debug/frontier/conquered_mid.png" \
   "$DT/five-territories-beyond-the-basin/conquered.png"
 
+# Materials instead of cost badges — build-dock materials iterate (never AI)
+copy_file "$GAME/assets/debug/ui/materials_mid_900.png" \
+  "$DT/materials-instead-of-cost-badges/cover.png"
+copy_file "$GAME/assets/debug/ui/materials_close_720.png" \
+  "$DT/materials-instead-of-cost-badges/close.png"
+copy_file "$GAME/assets/debug/ui/materials_far_1080.png" \
+  "$DT/materials-instead-of-cost-badges/far.png"
+
 echo "==> Done. Assets in $SITE_PUBLIC"
