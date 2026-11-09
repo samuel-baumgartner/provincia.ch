@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-04T16:50:18.175Z",
+  "updatedAt": "2026-11-09T19:29:22.116Z",
   "reddit": {
     "halted": true,
     "haltReason": "Possible shadowban or removal after commenting on t3_1vf4bzu",
@@ -163,6 +163,23 @@
           "ok": true
         },
         "at": "2026-11-04T16:50:18.175Z"
+      },
+      "materials-instead-of-cost-badges": {
+        "discord": "https://provincia.ch/devtalk/materials-instead-of-cost-badges?utm_source=discord&utm_medium=social&utm_campaign=materials-instead-of-cost-badges",
+        "x": {
+          "ok": true,
+          "ids": [
+            "2119875007874502732"
+          ]
+        },
+        "reddit": {
+          "skipped": true,
+          "reason": "REDDIT_AUTO_POST=0"
+        },
+        "steamReminder": {
+          "ok": true
+        },
+        "at": "2026-11-09T19:29:22.116Z"
       }
     }
   }
