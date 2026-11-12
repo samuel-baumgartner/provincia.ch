@@ -1,0 +1,33 @@
+{
+  "slug": "materials-instead-of-cost-badges",
+  "devtalkTitle": "Materials Instead of Cost Badges",
+  "generatedAt": "2026-11-12T17:20:56.022Z",
+  "platforms": {
+    "reddit": {
+      "title": "Introducing Materials Instead of Cost Badges in Provincia",
+      "body": "We're excited to share a significant update in Provincia! Instead of the previous cost badges, build tiles now display a detailed **Materials** sheet. This allows you to see all the materials required for your constructions at a glance, with shortages highlighted. No more guessing what you need! Check out the full details here: https://provincia.ch/devtalk/materials-instead-of-cost-badges?utm_source=reddit&utm_medium=social&utm_campaign=materials-instead-of-cost-badges"
+    },
+    "x": {
+      "posts": [
+        "Big news for Provincia players! We're replacing the single cost chip with a comprehensive **Materials** sheet for build tiles. This update makes it easier to manage your resources effectively. Learn more here: https://provincia.ch/devtalk/materials-instead-of-cost-badges?utm_source=x&utm_medium=social&utm_campaign=materials-instead-of-cost-badges",
+        "Say goodbye to confusing cost badges! Our latest update introduces a **Materials** control for build tiles, showing you exactly what you need. Check out the details: https://provincia.ch/devtalk/materials-instead-of-cost-badges?utm_source=x&utm_medium=social&utm_campaign=materials-instead-of-cost-badges"
+      ]
+    },
+    "discord": {
+      "content": "We've made a major improvement in Provincia! Build tiles now feature a **Materials** sheet that clearly lists all required materials, making resource management much easier. You can see shortages highlighted, ensuring you know exactly what you need. Learn more about this update here: https://provincia.ch/devtalk/materials-instead-of-cost-badges?utm_source=discord&utm_medium=social&utm_campaign=materials-instead-of-cost-badges",
+      "embed": {
+        "title": "Materials Instead of Cost Badges",
+        "description": "Discover how our new Materials sheet enhances your building experience in Provincia by providing clear resource requirements and highlighting shortages.",
+        "url": "https://provincia.ch/devtalk/materials-instead-of-cost-badges?utm_source=discord&utm_medium=social&utm_campaign=materials-instead-of-cost-badges"
+      }
+    },
+    "steam": {
+      "title": "New Update: Materials Instead of Cost Badges",
+      "body": "We're thrilled to announce a new feature in Provincia! Build tiles now come with a **Materials** sheet that displays all required resources, making it easier to plan your constructions. No more hidden costs or guesswork! For a detailed overview of this update, visit: https://provincia.ch/devtalk/materials-instead-of-cost-badges?utm_source=steam&utm_medium=social&utm_campaign=materials-instead-of-cost-badges"
+    }
+  },
+  "links": {
+    "site": "https://provincia.ch/?utm_source=discord&utm_medium=social&utm_campaign=materials-instead-of-cost-badges",
+    "devtalk": "https://provincia.ch/devtalk/materials-instead-of-cost-badges?utm_source=discord&utm_medium=social&utm_campaign=materials-instead-of-cost-badges"
+  }
+}
